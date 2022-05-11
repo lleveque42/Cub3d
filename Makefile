@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+         #
+#    By: arudy <arudy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/11 10:24:14 by lleveque         ###   ########.fr        #
+#    Updated: 2022/05/11 12:33:28 by arudy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SRCS = ${SRCS_MAIN} ${SRCS_UTILS} ${SRCS_PARSING}
 
 SRCS_MAIN = $(addprefix srcs/, main.c)
 
-SRCS_UTILS = $(addprefix srcs/utils/,)
+SRCS_UTILS = $(addprefix srcs/utils/, garbage/ft_free.c garbage/ft_malloc.c gnl/get_next_line.c \
+				gnl/get_next_line_utils.c ft_putstr_fd.c ft_strlen.c init.c)
 
 SRCS_PARSING = $(addprefix srcs/parsing/, parsing.c)
 

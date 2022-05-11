@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 12:29:47 by arudy            ###   ########.fr       */
+/*   Created: 2022/05/11 12:20:02 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/11 13:32:31 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+# include "../../include/cub3d.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
 
-# include "utils.h"
-# include "struct.h"
-# include "parsing.h"
-# include "../mlx/mlx.h"
-# include "get_next_line.h"
-# include "../mlx/mlx_int.h"
-
-
-#endif
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			write(fd, &s[i], 1);
+			i++;
+		}
+	}
+}

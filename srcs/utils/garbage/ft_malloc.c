@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:09:12 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 11:17:06 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:29:01 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
 void	ft_garb_addback(t_data *data, t_garbage *new)
 {

@@ -6,21 +6,11 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:12:40 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 11:00:08 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 13:31:31 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/get_next_line.h"
-
-size_t	ft_strlen(char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s && s[i])
-		i++;
-	return (i);
-}
+#include "../../../include/cub3d.h"
 
 int	ft_strchr(char *s, char c)
 {

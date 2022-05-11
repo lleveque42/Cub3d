@@ -6,11 +6,11 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 11:00:04 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 13:31:40 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/get_next_line.h"
+#include "../../../include/cub3d.h"
 
 char	*str_to_out(char *str)
 {

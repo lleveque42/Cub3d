@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 18:57:22 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 11:09:25 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:28:20 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	ft_free(void *ptr, t_data *data)
 void	free_all(t_data *data)
 {
 	ft_free_garbage(data->garbage);
+	close(data->in_fd);
 	free(data);
 }

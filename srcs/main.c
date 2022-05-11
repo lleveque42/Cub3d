@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:01 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 11:23:23 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 13:39:53 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
 
-	if (ac != 1 || !envp[0])
+	if (ac != 2 || !envp[0])
 		return (0);
-	data = init_data(data);
-	if (parsing(av[1], data))
-		return (0);
+	data = init_data(av[1]);
+	printf("%d\n", data->in_fd);
+	free_all(data);
+	// if (parsing(av[1], data))
+	// 	return (0);
 	return (0);
 }
