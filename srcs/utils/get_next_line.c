@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 16:03:48 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 22:13:27 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*get_next_line(int fd, t_data *data)
 
 	if (!stat)
 	{
-		stat = ft_malloc (sizeof(char) * 1, data);
+		stat = ft_malloc(sizeof(char) * 1, data);
 		stat[0] = '\0';
 	}
 	stat = read_line(fd, stat, data);
