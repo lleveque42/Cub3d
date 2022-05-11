@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 12:29:47 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 13:52:32 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include "../mlx/mlx_int.h"
-
 
 #endif

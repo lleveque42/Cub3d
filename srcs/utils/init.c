@@ -6,13 +6,11 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 13:42:33 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 13:55:39 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/cub3d.h"
-
-
+#include "../../include/cub3d.h"
 
 void	open_map_error(char *msg, t_data *data)
 {
@@ -68,6 +66,6 @@ t_data	*init_data(char *input)
 	}
 	data->garbage->ptr = NULL;
 	open_map(input, data);
+	data->filename = ft_strdup(input, data);
 	return (data);
 }
-

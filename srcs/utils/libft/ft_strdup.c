@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:09:01 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 13:54:53 by arudy            ###   ########.fr       */
+/*   Created: 2022/05/11 13:56:02 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/11 13:59:16 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
-int	main(int ac, char **av, char **envp)
+char	*ft_strdup(const char *src, t_data *data)
 {
-	t_data	*data;
+	int		i;
+	int		len;
+	char	*dst;
 
-	if (ac != 2 || !envp[0])
-		return (0);
-	data = init_data(av[1]);
-	printf("%d\n", data->in_fd);
-	free_all(data);
-	if (parsing(data))
-		return (1);
-	return (0);
+	i = 0;
+	len = ft_strlen(src);
+	dst = ft_malloc(sizeof(char) * len + 1, data);
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }
