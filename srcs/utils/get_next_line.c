@@ -6,108 +6,93 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 15:08:48 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 16:03:48 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-char	*str_to_out(char *str, t_data *data)
+char	*ft_trim_stat(char *s, t_data *data)
 {
-	size_t	i;
-	size_t	len;
-	char	*out;
-
-	i = 0;
-	len = 0;
-	if (str[i] == '\0')
-		return (NULL);
-	while (str[len] && str[len] != '\n')
-		len++;
-	if (str[len] == '\0')
-		out = ft_malloc(sizeof(char) * (len + 1), data);
-	if (str[len] == '\n')
-		out = ft_malloc(sizeof(char) * (len + 2), data);
-	if (!out)
-		return (NULL);
-	while (str[i] != '\0' && str[i] != '\n')
-	{
-		out[i] = str[i];
-		i++;
-	}
-	if (str[i] == '\n')
-		out[i] = '\n';
-	out[i] = '\0';
-	return (out);
-}
-
-char	*next_str(char *str, t_data *data)
-{
-	char	*out;
 	size_t	i;
 	size_t	j;
+	char	*dst;
 
 	i = 0;
 	j = 0;
-	while (str[i] != '\0' && str[i] != '\n')
+	while (s[i] != '\0' && s[i] != '\n')
 		i++;
-	if (str[i] == '\0')
-	{
-		ft_free(str, data);
-		return (NULL);
-	}
-	out = ft_malloc(sizeof(char) * (ft_strlen(str) - i + 1), data);
-	if (!out)
-		return (NULL);
-	while (str[i++] != '\0')
-	{
-		out[j] = str[i];
-		j++;
-	}
-	out[j] = '\0';
-	ft_free(str, data);
-	return (out);
+	if (s[i] == '\0')
+		return (ft_free(s, data), NULL);
+	dst = ft_malloc (sizeof(char) * (ft_strlen(s) - i + 1), data);
+	i++;
+	while (s[i] != '\0')
+		dst[j++] = s[i++];
+	dst[j] = '\0';
+	ft_free(s, data);
+	return (dst);
 }
 
-char	*read_line(int fd, char *str, t_data *data)
+char	*make_line(char *stat, t_data *data)
 {
-	int		count;
-	char	*buff;
+	size_t	i;
+	size_t	j;
+	char	*line;
+
+	i = 0;
+	j = 0;
+	if (stat[i] == '\0')
+		return (NULL);
+	while (stat[i] != '\0' && stat[i] != '\n')
+		i++;
+	if (stat[i] == '\0')
+		line = ft_malloc (sizeof(char) * (i + 1), data);
+	else
+		line = ft_malloc (sizeof(char) * (i + 2), data);
+	while (stat[j] != '\0' && stat[j] != '\n')
+	{
+		line[j] = stat[j];
+		j++;
+	}
+	if (stat[j] == '\n')
+		line[j++] = '\n';
+	line[j] = '\0';
+	return (line);
+}
+
+char	*read_line(int fd, char *stat, t_data *data)
+{
+	int			count;
+	char		*buff;
 
 	count = 1;
-	buff = ft_malloc(sizeof(char) * 1 + 1, data);
-	if (!buff)
-		return (NULL);
-	while (!(ft_strchr(str, '\n')) && count > 0)
+	buff = ft_malloc (sizeof(char) * 2, data);
+	while (ft_strchr(stat, '\n') == 0 && count > 0)
 	{
 		count = read(fd, buff, 1);
-		if (count < 1)
+		if (count < 0)
 			break ;
 		buff[count] = '\0';
-		str = ft_strjoin(str, buff, data);
+		stat = ft_strjoin(stat, buff, data);
 	}
-	free(buff);
-	return (str);
+	ft_free(buff, data);
+	return (stat);
 }
 
 char	*get_next_line(int fd, t_data *data)
 {
-	char		*out;
-	static char	*str;
+	static char	*stat;
+	char		*line;
 
-	if (fd < 0)
-		return (NULL);
-	if (!str)
+	if (!stat)
 	{
-		str = ft_malloc(sizeof(char) * 1, data);
-		if (!str)
-			return (NULL);
-		str[0] = '\0';
+		stat = ft_malloc (sizeof(char) * 1, data);
+		stat[0] = '\0';
 	}
-	str = read_line(fd, str, data);
-	if (!str)
+	stat = read_line(fd, stat, data);
+	if (!stat)
 		return (NULL);
-	out = str_to_out(str, data);
-	str = next_str(str, data);
-	return (out);
+	line = make_line(stat, data);
+	stat = ft_trim_stat(stat, data);
+	return (line);
 }
