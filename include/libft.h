@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 14:59:40 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 18:36:15 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 23:57:50 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char		*ft_strdup(char *s, t_data *data);
 char		*ft_strcdup(char *s, char c, t_data *data);
 void		*ft_calloc(size_t nmemb, size_t size, t_data *data);
 char		*ft_strjoin(char *s1, char *s2, t_data *data);
+char		*ft_strldup(char *s, size_t size, t_data *data);
 char		**ft_split(char const *s, char c, t_data *data);
 char		*ft_strjoin_char(char *s, char c, t_data *data);
 char		*ft_substr(char const *s, unsigned int start, size_t len, \
