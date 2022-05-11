@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 11:19:05 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 11:30:48 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ struct	s_color
 
 struct	s_data
 {
+	int			in_fd;
+	char		**map;
 	t_garbage	*garbage;
 };
 
