@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 15:13:23 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 18:04:11 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,21 @@ void	open_map(char *input, t_data *data)
 	}
 }
 
+void	init_null(t_data *data)
+{
+	data->map = NULL;
+	data->texture->c->r = -1;
+	data->texture->c->g = -1;
+	data->texture->c->b = -1;
+	data->texture->f->r = -1;
+	data->texture->f->g = -1;
+	data->texture->f->b = -1;
+	data->texture->no_path = NULL;
+	data->texture->so_path = NULL;
+	data->texture->we_path = NULL;
+	data->texture->ea_path = NULL;
+}
+
 t_data	*init_data(char *input)
 {
 	t_data	*data;
@@ -65,8 +80,11 @@ t_data	*init_data(char *input)
 		exit(EXIT_FAILURE);
 	}
 	data->garbage->ptr = NULL;
-	open_map(input, data);
+	data->texture = ft_malloc(sizeof(t_texture), data);
+	data->texture->c = ft_malloc(sizeof(t_color), data);
+	data->texture->f = ft_malloc(sizeof(t_color), data);
 	data->filename = ft_strdup(input, data);
-	data->map = NULL;
+	open_map(input, data);
+	init_null(data);
 	return (data);
 }

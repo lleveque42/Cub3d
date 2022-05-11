@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 14:59:40 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 15:02:57 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 18:36:15 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int			ft_isdigit(int c);
 int			ft_atoi(char *nptr);
 int			ft_is_whitespace(int c);
 int			ft_strcmp(char *s1, char *s2);
+int			ft_strlcpy(char *dst, const char *src, size_t size);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		ft_bzero(void *s, size_t n);
 void		ft_putstr_fd(char *s, int fd);

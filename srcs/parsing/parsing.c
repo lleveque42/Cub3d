@@ -6,33 +6,20 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 16:29:40 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 18:39:56 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	is_texture(char *buff, t_data *data)
-{
-	if (!ft_strncmp(buff, "NO ", 3))
-		printf("NO\n");
-	if (!ft_strncmp(buff, "SO ", 3))
-		printf("SO\n");
-	if (!ft_strncmp(buff, "WE ", 3))
-		printf("WE\n");
-	if (!ft_strncmp(buff, "EA ", 3))
-		printf("EA\n");
-	if (!ft_strncmp(buff, "C ", 2))
-		printf("C\n");
-	if (!ft_strncmp(buff, "F ", 2))
-		printf("F\n");
-	(void)data;
-	return (0);
-}
-
 void	scan_buff(t_data *data, char *buff)
 {
-	is_texture(buff, data);
+	if (!textures_all_filled(data))
+	{
+		while (ft_is_whitespace(*buff))
+			buff++;
+		is_texture(buff, data);
+	}
 }
 
 void	fill_map(t_data *data)
@@ -53,5 +40,9 @@ void	fill_map(t_data *data)
 int	parsing(t_data *data)
 {
 	fill_map(data);
+	printf("NO : %s\n", data->texture->no_path);
+	printf("SO : %s\n", data->texture->so_path);
+	printf("EA : %s\n", data->texture->ea_path);
+	printf("WE : %s\n", data->texture->we_path);
 	return (0);
 }

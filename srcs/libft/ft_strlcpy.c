@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:57:41 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 18:21:55 by arudy            ###   ########.fr       */
+/*   Created: 2022/05/11 18:35:04 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/11 18:57:47 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "../../include/cub3d.h"
 
-# include "struct.h"
+int	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
 
-int		parsing(t_data *data);
-int		textures_all_filled(t_data *data);
-void	is_texture(char *buff, t_data *data);
-
-#endif
+	i = 0;
+	if (size == 0)
+		return (1);
+	while (src[i] && i < size - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (0);
+}
