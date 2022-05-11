@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/09 12:11:30 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 12:09:21 by arudy            ###   ########.fr       */
+/*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/11 12:07:45 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
-#include "struct.h"
+typedef struct s_data		t_data;
+typedef struct s_color		t_color;
+typedef struct s_garbage	t_garbage;
 
-char	*get_next_line(int fd);
-char	*str_to_out(char *str);
-char	*next_str(char *str);
-char	*read_line(int fd, char *str);
-size_t	ft_strlen(char *s);
-int		ft_strchr(char *s, char c);
-char	*ft_strjoin(char *s1, char *s2);
+struct	s_data
+{
+	int			in_fd;
+	char		**map;
+	t_garbage	*garbage;
+};
 
+struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+};
+
+struct	s_garbage
+{
+	struct s_garbage	*prev;
+	void				*ptr;
+	struct s_garbage	*next;
+};
 #endif

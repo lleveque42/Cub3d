@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 11:30:48 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 12:08:05 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# include "struct.h"
 # include "parsing.h"
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include "../mlx/mlx_int.h"
 
-typedef struct s_data		t_data;
-typedef struct s_garbage	t_garbage;
-
-struct	s_garbage
-{
-	struct s_garbage	*prev;
-	void				*ptr;
-	struct s_garbage	*next;
-};
-
-struct	s_color
-{
-	int	r;
-	int	g;
-	int	b;
-};
-
-struct	s_data
-{
-	int			in_fd;
-	char		**map;
-	t_garbage	*garbage;
-};
 
 #endif
