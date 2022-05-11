@@ -1,44 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 15:09:57 by arudy            ###   ########.fr       */
+/*   Created: 2022/04/02 15:23:42 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/11 15:11:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	scan_buff(t_data *data, char *buff)
+static char	*first_char(char c, t_data *data)
 {
-	int	i;
+	char	*s;
+
+	s = ft_malloc(sizeof(char) * 2, data);
+	s[0] = c;
+	s[1] = '\0';
+	return (s);
+}
+
+char	*ft_strjoin_char(char *s, char c, t_data *data)
+{
+	int		i;
+	char	*dst;
 
 	i = 0;
-	(void)i;
-	(void)data;
-	(void)buff;
-}
-
-void	fill_map(t_data *data)
-{
-	char	*buff;
-
-	while (1)
+	if (!c)
+		return (NULL);
+	if (!s)
+		return (first_char(c, data));
+	dst = ft_malloc(sizeof(char) * (ft_strlen(s) + 2), data);
+	while (s[i])
 	{
-		buff = get_next_line(data->in_fd, data);
-		if (!buff)
-			break ;
-		scan_buff(data, buff);
-		ft_free(buff, data);
+		dst[i] = s[i];
+		i++;
 	}
-	ft_free(buff, data);
-}
-
-int	parsing(t_data *data)
-{
-	fill_map(data);
-	return (0);
+	dst[i] = c;
+	i++;
+	dst[i] = '\0';
+	ft_free(s, data);
+	return (dst);
 }

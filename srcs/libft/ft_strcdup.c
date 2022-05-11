@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strcdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 15:09:57 by arudy            ###   ########.fr       */
+/*   Created: 2022/04/06 15:28:09 by lleveque          #+#    #+#             */
+/*   Updated: 2022/05/11 15:11:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	scan_buff(t_data *data, char *buff)
+char	*ft_strcdup(char *s, char c, t_data *data)
 {
-	int	i;
+	size_t	i;
+	size_t	size;
+	char	*dest;
 
 	i = 0;
-	(void)i;
-	(void)data;
-	(void)buff;
-}
-
-void	fill_map(t_data *data)
-{
-	char	*buff;
-
-	while (1)
+	size = 0;
+	while (s && s[size] && s[size] != c)
+		size++;
+	dest = ft_malloc(sizeof(char) * (size + 1), data);
+	while (s && s[i] && s[i] != c)
 	{
-		buff = get_next_line(data->in_fd, data);
-		if (!buff)
-			break ;
-		scan_buff(data, buff);
-		ft_free(buff, data);
+		dest[i] = s[i];
+		i++;
 	}
-	ft_free(buff, data);
-}
-
-int	parsing(t_data *data)
-{
-	fill_map(data);
-	return (0);
+	dest[i] = '\0';
+	return (dest);
 }

@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/09 12:11:30 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 13:53:06 by arudy            ###   ########.fr       */
+/*   Created: 2022/03/22 10:16:53 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/11 15:11:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../../include/cub3d.h"
 
-# include "struct.h"
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
 
-char	*get_next_line(int fd);
-char	*str_to_out(char *str);
-char	*next_str(char *str);
-char	*read_line(int fd, char *str);
-int		ft_strchr(char *s, char c);
-char	*ft_strjoin(char *s1, char *s2);
-
-#endif
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			write(fd, &s[i], 1);
+			i++;
+		}
+	}
+}

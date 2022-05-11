@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 14:01:12 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 14:52:43 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ struct	s_data
 	int			in_fd;
 	char		**map;
 	char		*filename;
+	t_texture	*texture;
 	t_garbage	*garbage;
 };
 

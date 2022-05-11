@@ -1,44 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_is_whitespace.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 15:09:57 by arudy            ###   ########.fr       */
+/*   Created: 2022/03/23 15:37:36 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/11 15:11:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	scan_buff(t_data *data, char *buff)
+int	ft_is_whitespace(int c)
 {
-	int	i;
-
-	i = 0;
-	(void)i;
-	(void)data;
-	(void)buff;
-}
-
-void	fill_map(t_data *data)
-{
-	char	*buff;
-
-	while (1)
-	{
-		buff = get_next_line(data->in_fd, data);
-		if (!buff)
-			break ;
-		scan_buff(data, buff);
-		ft_free(buff, data);
-	}
-	ft_free(buff, data);
-}
-
-int	parsing(t_data *data)
-{
-	fill_map(data);
+	if (((c >= 9 && c <= 13) || c == 32))
+		return (1);
 	return (0);
 }

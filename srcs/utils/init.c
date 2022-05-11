@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 13:55:39 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 15:13:23 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ t_data	*init_data(char *input)
 	data->garbage->ptr = NULL;
 	open_map(input, data);
 	data->filename = ft_strdup(input, data);
+	data->map = NULL;
 	return (data);
 }

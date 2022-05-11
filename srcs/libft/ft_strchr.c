@@ -1,44 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 15:09:57 by arudy            ###   ########.fr       */
+/*   Created: 2021/11/25 18:35:06 by lleveque          #+#    #+#             */
+/*   Updated: 2022/05/11 15:11:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	scan_buff(t_data *data, char *buff)
+char	*ft_strchr(char *s, int c)
 {
-	int	i;
-
-	i = 0;
-	(void)i;
-	(void)data;
-	(void)buff;
-}
-
-void	fill_map(t_data *data)
-{
-	char	*buff;
-
-	while (1)
+	if (!(unsigned char)c)
+		return ((char *)s + ft_strlen(s));
+	while (*s)
 	{
-		buff = get_next_line(data->in_fd, data);
-		if (!buff)
-			break ;
-		scan_buff(data, buff);
-		ft_free(buff, data);
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
 	}
-	ft_free(buff, data);
-}
-
-int	parsing(t_data *data)
-{
-	fill_map(data);
 	return (0);
 }

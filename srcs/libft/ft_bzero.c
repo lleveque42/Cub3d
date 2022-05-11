@@ -1,44 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 15:09:57 by arudy            ###   ########.fr       */
+/*   Created: 2022/03/31 14:20:10 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/11 15:11:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	scan_buff(t_data *data, char *buff)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	(void)i;
-	(void)data;
-	(void)buff;
-}
-
-void	fill_map(t_data *data)
-{
-	char	*buff;
-
-	while (1)
+	while (i < n)
 	{
-		buff = get_next_line(data->in_fd, data);
-		if (!buff)
-			break ;
-		scan_buff(data, buff);
-		ft_free(buff, data);
+		((char *)s)[i] = '\0';
+		i++;
 	}
-	ft_free(buff, data);
-}
-
-int	parsing(t_data *data)
-{
-	fill_map(data);
-	return (0);
 }

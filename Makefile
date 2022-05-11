@@ -6,7 +6,7 @@
 #    By: arudy <arudy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/11 14:08:00 by arudy            ###   ########.fr        #
+#    Updated: 2022/05/11 15:12:20 by arudy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,15 @@ SRCS = ${SRCS_MAIN} ${SRCS_UTILS} ${SRCS_PARSING} ${SRCS_LIBFT}
 
 SRCS_MAIN = $(addprefix srcs/, main.c)
 
-SRCS_UTILS = $(addprefix srcs/utils/, garbage/ft_free.c garbage/ft_malloc.c gnl/get_next_line.c \
-				gnl/get_next_line_utils.c init.c)
+SRCS_UTILS = $(addprefix srcs/utils/, garbage/ft_free.c garbage/ft_malloc.c get_next_line.c \
+				 init.c)
 
-SRCS_LIBFT = $(addprefix srcs/utils/libft/, ft_strlen.c ft_putstr_fd.c ft_strdup.c)
+SRCS_LIBFT = $(addprefix srcs/libft/, ft_putstr_fd.c ft_strlen.c \
+				ft_strncmp.c ft_substr.c ft_split.c \
+				ft_strdup.c ft_is_whitespace.c ft_strchr.c ft_isalpha.c \
+				ft_isdigit.c ft_calloc.c ft_bzero.c ft_strcmp.c \
+				ft_strjoin.c ft_strjoin_char.c ft_strcdup.c \
+				ft_atoll.c ft_itoa.c ft_atoi.c)
 
 SRCS_PARSING = $(addprefix srcs/parsing/, parsing.c)
 

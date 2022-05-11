@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 13:56:02 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 13:59:16 by arudy            ###   ########.fr       */
+/*   Created: 2022/04/18 16:17:25 by lleveque          #+#    #+#             */
+/*   Updated: 2022/05/11 15:11:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3d.h"
+#include "../../include/cub3d.h"
 
-char	*ft_strdup(const char *src, t_data *data)
+int	ft_atoll(char *n)
 {
-	int		i;
-	int		len;
-	char	*dst;
+	int			i;
+	int			sign;
+	long long	result;
 
 	i = 0;
-	len = ft_strlen(src);
-	dst = ft_malloc(sizeof(char) * len + 1, data);
-	while (src[i])
+	sign = 1;
+	result = 0;
+	while ((n[i] >= 7 && n[i] <= 13) || n[i] == 32)
+		i++;
+	if (n[i] == '-' || n[i] == '+')
 	{
-		dst[i] = src[i];
+		if (n[i] == '-')
+			sign = -1;
 		i++;
 	}
-	dst[i] = '\0';
-	return (dst);
+	while (n[i] >= '0' && n[i] <= '9')
+	{
+		result = result * 10 + (n[i] - 48);
+		i++;
+	}
+	if (sign == -1)
+		return ((sign * result) % 256 + 256);
+	else
+		return ((sign * result) % 256);
 }

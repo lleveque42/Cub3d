@@ -6,13 +6,13 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 13:31:40 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 15:08:48 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3d.h"
+#include "../../include/cub3d.h"
 
-char	*str_to_out(char *str)
+char	*str_to_out(char *str, t_data *data)
 {
 	size_t	i;
 	size_t	len;
@@ -25,9 +25,9 @@ char	*str_to_out(char *str)
 	while (str[len] && str[len] != '\n')
 		len++;
 	if (str[len] == '\0')
-		out = malloc(sizeof(char) * (len + 1));
+		out = ft_malloc(sizeof(char) * (len + 1), data);
 	if (str[len] == '\n')
-		out = malloc(sizeof(char) * (len + 2));
+		out = ft_malloc(sizeof(char) * (len + 2), data);
 	if (!out)
 		return (NULL);
 	while (str[i] != '\0' && str[i] != '\n')
@@ -41,7 +41,7 @@ char	*str_to_out(char *str)
 	return (out);
 }
 
-char	*next_str(char *str)
+char	*next_str(char *str, t_data *data)
 {
 	char	*out;
 	size_t	i;
@@ -53,10 +53,10 @@ char	*next_str(char *str)
 		i++;
 	if (str[i] == '\0')
 	{
-		free(str);
+		ft_free(str, data);
 		return (NULL);
 	}
-	out = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	out = ft_malloc(sizeof(char) * (ft_strlen(str) - i + 1), data);
 	if (!out)
 		return (NULL);
 	while (str[i++] != '\0')
@@ -65,17 +65,17 @@ char	*next_str(char *str)
 		j++;
 	}
 	out[j] = '\0';
-	free(str);
+	ft_free(str, data);
 	return (out);
 }
 
-char	*read_line(int fd, char *str)
+char	*read_line(int fd, char *str, t_data *data)
 {
 	int		count;
 	char	*buff;
 
 	count = 1;
-	buff = malloc(sizeof(char) * 1 + 1);
+	buff = ft_malloc(sizeof(char) * 1 + 1, data);
 	if (!buff)
 		return (NULL);
 	while (!(ft_strchr(str, '\n')) && count > 0)
@@ -84,13 +84,13 @@ char	*read_line(int fd, char *str)
 		if (count < 1)
 			break ;
 		buff[count] = '\0';
-		str = ft_strjoin(str, buff);
+		str = ft_strjoin(str, buff, data);
 	}
 	free(buff);
 	return (str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, t_data *data)
 {
 	char		*out;
 	static char	*str;
@@ -99,15 +99,15 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!str)
 	{
-		str = malloc(sizeof(char) * 1);
+		str = ft_malloc(sizeof(char) * 1, data);
 		if (!str)
 			return (NULL);
 		str[0] = '\0';
 	}
-	str = read_line(fd, str);
+	str = read_line(fd, str, data);
 	if (!str)
 		return (NULL);
-	out = str_to_out(str);
-	str = next_str(str);
+	out = str_to_out(str, data);
+	str = next_str(str, data);
 	return (out);
 }
