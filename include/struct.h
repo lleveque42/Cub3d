@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/11 14:52:43 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 01:36:23 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,25 @@
 
 typedef struct s_data		t_data;
 typedef struct s_color		t_color;
+typedef struct s_map_fd		t_map_fd;
 typedef struct s_texture	t_texture;
 typedef struct s_garbage	t_garbage;
 
 struct	s_data
 {
 	int			in_fd;
+	int			filled;
 	char		**map;
 	char		*filename;
+	t_map_fd	*map_fd;
 	t_texture	*texture;
 	t_garbage	*garbage;
+};
+
+struct s_map_fd
+{
+	int	begin;
+	int	height;
 };
 
 struct	s_texture

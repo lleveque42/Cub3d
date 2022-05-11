@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 18:04:11 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 01:40:20 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	open_map(char *input, t_data *data)
 void	init_null(t_data *data)
 {
 	data->map = NULL;
+	data->filled = 0;
 	data->texture->c->r = -1;
 	data->texture->c->g = -1;
 	data->texture->c->b = -1;
@@ -60,6 +61,8 @@ void	init_null(t_data *data)
 	data->texture->so_path = NULL;
 	data->texture->we_path = NULL;
 	data->texture->ea_path = NULL;
+	data->map_fd->begin = 0;
+	data->map_fd->height = 0;
 }
 
 t_data	*init_data(char *input)
@@ -83,6 +86,7 @@ t_data	*init_data(char *input)
 	data->texture = ft_malloc(sizeof(t_texture), data);
 	data->texture->c = ft_malloc(sizeof(t_color), data);
 	data->texture->f = ft_malloc(sizeof(t_color), data);
+	data->map_fd = ft_malloc(sizeof(t_map_fd), data);
 	data->filename = ft_strdup(input, data);
 	open_map(input, data);
 	init_null(data);
