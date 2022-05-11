@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arudy <arudy@student.42.fr>                +#+  +:+       +#+         #
+#    By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/10 17:36:49 by arudy            ###   ########.fr        #
+#    Updated: 2022/05/11 10:24:14 by lleveque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRCS_MAIN = $(addprefix srcs/, main.c)
 SRCS_UTILS = $(addprefix srcs/utils/,)
 
 SRCS_PARSING = $(addprefix srcs/parsing/, parsing.c)
-
 
 OBJS = ${SRCS:.c=.o}
 
@@ -32,10 +31,10 @@ RM = rm -f
 all: ${NAME}
 
 ${NAME}:	${OBJS}
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+		${CC} ${CFLAGS} ${OBJS} -I/usr/include -Imlx -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o ${NAME}
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -c $< -o ${<:.c=.o}
 
 clean:
 	${RM} ${OBJS}
