@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 11:00:41 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/11 11:14:21 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,27 @@
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include "../mlx/mlx_int.h"
+
+typedef struct s_data		t_data;
+typedef struct s_garbage	t_garbage;
+
+struct	s_garbage
+{
+	struct s_garbage	*prev;
+	void				*ptr;
+	struct s_garbage	*next;
+};
+
+struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+};
+
+struct	s_data
+{
+	t_garbage	*garbage;
+};
 
 #endif
