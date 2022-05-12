@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 17:56:24 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 18:28:21 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ struct	s_texture
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
+	int		no_fd;
+	int		so_fd;
+	int		we_fd;
+	int		ea_fd;
 	t_color	*c;
 	t_color	*f;
 };

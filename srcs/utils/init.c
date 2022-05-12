@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 18:01:54 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 18:31:15 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ void	init_null(t_data *data)
 	data->texture->so_path = NULL;
 	data->texture->we_path = NULL;
 	data->texture->ea_path = NULL;
+	data->texture->no_fd = -1;
+	data->texture->so_fd = -1;
+	data->texture->we_fd = -1;
+	data->texture->ea_fd = -1;
 	data->map_fd->begin = 0;
 	data->map_fd->ended = 0;
 	data->map_fd->height = 0;

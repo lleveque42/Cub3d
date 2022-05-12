@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:13:23 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 11:14:24 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:55:26 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ void	ft_exit_rgb_error(char c, char *msg, t_data *data, int value)
 	exit(value);
 }
 
-void	ft_exit(t_data *data, int exit_value)
+void	ft_exit_perror(char *s, t_data *data, int exit_value)
 {
+	ft_putstr_fd("Error\n", 2);
+	perror(s);
 	free_all(data);
 	exit(exit_value);
 }

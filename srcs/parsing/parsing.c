@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 18:01:23 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 18:38:07 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	scan_map(char **s, t_data *data)
 int	parsing(t_data *data)
 {
 	fill_data(data);
-	if (!textures_all_filled(data))
+	if (!textures_all_filled(data) || open_textures(data))
 	{
 		ft_putstr_fd("Error\n", 2);
 		ft_putstr_fd(data->filename, 2);

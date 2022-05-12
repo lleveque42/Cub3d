@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:44 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 12:08:21 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:58:46 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,44 @@ int	is_texture(char *buff, t_data *data)
 		return (0);
 	else
 		return (1);
+	return (0);
+}
+
+void	check_texture_extension(char *file, t_data *data)
+{
+	int		i;
+	int		j;
+	char	*to_find;
+
+	i = ft_strlen(file) - 1;
+	j = 0;
+	to_find = "mpx.";
+	if (i + 1 == 0)
+		ft_exit_invalid_file(file, " Must be a .xpm", data, 1);
+	while (j < 4)
+	{
+		if (to_find[j++] != file[i--])
+			ft_exit_invalid_file(file, " Must be a .xpm", data, 1);
+	}
+}
+
+int	open_textures(t_data *data)
+{
+	check_texture_extension(data->texture->no_path, data);
+	check_texture_extension(data->texture->so_path, data);
+	check_texture_extension(data->texture->ea_path, data);
+	check_texture_extension(data->texture->we_path, data);
+	data->texture->no_fd = open(data->texture->no_path, O_RDONLY);
+	data->texture->so_fd = open(data->texture->so_path, O_RDONLY);
+	data->texture->ea_fd = open(data->texture->ea_path, O_RDONLY);
+	data->texture->we_fd = open(data->texture->we_path, O_RDONLY);
+	if (data->texture->no_fd < 0)
+		ft_exit_perror(data->texture->no_path, data, 1);
+	if (data->texture->so_fd < 0)
+		ft_exit_perror(data->texture->so_path, data, 1);
+	if (data->texture->ea_fd < 0)
+		ft_exit_perror(data->texture->ea_path, data, 1);
+	if (data->texture->we_fd < 0)
+		ft_exit_perror(data->texture->we_path, data, 1);
 	return (0);
 }

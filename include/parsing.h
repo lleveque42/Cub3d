@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:57:41 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 18:01:03 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 18:56:18 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int		parsing(t_data *data);
 int		check_line(char *buff);
+int		open_textures(t_data *data);
 int		textures_all_filled(t_data *data);
 int		is_texture(char *buff, t_data *data);
 int		check_wall_only(char **s, int x, int y);

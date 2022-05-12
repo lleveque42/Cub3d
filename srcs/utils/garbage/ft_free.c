@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 18:57:22 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 13:28:20 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 18:32:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,15 @@ void	ft_free(void *ptr, t_data *data)
 
 void	free_all(t_data *data)
 {
-	ft_free_garbage(data->garbage);
 	close(data->in_fd);
+	if (data->texture->no_fd > 0)
+		close(data->texture->no_fd);
+	if (data->texture->so_fd > 0)
+		close(data->texture->so_fd);
+	if (data->texture->ea_fd > 0)
+		close(data->texture->ea_fd);
+	if (data->texture->we_fd > 0)
+		close(data->texture->we_fd);
+	ft_free_garbage(data->garbage);
 	free(data);
 }

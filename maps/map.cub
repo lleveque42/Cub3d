@@ -1,7 +1,7 @@
-                    NO ./path_to_the_north_texture
-		SO ./path_to_the_south_texture
-                                               WE ./path_to_the_west_texture
-EA           ./path_to_the_east_texture
+                    NO ./assets/bluestone.xpm
+		SO ./assets/greystone.xpm
+                                               WE ./assets/mossy.xpm
+EA           ./assets/redbrick.xpm
 
 F 220,100,255
 
@@ -23,4 +23,3 @@ C 225,30,0
 1111011111101011011110100011
 110001110101011111011110111
 11111111111111111111111111111111111111111
-
