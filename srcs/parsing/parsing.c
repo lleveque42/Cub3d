@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 15:20:22 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/12 16:14:45 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,17 @@ void	scan_map(char **s, t_data *data)
 		x = -1;
 		if (y == 0 || y == data->map_fd->height - 1)
 		{
-			if (check_wall_only(s[y]))
+			if (check_wall_only(s, x, y))
 				ft_exit_message("Map is not valid: not surrounded by \
 walls", data, 1);
 			continue ;
 		}
 		while (s[y][++x])
 		{
-			if (s[y][x] != ' ')
+			if (s[y][x] == ' ' && s[y][x] != '\n')
 				if (check_wall(s, x, y, data))
 					ft_exit_message("Map is not valid: not surrounded by \
-walls", data, 1);
+wallsssss", data, 1);
 		}
 	}
 }
