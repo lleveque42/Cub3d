@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:44 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 10:56:12 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 12:08:21 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,6 @@ int	textures_all_filled(t_data *data)
 		return (0);
 	data->filled = 1;
 	return (1);
-}
-
-void	manage_colors(char *buff, int n, char c, t_data *data)
-{
-	int		i;
-	char	**rgb;
-
-	i = 0;
-	while (i++ < n)
-		buff++;
-	while (*buff && ft_is_whitespace(*buff))
-		buff++;
-	rgb = ft_split(buff, ',', data);
-	if (check_rgb(rgb, c, data))
-		ft_exit_rgb_error(c, " is invalid in file", data, 1);
-	if (c == 'C')
-	{
-		data->texture->c->r = ft_atoi(rgb[0]);
-		data->texture->c->g = ft_atoi(rgb[1]);
-		data->texture->c->b = ft_atoi(rgb[2]);
-	}
-	else
-	{
-		data->texture->f->r = ft_atoi(rgb[0]);
-		data->texture->f->g = ft_atoi(rgb[1]);
-		data->texture->f->b = ft_atoi(rgb[2]);
-	}
 }
 
 char	*manage_texture(char *buff, char *id, int n, t_data *data)

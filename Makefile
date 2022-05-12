@@ -6,7 +6,7 @@
 #    By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/11 23:58:08 by lleveque         ###   ########.fr        #
+#    Updated: 2022/05/12 12:10:01 by lleveque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS_LIBFT = $(addprefix srcs/libft/, ft_putstr_fd.c ft_strlen.c \
 				ft_atoll.c ft_itoa.c ft_atoi.c ft_strlcpy.c ft_strldup.c)
 
 SRCS_PARSING = $(addprefix srcs/parsing/, parsing.c manage_textures.c utils.c \
-				)
+				manage_rgb.c)
 
 OBJS = ${SRCS:.c=.o}
 
