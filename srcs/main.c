@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:01 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 22:11:57 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:51:54 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ void	print_data(t_data *data)
 	if (data->map)
 	{
 		printf("\n----------    MAP    ----------\n\n");
+		// for (int i = 0; data->map[i]; i++)
+		// 	for (int j = 0; data->map[i][j]; j++)
+		// 		printf("map[%d][%d] = |%c|\n", i, j, data->map[i][j]);
 		for (int i = 0; data->map[i]; i++)
 			printf("map[%d] = %s\n", i, data->map[i]);
 	}
+	printf("data map height == %d\n",data->map_fd->height);
 	printf("\n----------  TEXTURE  ----------\n\n");
 	printf("no_path = %s\n", data->texture->no_path);
 	printf("so_path = %s\n", data->texture->so_path);
