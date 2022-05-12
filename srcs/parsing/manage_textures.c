@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:44 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 00:55:08 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/12 10:56:12 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,6 @@ char	*manage_texture(char *buff, char *id, int n, t_data *data)
 	}
 	return (ft_strldup(buff, size + 1, data));
 }
-	// checker si buff de partout ? pas compris
-	// checker return de strlcpy ? remplacé par strldup
-	// leaks ? OKKK normalement
 
 int	is_texture(char *buff, t_data *data)
 {
