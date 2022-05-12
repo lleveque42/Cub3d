@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 10:59:09 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 12:03:20 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,7 @@ void	scan_buff(t_data *data, char *buff)
 		while (*buff && ft_is_whitespace(*buff))
 			buff++;
 		if (is_texture(buff, data))
-		{
-			ft_putstr_fd("Error\n", 2);
-			ft_putstr_fd(data->filename, 2);
-			ft_putstr_fd(" is invalid\n", 2);
-			ft_exit(data, 1);
-		}
+			ft_exit_invalid_file(data->filename, " is invalid", data, 1);
 		data->map_fd->begin++;
 	}
 	else if (data->map_fd->height == 0)
@@ -36,7 +31,11 @@ void	scan_buff(t_data *data, char *buff)
 		else
 			data->map_fd->begin++;
 	}
-	else
+	else if (!check_line(buff) && !data->map_fd->ended)
+		data->map_fd->ended = 1;
+	else if ((check_line(buff) && data->map_fd->ended) || check_map_line(buff))
+		ft_exit_message("Map is invalid", data, 1);
+	else if (!data->map_fd->ended)
 		data->map_fd->height++;
 }
 
@@ -62,9 +61,15 @@ void	fill_map(t_data *data)
 	int		j;
 
 	i = -1;
-	j = 0;
+	j = -1;
 	data->in_fd = open(data->filename, O_RDONLY);
-	// Checker open ret
+	if (data->in_fd < 0)
+	{
+		ft_putstr_fd("Error\n", 2);
+		perror(data->filename);
+		free_all(data);
+		exit(EXIT_FAILURE);
+	}
 	while (++i < data->map_fd->begin)
 	{
 		buff = get_next_line(data->in_fd, data);
@@ -72,11 +77,9 @@ void	fill_map(t_data *data)
 			break ;
 		ft_free(buff, data);
 	}
-	while (j < data->map_fd->height)
-	{
-		data->map[j++] = get_next_line(data->in_fd, data);
-	}
-	printf("%s\n", buff);
+	while (++j < data->map_fd->height)
+		data->map[j] = get_next_line(data->in_fd, data);
+	data->map[j] = NULL;
 }
 
 int	parsing(t_data *data)

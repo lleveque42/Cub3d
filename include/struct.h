@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 01:36:23 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/12 11:09:01 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ struct	s_data
 struct s_map_fd
 {
 	int	begin;
+	int	ended;
 	int	height;
 };
 

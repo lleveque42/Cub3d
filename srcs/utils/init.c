@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 01:40:20 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/12 12:03:56 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	open_map_error(char *msg, t_data *data)
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
 	free_all(data);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 void	open_map(char *input, t_data *data)
@@ -43,7 +43,7 @@ void	open_map(char *input, t_data *data)
 		ft_putstr_fd("Error\n", 2);
 		perror(input);
 		free_all(data);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -62,6 +62,7 @@ void	init_null(t_data *data)
 	data->texture->we_path = NULL;
 	data->texture->ea_path = NULL;
 	data->map_fd->begin = 0;
+	data->map_fd->ended = 0;
 	data->map_fd->height = 0;
 }
 

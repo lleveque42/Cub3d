@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:09:12 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/11 13:29:01 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 12:04:01 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_garbage	*ft_garb_lstnew(void *ptr, t_data *data)
 	{
 		free_all(data);
 		printf("Error\ncub3d: malloc error\n");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	new->prev = NULL;
 	new->ptr = ptr;
@@ -48,7 +48,7 @@ void	*ft_malloc(size_t size, t_data *data)
 	{
 		free_all(data);
 		printf("Error\ncub3d: malloc error\n");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	if (data->garbage && data->garbage->ptr)
 		ft_garb_addback(data, ft_garb_lstnew(ptr, data));
