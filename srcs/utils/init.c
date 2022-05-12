@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 12:03:56 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:01:54 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ void	init_null(t_data *data)
 	data->map_fd->begin = 0;
 	data->map_fd->ended = 0;
 	data->map_fd->height = 0;
+	data->player->dir = 0;
+	data->player->x = 0;
+	data->player->y = 0;
 }
 
 t_data	*init_data(char *input)
@@ -88,6 +91,7 @@ t_data	*init_data(char *input)
 	data->texture->c = ft_malloc(sizeof(t_color), data);
 	data->texture->f = ft_malloc(sizeof(t_color), data);
 	data->map_fd = ft_malloc(sizeof(t_map_fd), data);
+	data->player = ft_malloc(sizeof(t_player), data);
 	data->filename = ft_strdup(input, data);
 	open_map(input, data);
 	init_null(data);

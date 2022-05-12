@@ -6,11 +6,20 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 17:44:28 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 18:07:45 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+void	find_player_data(char **s, int x, int y, t_data *data)
+{
+	if (data->player->dir)
+		ft_exit_message("Map is invalid: only 1 player", data, 1);
+	data->player->dir = s[y][x];
+	data->player->x = x;
+	data->player->y = y;
+}
 
 int	check_wall_only(char **s, int x, int y)
 {

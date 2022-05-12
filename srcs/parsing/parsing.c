@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 17:45:57 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 18:01:23 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ void	scan_map(char **s, t_data *data)
 			if (s[y][x] == ' ' && s[y][x] != '\n')
 				if (check_wall(s, x, y, data))
 					ft_exit_message("Map is invalid", data, 1);
+			if (s[y][x] == 'N' || s[y][x] == 'S' || s[y][x] == 'W'
+				|| s[y][x] == 'E')
+				find_player_data(s, x, y, data);
 		}
 	}
 }
