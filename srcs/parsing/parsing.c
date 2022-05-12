@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 16:14:45 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:45:57 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	scan_buff(t_data *data, char *buff)
 	}
 	else if (!check_line(buff) && !data->map_fd->ended)
 		data->map_fd->ended = 1;
-	else if ((check_line(buff) && data->map_fd->ended) || check_map_line(buff, data))
+	else if ((check_line(buff) && data->map_fd->ended)
+		|| check_map_line(buff, data))
 		ft_exit_message("Map is invalid", data, 1);
 	else if (!data->map_fd->ended)
 		data->map_fd->height++;
@@ -94,16 +95,14 @@ void	scan_map(char **s, t_data *data)
 		if (y == 0 || y == data->map_fd->height - 1)
 		{
 			if (check_wall_only(s, x, y))
-				ft_exit_message("Map is not valid: not surrounded by \
-walls", data, 1);
+				ft_exit_message("Map is invalid", data, 1);
 			continue ;
 		}
 		while (s[y][++x])
 		{
 			if (s[y][x] == ' ' && s[y][x] != '\n')
 				if (check_wall(s, x, y, data))
-					ft_exit_message("Map is not valid: not surrounded by \
-wallsssss", data, 1);
+					ft_exit_message("Map is invalid", data, 1);
 		}
 	}
 }

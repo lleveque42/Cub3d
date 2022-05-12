@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 16:19:05 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:44:28 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 int	check_wall_only(char **s, int x, int y)
 {
 	x = 0;
-
 	while (s[y][x] && s[y][x] != '\n')
 	{
-		if (!(s[y][x] == ' ' || s[y][x] == '1'))
+		if (s[y][x] != ' ' && s[y][x] != '1')
 			return (1);
-		if (s[y + 1][x] && s[y + 1][x] == '0')
-		{
-			printf("Cocuocu\n");
+		else if (y == 0 && s[y][x] == ' ' && s[y + 1][x] != '1'
+				&& s[y + 1][x] != ' ')
 			return (1);
-		}
+		else if (y != 0 && s[y][x] == ' ' && s[y - 1][x] != '1')
+			return (1);
 		x++;
 	}
 	return (0);
@@ -42,39 +41,8 @@ int	check_wall(char **s, int x, int y, t_data *data)
 		if (s[y + 1][x] != ' ' && s[y + 1][x] != '1')
 			return (1);
 	}
-	(void)data;
 	return (0);
 }
-
-// int	check_wall(char **s, int x, int y, t_data *data)
-// {
-// 	if (y != 0 && s[y - 1][x])
-// 	{
-// 		if (s[y - 1][x] != ' ' && s[y - 1][x] != '1')
-// 			return (1);
-// 		if (s[y - 1][x + 1] && s[y - 1][x + 1] != ' ' && s[y - 1][x + 1] != '1')
-// 			return (1);
-// 	}
-	// if (y != data->map_fd->height - 1 && s[y + 1][x])
-	// {
-	// 	if (s[y + 1][x] != ' ' && s[y + 1][x] != '1')
-	// 		return (1);
-	// 	if (s[y + 1][x + 1] && s[y + 1][x + 1] != ' ' && s[y + 1][x + 1] != '1')
-	// 		return (1);
-	// }
-	// if (y != 0 && s[y - 1][x] && x > 0)
-	// 	if (s[y - 1][x - 1] && s[y - 1][x - 1] != ' ' && s[y - 1][x - 1] != '1')
-	// 		return (1);
-	// if (x > 0 && y != data->map_fd->height)
-	// 	if (s[y + 1][x - 1] && s[y + 1][x - 1] != ' ' && s[y + 1][x - 1] != '1')
-	// 		return (1);
-	// if (x > 0 && s[y][x - 1] && s[y][x - 1] != ' ' && s[y][x - 1] != '1')
-	// 	return (1);
-	// if (s[y][x] && s[y][x + 1] && s[y][x + 1] != ' ' && s[y][x + 1] != '1')
-	// 	return (1);
-// 	(void)data;
-// 	return (0);
-// }
 
 int	check_line(char *buff)
 {
