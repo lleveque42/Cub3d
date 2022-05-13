@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/13 15:07:11 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/13 18:27:07 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ struct s_mlx
 	int		bpp;
 	int		line_length;
 	int		endian;
-	void	*m;
+	void	*ptr;
 	void	*win;
 	void	*img;
 	char	*addr;
@@ -57,6 +57,7 @@ struct s_map_fd
 	int	begin;
 	int	ended;
 	int	height;
+	int	width;
 };
 
 struct	s_texture
