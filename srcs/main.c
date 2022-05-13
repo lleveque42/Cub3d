@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:01 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 10:40:44 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 14:02:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int ac, char **av, char **envp)
 	if (parsing(data))
 		return (1);
 	print_data(data);
+	game(data);
 	free_all(data);
 	return (0);
 }

@@ -6,11 +6,11 @@
 #    By: arudy <arudy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/12 18:56:07 by arudy            ###   ########.fr        #
+#    Updated: 2022/05/13 14:03:30 by arudy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ${SRCS_MAIN} ${SRCS_UTILS} ${SRCS_PARSING} ${SRCS_LIBFT}
+SRCS = ${SRCS_MAIN} ${SRCS_UTILS} ${SRCS_PARSING} ${SRCS_LIBFT} ${SRCS_GAME}
 
 SRCS_MAIN = $(addprefix srcs/, main.c)
 
@@ -26,6 +26,8 @@ SRCS_LIBFT = $(addprefix srcs/libft/, ft_putstr_fd.c ft_strlen.c \
 
 SRCS_PARSING = $(addprefix srcs/parsing/, parsing.c manage_textures.c utils.c \
 				manage_rgb.c)
+
+SRCS_GAME = $(addprefix srcs/game/, game.c)
 
 OBJS = ${SRCS:.c=.o}
 

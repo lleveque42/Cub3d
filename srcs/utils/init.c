@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 11:58:33 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 14:01:30 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ void	init_null(t_data *data)
 	data->player->y = 0;
 }
 
-void	init_data_garbage(t_data *data)
+t_data	*init_data_garbage(void)
 {
+	t_data	*data;
+
 	data = malloc(sizeof(t_data));
 	if (!data)
 	{
@@ -89,14 +91,14 @@ void	init_data_garbage(t_data *data)
 		exit(EXIT_FAILURE);
 	}
 	data->garbage->ptr = NULL;
+	return (data);
 }
 
 t_data	*init_data(char *input)
 {
 	t_data	*data;
 
-	data = NULL;
-	init_data_garbage(data);
+	data = init_data_garbage();
 	data->texture = ft_malloc(sizeof(t_texture), data);
 	data->texture->c = ft_malloc(sizeof(t_color), data);
 	data->texture->f = ft_malloc(sizeof(t_color), data);
@@ -106,6 +108,8 @@ t_data	*init_data(char *input)
 	open_map(input, data);
 	init_null(data);
 	data->mlx = ft_malloc(sizeof(t_mlx), data);
-	// data->mlx->m =
+	data->mlx->m = NULL;
+	data->mlx->win = NULL;
+	data->mlx->img = NULL;
 	return (data);
 }

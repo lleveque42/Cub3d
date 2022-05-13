@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/13 11:55:43 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 13:58:50 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ struct	s_data
 	t_garbage	*garbage;
 };
 
-strcut s_mlx
+struct s_mlx
 {
 	void	*m;
 	void	*win;
