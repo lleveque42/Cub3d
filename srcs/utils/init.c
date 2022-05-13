@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 14:01:30 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 18:26:49 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	init_null(t_data *data)
 	data->map_fd->begin = 0;
 	data->map_fd->ended = 0;
 	data->map_fd->height = 0;
+	data->map_fd->width = 0;
 	data->player->dir = 0;
 	data->player->x = 0;
 	data->player->y = 0;
@@ -108,7 +109,7 @@ t_data	*init_data(char *input)
 	open_map(input, data);
 	init_null(data);
 	data->mlx = ft_malloc(sizeof(t_mlx), data);
-	data->mlx->m = NULL;
+	data->mlx->ptr = NULL;
 	data->mlx->win = NULL;
 	data->mlx->img = NULL;
 	return (data);

@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 17:13:42 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 17:33:46 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/13 18:05:03 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	del_new_line(t_data *data, int y)
 {
 	int		i;
+	int		len;
 	char	*dest;
 
 	i = 0;
@@ -32,6 +33,9 @@ void	del_new_line(t_data *data, int y)
 		}
 		i++;
 	}
+	len = ft_strlen(data->map[y]);
+	if (len > data->map_fd->width)
+		data->map_fd->width = len;
 }
 
 int	check_wall_only(char **s, int x, int y)

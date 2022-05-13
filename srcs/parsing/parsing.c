@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/13 17:26:58 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:37:14 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	scan_map(char **s, t_data *data)
 	while (s[++y])
 	{
 		x = -1;
-		printf("Y : %d\n", y);
 		del_new_line(data, y);
 		if (y == 0 || y == data->map_fd->height - 1)
 		{
