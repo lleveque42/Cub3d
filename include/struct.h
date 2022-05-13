@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 18:28:21 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 11:55:43 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_map_fd		t_map_fd;
 typedef struct s_player		t_player;
 typedef struct s_texture	t_texture;
 typedef struct s_garbage	t_garbage;
+typedef struct s_mlx		t_mlx;
 
 struct	s_data
 {
@@ -26,10 +27,18 @@ struct	s_data
 	int			filled;
 	char		**map;
 	char		*filename;
+	t_mlx		*mlx;
 	t_player	*player;
 	t_map_fd	*map_fd;
 	t_texture	*texture;
 	t_garbage	*garbage;
+};
+
+strcut s_mlx
+{
+	void	*m;
+	void	*win;
+	void	*img;
 };
 
 struct s_player

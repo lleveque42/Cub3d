@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:01 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 18:05:06 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 10:40:44 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	print_data(t_data *data)
 		// 	printf("map[%d] = %s\n", i, data->map[i]);
 	// }
 	// printf("data map height == %d\n",data->map_fd->height);
-	printf("\n----------  TEXTURE  ----------\n\n");
-	printf("no_path = %s\n", data->texture->no_path);
-	printf("so_path = %s\n", data->texture->so_path);
-	printf("ea_path = %s\n", data->texture->ea_path);
-	printf("we_path = %s\n", data->texture->we_path);
+	// printf("\n----------  TEXTURE  ----------\n\n");
+	// printf("no_path = %s\n", data->texture->no_path);
+	// printf("so_path = %s\n", data->texture->so_path);
+	// printf("ea_path = %s\n", data->texture->ea_path);
+	// printf("we_path = %s\n", data->texture->we_path);
 	// printf("\n----------  FLOOR   ----------\n\n");
 	// printf("R = %d G = %d B = %d\n", data->texture->f->r,
 		// data->texture->f->g, data->texture->f->b);
@@ -41,6 +41,7 @@ void	print_data(t_data *data)
 	printf("Player dir : %c\n", data->player->dir);
 	printf("Player pos X : %f\n", data->player->x);
 	printf("Player pos Y : %f\n", data->player->y);
+	printf("-----------------------------------\n\n");
 }
 
 int	main(int ac, char **av, char **envp)

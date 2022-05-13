@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 18:31:15 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 11:58:33 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,8 @@ void	init_null(t_data *data)
 	data->player->y = 0;
 }
 
-t_data	*init_data(char *input)
+void	init_data_garbage(t_data *data)
 {
-	t_data	*data;
-
 	data = malloc(sizeof(t_data));
 	if (!data)
 	{
@@ -91,6 +89,14 @@ t_data	*init_data(char *input)
 		exit(EXIT_FAILURE);
 	}
 	data->garbage->ptr = NULL;
+}
+
+t_data	*init_data(char *input)
+{
+	t_data	*data;
+
+	data = NULL;
+	init_data_garbage(data);
 	data->texture = ft_malloc(sizeof(t_texture), data);
 	data->texture->c = ft_malloc(sizeof(t_color), data);
 	data->texture->f = ft_malloc(sizeof(t_color), data);
@@ -99,5 +105,7 @@ t_data	*init_data(char *input)
 	data->filename = ft_strdup(input, data);
 	open_map(input, data);
 	init_null(data);
+	data->mlx = ft_malloc(sizeof(t_mlx), data);
+	// data->mlx->m =
 	return (data);
 }
