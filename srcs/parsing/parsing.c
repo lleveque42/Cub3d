@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/12 18:38:07 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 17:26:58 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	scan_map(char **s, t_data *data)
 	while (s[++y])
 	{
 		x = -1;
+		printf("Y : %d\n", y);
+		del_new_line(data, y);
 		if (y == 0 || y == data->map_fd->height - 1)
 		{
 			if (check_wall_only(s, x, y))
@@ -122,5 +124,7 @@ int	parsing(t_data *data)
 	data->map = ft_malloc(sizeof(char *) * (data->map_fd->height + 1), data);
 	fill_map(data);
 	scan_map(data->map, data);
+	if (!data->player->dir)
+		ft_exit_message("Need a player position", data, 1);
 	return (0);
 }

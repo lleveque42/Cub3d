@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arudy <arudy@student.42.fr>                +#+  +:+       +#+         #
+#    By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/13 14:03:30 by arudy            ###   ########.fr        #
+#    Updated: 2022/05/13 17:17:51 by lleveque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS_LIBFT = $(addprefix srcs/libft/, ft_putstr_fd.c ft_strlen.c \
 				ft_atoll.c ft_itoa.c ft_atoi.c ft_strlcpy.c ft_strldup.c)
 
 SRCS_PARSING = $(addprefix srcs/parsing/, parsing.c manage_textures.c utils.c \
-				manage_rgb.c)
+				manage_rgb.c map_utils.c)
 
 SRCS_GAME = $(addprefix srcs/game/, game.c)
 
