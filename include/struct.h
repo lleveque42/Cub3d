@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/13 13:58:50 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/13 15:07:11 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ struct	s_data
 
 struct s_mlx
 {
+	int		bpp;
+	int		line_length;
+	int		endian;
 	void	*m;
 	void	*win;
 	void	*img;
+	char	*addr;
 };
 
 struct s_player
