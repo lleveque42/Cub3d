@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 14:03:52 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/16 16:16:43 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 # include "game.h"
 # include "libft.h"
@@ -24,5 +25,7 @@
 # include "parsing.h"
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
+
+# define PI 3.1415926535
 
 #endif

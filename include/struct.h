@@ -6,20 +6,21 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/13 18:27:07 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:52:51 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+typedef struct s_mlx		t_mlx;
+typedef struct s_key		t_key;
 typedef struct s_data		t_data;
 typedef struct s_color		t_color;
 typedef struct s_map_fd		t_map_fd;
 typedef struct s_player		t_player;
 typedef struct s_texture	t_texture;
 typedef struct s_garbage	t_garbage;
-typedef struct s_mlx		t_mlx;
 
 struct	s_data
 {
@@ -28,10 +29,21 @@ struct	s_data
 	char		**map;
 	char		*filename;
 	t_mlx		*mlx;
+	t_key		*key;
 	t_player	*player;
 	t_map_fd	*map_fd;
 	t_texture	*texture;
 	t_garbage	*garbage;
+};
+
+struct s_key
+{
+	int	w_pressed;
+	int	s_pressed;
+	int	a_pressed;
+	int	d_pressed;
+	int	la_pressed;
+	int	lr_pressed;
 };
 
 struct s_mlx
@@ -50,6 +62,10 @@ struct s_player
 	char	dir;
 	float	x;
 	float	y;
+	float	old_x;
+	float	old_y;
+	float	dir_x;
+	float	dir_y;
 };
 
 struct s_map_fd

@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 17:13:59 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:04:22 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	find_player_data(char **s, int x, int y, t_data *data)
 	if (data->player->dir)
 		ft_exit_message("Map is invalid: only 1 player", data, 1);
 	data->player->dir = s[y][x];
-	data->player->x = x;
-	data->player->y = y;
+	data->player->x = x + 0.5;
+	data->player->y = y + 0.5;
+	data->player->old_y = data->player->y;
+	data->player->old_x = data->player->x;
 }
 
 int	check_line(char *buff)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:28:53 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 18:55:50 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/16 11:25:40 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include "struct.h"
 
+int		ft_exit_esc(t_data *data);
+int		ft_exit(t_data *data, char *msg);
 void	free_all(t_data *data);
+void	init_null_1(t_data *data);
+void	init_null_2(t_data *data);
 void	ft_free(void *ptr, t_data *data);
 void	ft_exit_message(char *msg, t_data *data, int value);
 void	ft_exit_perror(char *s, t_data *data, int exit_value);

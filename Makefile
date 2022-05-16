@@ -6,7 +6,7 @@
 #    By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/16 10:10:13 by lleveque         ###   ########.fr        #
+#    Updated: 2022/05/16 11:00:01 by lleveque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ SRCS = ${SRCS_MAIN} ${SRCS_UTILS} ${SRCS_PARSING} ${SRCS_LIBFT} ${SRCS_GAME}
 SRCS_MAIN = $(addprefix srcs/, main.c)
 
 SRCS_UTILS = $(addprefix srcs/utils/, garbage/ft_free.c garbage/ft_malloc.c \
-				get_next_line.c init.c ft_exit.c)
+				get_next_line.c init/init.c init/init_null.c \
+				exit/ft_exit.c exit/ft_exit_message.c)
 
 SRCS_LIBFT = $(addprefix srcs/libft/, ft_putstr_fd.c ft_strlen.c \
 				ft_strncmp.c ft_substr.c ft_split.c \

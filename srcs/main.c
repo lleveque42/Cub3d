@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:01 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 18:04:45 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 14:22:40 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	print_data(t_data *data)
 	printf("Player dir : %c\n", data->player->dir);
 	printf("Player pos X : %f\n", data->player->x);
 	printf("Player pos Y : %f\n", data->player->y);
-	printf("\n----------  DATA MAP  ----------\n\n");
-	printf("Map height : %d\n", data->map_fd->height);
-	printf("Map width : %d\n", data->map_fd->width);
+	// printf("\n----------  DATA MAP  ----------\n\n");
+	// printf("Map height : %d\n", data->map_fd->height);
+	// printf("Map width : %d\n", data->map_fd->width);
 }
 
 int	main(int ac, char **av, char **envp)
