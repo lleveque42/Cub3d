@@ -6,11 +6,11 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 18:26:49 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 11:03:05 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
 void	open_map_error(char *msg, t_data *data)
 {
@@ -47,34 +47,7 @@ void	open_map(char *input, t_data *data)
 	}
 }
 
-void	init_null(t_data *data)
-{
-	data->map = NULL;
-	data->filled = 0;
-	data->texture->c->r = -1;
-	data->texture->c->g = -1;
-	data->texture->c->b = -1;
-	data->texture->f->r = -1;
-	data->texture->f->g = -1;
-	data->texture->f->b = -1;
-	data->texture->no_path = NULL;
-	data->texture->so_path = NULL;
-	data->texture->we_path = NULL;
-	data->texture->ea_path = NULL;
-	data->texture->no_fd = -1;
-	data->texture->so_fd = -1;
-	data->texture->we_fd = -1;
-	data->texture->ea_fd = -1;
-	data->map_fd->begin = 0;
-	data->map_fd->ended = 0;
-	data->map_fd->height = 0;
-	data->map_fd->width = 0;
-	data->player->dir = 0;
-	data->player->x = 0;
-	data->player->y = 0;
-}
-
-t_data	*init_data_garbage(void)
+t_data	*init_data_malloc(void)
 {
 	t_data	*data;
 
@@ -92,6 +65,13 @@ t_data	*init_data_garbage(void)
 		exit(EXIT_FAILURE);
 	}
 	data->garbage->ptr = NULL;
+	data->mlx = ft_malloc(sizeof(t_mlx), data);
+	data->key = ft_malloc(sizeof(t_key), data);
+	data->map_fd = ft_malloc(sizeof(t_map_fd), data);
+	data->player = ft_malloc(sizeof(t_player), data);
+	data->texture = ft_malloc(sizeof(t_texture), data);
+	data->texture->c = ft_malloc(sizeof(t_color), data);
+	data->texture->f = ft_malloc(sizeof(t_color), data);
 	return (data);
 }
 
@@ -99,18 +79,10 @@ t_data	*init_data(char *input)
 {
 	t_data	*data;
 
-	data = init_data_garbage();
-	data->texture = ft_malloc(sizeof(t_texture), data);
-	data->texture->c = ft_malloc(sizeof(t_color), data);
-	data->texture->f = ft_malloc(sizeof(t_color), data);
-	data->map_fd = ft_malloc(sizeof(t_map_fd), data);
-	data->player = ft_malloc(sizeof(t_player), data);
+	data = init_data_malloc();
 	data->filename = ft_strdup(input, data);
 	open_map(input, data);
-	init_null(data);
-	data->mlx = ft_malloc(sizeof(t_mlx), data);
-	data->mlx->ptr = NULL;
-	data->mlx->win = NULL;
-	data->mlx->img = NULL;
+	init_null_1(data);
+	init_null_2(data);
 	return (data);
 }
