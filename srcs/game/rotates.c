@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:06:08 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/16 10:10:43 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:28:37 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,22 @@
 
 void	rotate_right(t_data *data)
 {
-	(void)data;
-	printf("rotate left\n");
+	data->player->old_dx = data->player->dx;
+	data->player->old_dy = data->player->dy;
+	data->player->angle += 0.1;
+	if (data->player->angle > 2 * PI)
+		data->player->angle -= 2 * PI;
+	data->player->dx = cos(data->player->angle) * 5;
+	data->player->dy = sin(data->player->angle) * 5;
 }
 
 void	rotate_left(t_data *data)
 {
-	(void)data;
-	printf("rotate right\n");
+	data->player->old_dx = data->player->dx;
+	data->player->old_dy = data->player->dy;
+	data->player->angle -= 0.1;
+	if (data->player->angle < 0)
+		data->player->angle += 2 * PI;
+	data->player->dx = cos(data->player->angle) * 5;
+	data->player->dy = sin(data->player->angle) * 5;
 }

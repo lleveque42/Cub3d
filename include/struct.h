@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/16 15:52:51 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:23:36 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ struct s_mlx
 	void	*win;
 	void	*img;
 	char	*addr;
+	char	*addr_map;
 };
 
 struct s_player
@@ -66,6 +67,11 @@ struct s_player
 	float	old_y;
 	float	dir_x;
 	float	dir_y;
+	float	dx;
+	float	dy;
+	float	old_dx;
+	float	old_dy;
+	float	angle;
 };
 
 struct s_map_fd

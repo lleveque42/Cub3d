@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/16 15:12:17 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:40:27 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,48 @@ void	render_player(t_data *data)
 {
 	int	x;
 	int	y;
+	int	i;
 
-	x = (data->player->old_x * 100) - 10;
-	y = (data->player->old_y * 100) - 10;
-	while (x < (data->player->old_x * 100) + 10)
+	// x = (data->player->old_x * 100) - 5;
+	// y = (data->player->old_y * 100) - 5;
+	// while (x < (data->player->old_x * 100) + 5)
+	// {
+	// 	y = (data->player->old_y * 100) - 5;
+	// 	while (y < (data->player->old_y * 100) + 5)
+	// 	{
+	// 		*(unsigned int*)(data->mlx->addr + (y * data->mlx->line_length + x * (data->mlx->bpp / 8))) = 0x00FFFFFF;
+	// 		y++;
+	// 	}
+	// 	x++;
+	// }
+	x = (data->player->x * 100) - 5;
+	y = (data->player->y * 100) - 5;
+	while (x < (data->player->x * 100) + 5)
 	{
-		y = (data->player->old_y * 100) - 10;
-		while (y < (data->player->old_y * 100) + 10)
-		{
-			*(unsigned int*)(data->mlx->addr + (y * data->mlx->line_length + x * (data->mlx->bpp / 8))) = 0x00FFFFFF;
-			y++;
-		}
-		x++;
-	}
-	x = (data->player->x * 100) - 10;
-	y = (data->player->y * 100) - 10;
-	while (x < (data->player->x * 100) + 10)
-	{
-		y = (data->player->y * 100) - 10;
-		while (y < (data->player->y * 100) + 10)
+		y = (data->player->y * 100);
+		while (y < (data->player->y * 100) + 5)
 		{
 			*(unsigned int*)(data->mlx->addr + (y * data->mlx->line_length + x * (data->mlx->bpp / 8))) = 0x00FF7F7F;
 			y++;
 		}
+		x++;
+	}
+	// x = (data->player->x * 100) - 10;
+	// y = (data->player->y * 100);
+	// while (x < (data->player->x * 100) + 10)
+	// {
+	// 	i = -1;
+	// 	while (++i < 20)
+	// 		*(unsigned int*)(data->mlx->addr + ((y + (int)data->player->old_dy * i) * data->mlx->line_length + (x + (int)data->player->old_dx * i) * (data->mlx->bpp / 8))) = 0x00FFFFFF;
+	// 	x++;
+	// }
+	x = (data->player->x * 100) - 3;
+	y = (data->player->y * 100);
+	while (x < (data->player->x * 100) + 3)
+	{
+		i = -1;
+		while (++i < 20)
+			*(unsigned int*)(data->mlx->addr + ((y + (int)data->player->dy * i) * data->mlx->line_length + (x + (int)data->player->dx * i) * (data->mlx->bpp / 8))) = 0x00FF7F7F;
 		x++;
 	}
 }
@@ -143,15 +162,15 @@ void	get_pos(t_data *data)
 	if (data->key->d_pressed == 1)
 		move_right(data);
 	if (data->key->la_pressed == 1)
-		printf("pressed\n");
+		rotate_left(data);
 	if (data->key->lr_pressed == 1)
-		printf("pressed\n");
+		rotate_right(data);
 }
 
 int	render_image(t_data *data)
 {
 	get_pos(data);
-	// render_minimap(data);
+	render_minimap(data);
 	render_player(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
 	return (0);
@@ -173,6 +192,7 @@ void	game(t_data *data)
 	if (!data->mlx->addr)
 		ft_exit(data, "Can't init mlx addr");
 	render_minimap(data);
+	data->mlx->addr_map = ft_strdup(data->mlx->addr, data);
 	render_player(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
 	mlx_hook(data->mlx->win, 2, 1, &key_event, data);

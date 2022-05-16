@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/16 16:16:43 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 18:03:20 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@
 # include "../mlx/mlx_int.h"
 
 # define PI 3.1415926535
+# define SPEED_TEST 0.002
 
 #endif
