@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 14:03:58 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/16 10:09:29 by lleveque         ###   ########.fr       */
+/*   Created: 2022/05/16 10:03:37 by lleveque          #+#    #+#             */
+/*   Updated: 2022/05/16 10:10:49 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#include "../../include/cub3d.h"
 
-# include "struct.h"
+void	move_forward(t_data *data)
+{
+	(void)data;
+	printf("forward\n");
+}
 
-void	game(t_data *data);
-void	move_left(t_data *data);
-void	move_right(t_data *data);
-void	rotate_left(t_data *data);
-void	rotate_right(t_data *data);
-void	move_forward(t_data *data);
-void	move_backward(t_data *data);
+void	move_backward(t_data *data)
+{
+	(void)data;
+	printf("backward\n");
+}
 
-#endif
+void	move_right(t_data *data)
+{
+	(void)data;
+	printf("right\n");
+}
+
+void	move_left(t_data *data)
+{
+	(void)data;
+	printf("left\n");
+}

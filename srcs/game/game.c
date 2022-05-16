@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/13 19:17:00 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/16 10:28:13 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,42 @@ void	get_minimap(t_data *data)
 	}
 }
 
-int	key_event(int keycode, void *data)
+int	ft_exit(t_data *data)
 {
-	printf("keycode %d\n", keycode);
-	(void)data;
-	return (0);
+	if (data->mlx->ptr && data->mlx->win)
+	{
+		mlx_clear_window(data->mlx->ptr, data->mlx->win);
+		mlx_destroy_window(data->mlx->ptr, data->mlx->win);
+	}
+	if (data->mlx->ptr && data->mlx->img)
+		mlx_destroy_image(data->mlx->ptr, data->mlx->img);
+	if (data->mlx->ptr)
+	{
+		mlx_destroy_display(data->mlx->ptr);
+		free(data->mlx->ptr);
+	}
+	free_all(data);
+	exit(0);
 }
 
-// int	ft_exit()
-// {
-
-// }
+int	key_event(int keycode, void *data)
+{
+	if (keycode == 119)
+		move_forward(data);
+	else if (keycode == 115)
+		move_backward(data);
+	else if (keycode == 97)
+		move_left(data);
+	else if (keycode == 100)
+		move_right(data);
+	else if (keycode == 65363)
+		rotate_right(data);
+	else if (keycode == 65361)
+		rotate_left(data);
+	else if (keycode == 65307)
+		ft_exit(data);
+	return (0);
+}
 
 void	game(t_data *data)
 {
@@ -99,6 +124,6 @@ void	game(t_data *data)
 	get_minimap(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
 	mlx_key_hook(data->mlx->win, &key_event, data);
-	// mlx_hook(mlx.win, 17, 17, &, &);
+	mlx_hook(data->mlx->win, 17, 17, &ft_exit, data);
 	mlx_loop(data->mlx->ptr);
 }
