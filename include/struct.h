@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/17 12:24:51 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:17:21 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ struct	s_data
 {
 	int			in_fd;
 	int			filled;
+	int			win_width;
+	int			win_height;
 	char		**map;
 	char		*filename;
 	t_mlx		*mlx;
@@ -63,17 +65,23 @@ struct s_mlx
 struct s_ray
 {
 	int		r;
+	int		mp;
 	int		mx;
 	int		my;
-	int		mp;
 	int		dof;
-	float	angle;
+	int		hit;
+	int		side;
 	float	x;
 	float	y;
 	float	xo;
 	float	yo;
+	float	wd;
+	float	ddy;
+	float	ddx;
+	float	angle;
+	float	step_x;
+	float	step_y;
 };
-
 
 struct s_player
 {
