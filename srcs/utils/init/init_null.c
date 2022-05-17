@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/16 15:00:37 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:26:16 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,15 @@ void	init_null_2(t_data *data)
 	data->mlx->ptr = NULL;
 	data->mlx->win = NULL;
 	data->mlx->img = NULL;
+	data->ray->angle = 0;
+	data->ray->dof = 0;
+	data->ray->mp = 0;
+	data->ray->mx = 0;
+	data->ray->my = 0;
+	data->ray->r = 0;
+	data->ray->x = 0;
+	data->ray->y = 0;
+	data->ray->xo = 0;
+	data->ray->yo = 0;
 }
 

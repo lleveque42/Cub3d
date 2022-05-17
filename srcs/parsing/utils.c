@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/16 19:25:46 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:28:11 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	find_player_data(char **s, int x, int y, t_data *data)
 		data->player->angle = 0;
 	else if (s[y][x] == 'W')
 		data->player->angle = PI;
-	data->player->dx = cos(data->player->angle) * 5;
+	data->player->dx= cos(data->player->angle) * 5;
 	data->player->dy = sin(data->player->angle) * 5;
 	data->player->old_dx = data->player->dx;
 	data->player->old_dy = data->player->dy;

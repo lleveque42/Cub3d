@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/16 19:40:27 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:34:17 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	render_minimap(t_data *data)
 		while (data->map[y][x])
 		{
 			i += 2;
-			if (data->map[y][x] == '0' || data->map[y][x] == 'N')
+			if (data->map[y][x] != '1' && data->map[y][x] != ' ')
 			{
 				while (i < (x + 1) * 100)
 				{
@@ -69,18 +69,18 @@ void	render_player(t_data *data)
 	int	y;
 	int	i;
 
-	// x = (data->player->old_x * 100) - 5;
-	// y = (data->player->old_y * 100) - 5;
-	// while (x < (data->player->old_x * 100) + 5)
-	// {
-	// 	y = (data->player->old_y * 100) - 5;
-	// 	while (y < (data->player->old_y * 100) + 5)
-	// 	{
-	// 		*(unsigned int*)(data->mlx->addr + (y * data->mlx->line_length + x * (data->mlx->bpp / 8))) = 0x00FFFFFF;
-	// 		y++;
-	// 	}
-	// 	x++;
-	// }
+	x = (data->player->old_x * 100) - 5;
+	y = (data->player->old_y * 100) - 5;
+	while (x < (data->player->old_x * 100) + 5)
+	{
+		y = (data->player->old_y * 100) - 5;
+		while (y < (data->player->old_y * 100) + 5)
+		{
+			*(unsigned int*)(data->mlx->addr + (y * data->mlx->line_length + x * (data->mlx->bpp / 8))) = 0x00FFFFFF;
+			y++;
+		}
+		x++;
+	}
 	x = (data->player->x * 100) - 5;
 	y = (data->player->y * 100) - 5;
 	while (x < (data->player->x * 100) + 5)
@@ -88,28 +88,94 @@ void	render_player(t_data *data)
 		y = (data->player->y * 100);
 		while (y < (data->player->y * 100) + 5)
 		{
-			*(unsigned int*)(data->mlx->addr + (y * data->mlx->line_length + x * (data->mlx->bpp / 8))) = 0x00FF7F7F;
+			*(unsigned int*)(data->mlx->addr + (y * data->mlx->line_length + x * (data->mlx->bpp / 8))) = 0x00000000;
 			y++;
 		}
 		x++;
 	}
-	// x = (data->player->x * 100) - 10;
-	// y = (data->player->y * 100);
-	// while (x < (data->player->x * 100) + 10)
-	// {
-	// 	i = -1;
-	// 	while (++i < 20)
-	// 		*(unsigned int*)(data->mlx->addr + ((y + (int)data->player->old_dy * i) * data->mlx->line_length + (x + (int)data->player->old_dx * i) * (data->mlx->bpp / 8))) = 0x00FFFFFF;
-	// 	x++;
-	// }
+	x = (data->player->old_x * 100) - 3;
+	y = (data->player->old_y * 100);
+	while (x < (data->player->old_x * 100) + 3)
+	{
+		i = -1;
+		while (++i < 20)
+			*(unsigned int*)(data->mlx->addr + ((y + (int)data->player->old_dy * i) * data->mlx->line_length + (x + (int)data->player->old_dx * i) * (data->mlx->bpp / 8))) = 0x00FFFFFF;
+		x++;
+	}
 	x = (data->player->x * 100) - 3;
 	y = (data->player->y * 100);
 	while (x < (data->player->x * 100) + 3)
 	{
 		i = -1;
 		while (++i < 20)
-			*(unsigned int*)(data->mlx->addr + ((y + (int)data->player->dy * i) * data->mlx->line_length + (x + (int)data->player->dx * i) * (data->mlx->bpp / 8))) = 0x00FF7F7F;
+			*(unsigned int*)(data->mlx->addr + ((y + (int)data->player->dy * i) * data->mlx->line_length + (x + (int)data->player->dx * i) * (data->mlx->bpp / 8))) = 0x00000000;
 		x++;
+	}
+}
+
+void	render_ray(t_data *data)
+{
+	int	x;
+	int	y;
+	int	i;
+	float	a_tan;
+
+	data->ray->angle = data->player->angle;
+	data->ray->r = 0;
+	while (data->ray->r < 1)
+	{
+		// check horizontal
+		data->ray->dof = 0;
+		a_tan = -1 / tan(data->ray->angle);
+		if (data->ray->angle < PI) // looking down
+		{
+			data->ray->y = (((int)data->player->y >> 6) << 6) - 0.0001;
+			data->ray->x = (data->player->y - data->ray->y) * a_tan + data->player->x;
+			data->ray->yo = -64;
+			data->ray->xo = -data->ray->yo * a_tan;
+		}
+		if (data->ray->angle > PI) // looking up
+		{
+			data->ray->y = (((int)data->player->y >> 6) << 6) + 64;
+			data->ray->x = (data->player->y - data->ray->y) * a_tan + data->player->x;
+			data->ray->yo = 64;
+			data->ray->xo = -data->ray->yo * a_tan;
+		}
+		if (data->ray->angle == 0 || data->ray->angle == PI) // looking left or right
+		{
+			data->ray->x = data->player->x;
+			data->ray->y = data->player->y;
+			data->ray->dof = 8;
+		}
+		while (data->ray->dof < 8)
+		{
+			data->ray->mx = (int)(data->player->x) >> 6;
+			data->ray->my = (int)(data->player->y) >> 6;
+			printf("mx %d || my %d\n", data->ray->mx, data->ray->my);
+			printf("mx %d\n", data->map_fd->width);
+			data->ray->mp = data->ray->my * data->map_fd->width + data->ray->mx;
+			printf("mp %d\n", data->ray->mp);
+			if (data->map[data->ray->my][data->ray->mx] == '1')
+				data->ray->dof = 8;
+			else
+			{
+				data->ray->x += data->ray->xo;
+				data->ray->y += data->ray->yo;
+				data->ray->dof += 1;
+			}
+			printf("data->map[data->ray->my][data->ray->mx] = %c\n", data->map[data->ray->my][data->ray->mx]);
+		}
+		x = (data->player->x * 100) - 3;
+		y = (data->player->y * 100);
+		while (x < (data->player->x * 100) + 3)
+		{
+			i = -1;
+			while (++i < 20)
+				*(unsigned int*)(data->mlx->addr + ((y + (int)data->ray->y * i) * data->mlx->line_length + (x + (int)data->ray->x * i) * (data->mlx->bpp / 8))) = 0x00000000;
+			printf("yolo2 \n");
+			x++;
+		}
+		data->ray->r++;
 	}
 }
 
@@ -170,8 +236,9 @@ void	get_pos(t_data *data)
 int	render_image(t_data *data)
 {
 	get_pos(data);
-	render_minimap(data);
+	// render_minimap(data);
 	render_player(data);
+	render_ray(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
 	return (0);
 }

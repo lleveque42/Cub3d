@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/16 11:03:05 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:55:18 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_data	*init_data_malloc(void)
 	data->garbage->ptr = NULL;
 	data->mlx = ft_malloc(sizeof(t_mlx), data);
 	data->key = ft_malloc(sizeof(t_key), data);
+	data->ray = ft_malloc(sizeof(t_ray), data);
 	data->map_fd = ft_malloc(sizeof(t_map_fd), data);
 	data->player = ft_malloc(sizeof(t_player), data);
 	data->texture = ft_malloc(sizeof(t_texture), data);
