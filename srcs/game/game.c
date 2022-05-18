@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/17 18:50:13 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:39:33 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,34 +161,32 @@ void	render_ray(t_data *data)
 		data->ray->y = data->player->y;
 		data->ray->dof = 8;
 	}
-	// while (data->ray->dof < 8)
-	// {
-	// 	data->ray->mx = (int)(data->player->x);
-	// 	data->ray->my = (int)(data->player->y);
-	// 	data->ray->mp = data->ray->my * data->map_fd->width + data->ray->mx;
-	// 	if (data->map[data->ray->my][data->ray->mx] == '1')
-	// 		data->ray->dof = 8;
-	// 	else
-	// 	{
-	// 		data->ray->x += data->ray->xo;
-	// 		data->ray->y += data->ray->yo;
-	// 		data->ray->dof += 1;
-	// 		// if (data->ray->yo > 0 && data->ray->x)
-	// 	}
-	// }
+	while (data->ray->dof < 8)
+	{
+		data->ray->mx = (int)data->ray->x;
+		data->ray->my = (int)data->ray->y;
+		data->ray->mp = data->ray->my * data->map_fd->width + data->ray->mx;
+		printf("M : %d\n", data->ray->mp);
+		printf("mp : %c\n", data->m[data->ray->mp]);
+		if (data->ray->mp < 8 * 8 && data->m[data->ray->mp] == '1')
+			data->ray->dof = 8;
+		else
+		{
+			data->ray->x += data->ray->xo;
+			data->ray->y += data->ray->yo;
+			data->ray->dof += 1;
+		}
+	}
 	x = (data->player->x * 100);
 	y = (data->player->y * 100);
 	(void)x;
 	(void)y;
 	(void)i;
-	// printf("yo %f\n", data->ray->yo);
-	// printf("xo %f\n", data->ray->xo);
-	// printf("ray x %f\n", data->ray->x);
-	// printf("ray mx %d\n", data->ray->mx);
-	// printf("ray y %f\n", data->ray->y);
-	// printf("ray my %d\n", data->ray->my);
+	printf("x : %d\n", x);
+	printf("y : %d\n", y);
 	while (data->ray->my < data->ray->y)
 	{
+		printf("1\n");
 		data->mlx->addr[(((data->ray->my * 100) * data->mlx->line_length) + (data->ray->mx * 100) * data->mlx->bpp / 8) + 0] = (BLACK) & 0xFF;
 		data->mlx->addr[(((data->ray->my * 100) * data->mlx->line_length) + (data->ray->mx * 100) * data->mlx->bpp / 8) + 1] = (BLACK >> 8) & 0xFF;
 		data->mlx->addr[(((data->ray->my * 100) * data->mlx->line_length) + (data->ray->mx * 100) * data->mlx->bpp / 8) + 2] = (BLACK >> 16) & 0xFF;
@@ -197,16 +195,18 @@ void	render_ray(t_data *data)
 	}
 	while (data->ray->my > data->ray->y)
 	{
+		printf("ray x : %f\n", data->ray->x);
+		printf("ray mx : %d\n", data->ray->mx);
+		printf("ray y : %f\n", data->ray->y);
+		printf("ray my : %d\n", data->ray->my);
+		printf("2\n");
 		data->mlx->addr[(((data->ray->my * 100) * data->mlx->line_length) + (data->ray->mx * 100) * data->mlx->bpp / 8) + 0] = (BLACK) & 0xFF;
 		data->mlx->addr[(((data->ray->my * 100) * data->mlx->line_length) + (data->ray->mx * 100) * data->mlx->bpp / 8) + 1] = (BLACK >> 8) & 0xFF;
 		data->mlx->addr[(((data->ray->my * 100) * data->mlx->line_length) + (data->ray->mx * 100) * data->mlx->bpp / 8) + 2] = (BLACK >> 16) & 0xFF;
 		data->mlx->addr[(((data->ray->my * 100) * data->mlx->line_length) + (data->ray->mx * 100) * data->mlx->bpp / 8) + 3] = (BLACK >> 24) & 0xFF;	// i = -1;
 		data->ray->my--;
 	}
-	while (++i < 1)
-		*(unsigned int*)(data->mlx->addr + (((int)data->ray->y ) * data->mlx->line_length + (x * (int)data->ray->x) * (data->mlx->bpp / 8))) = BLACK;
-		x++;
-	}
+	// exit(1);
 }
 
 // void	render_ray(t_data *data)
@@ -227,7 +227,7 @@ void	render_ray(t_data *data)
 // 		data->ray->hit = 0;
 // 		if (data->ray->x < 0)
 // 		{
-// 			data->ray->step_x = -1;
+// 			data->ray->step_	x = -1;
 // 			sideDistX = (posX - mapX) * deltaDistX;
 // 		}
 // 		else
@@ -312,8 +312,27 @@ int	render_image(t_data *data)
 	return (0);
 }
 
+char	*create_m(char *s, t_data *data)
+{
+	int	 i = 1;
+
+	s = ft_strdup(data->map[0], data);
+	// s = ft_strjoin(s, "\n", data);
+	while (data->map[i])
+	{
+		s = ft_strjoin(s, ft_strdup(data->map[i], data), data);
+		// if (data->map[i + 1] != NULL)
+			// s = ft_strjoin(s, "\n", data);
+		i++;
+	}
+	return (s);
+}
+
 void	game(t_data *data)
 {
+	data->m = create_m(data->m, data);
+
+	// printf("end of create m\n");
 	data->mlx->ptr = mlx_init();
 	data->win_height = data->map_fd->height * 100;
 	data->win_width = data->map_fd->width * 100;
