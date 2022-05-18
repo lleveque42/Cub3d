@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/18 10:51:21 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/18 15:23:12 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ struct s_ray
 	int		side;
 	float	x;
 	float	y;
+	float	old_x;
+	float	old_y;
 	float	xo;
 	float	yo;
 	float	wd;
@@ -86,6 +88,7 @@ struct s_ray
 
 struct s_player
 {
+	int		change;
 	char	dir;
 	float	x;
 	float	y;

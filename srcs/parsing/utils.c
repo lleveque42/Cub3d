@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/17 15:05:40 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:25:04 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	find_player_data(char **s, int x, int y, t_data *data)
 	if (data->player->dir)
 		ft_exit_message("Map is invalid: only 1 player", data, 1);
 	data->player->dir = s[y][x];
-	data->player->x = x + 0.5;
-	data->player->y = y + 0.5;
+	data->player->x = (x + 0.5) * 64;
+	data->player->y = (y + 0.5) * 64;
 	data->player->old_y = data->player->y;
 	data->player->old_x = data->player->x;
 	if (s[y][x] == 'N')
@@ -33,6 +33,7 @@ void	find_player_data(char **s, int x, int y, t_data *data)
 	data->player->dy = sin(data->player->angle) * 5;
 	data->player->old_dx = data->player->dx;
 	data->player->old_dy = data->player->dy;
+	data->player->change = 1;
 }
 
 int	check_line(char *buff)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/17 16:57:12 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:19:13 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 # include "../mlx/mlx_int.h"
 
 // # define SPEED_TEST 0.0002
-// # define ROTATE_SPEED_TEST 0.005
+# define ROTATE_SPEED_TEST 0.001
 # define PI					3.1415926535
-# define SPEED_TEST			0.00005
-# define ROTATE_SPEED_TEST	0.001
+# define SPEED_TEST			0.005
+// # define ROTATE_SPEED_TEST	0.1
 # define RED				0x00FF7F7F
 # define WHITE				0x00FFFFFF
 # define BLACK				0x00000000
