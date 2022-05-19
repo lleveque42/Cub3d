@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/18 15:23:12 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/19 11:13:45 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,53 +54,58 @@ struct s_key
 struct s_mlx
 {
 	int		bpp;
+	int		bpp2;
 	int		line_length;
+	int		line_length2;
 	int		endian;
+	int		endian2;
 	void	*ptr;
+	void	*ptr2;
 	void	*win;
+	void	*win2;
 	void	*img;
+	void	*img2;
 	char	*addr;
-	char	*addr_map;
+	char	*addr2;
 };
 
 struct s_ray
 {
-	int		r;
-	int		mp;
-	int		mx;
-	int		my;
-	int		dof;
 	int		hit;
 	int		side;
-	float	x;
-	float	y;
-	float	old_x;
-	float	old_y;
-	float	xo;
-	float	yo;
-	float	wd;
-	float	ddy;
-	float	ddx;
-	float	angle;
-	float	step_x;
-	float	step_y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	double	ddy;
+	double	ddx;
+	double	sdy;
+	double	sdx;
+	double	time;
+	double	dir_x;
+	double	dir_y;
+	double	old_x;
+	double	old_y;
+	double	angle;
+	double	plane_x;
+	double	plane_y;
+	double	camera_x;
+	double	old_time;
 };
 
 struct s_player
 {
 	int		change;
 	char	dir;
-	float	x;
-	float	y;
-	float	old_x;
-	float	old_y;
-	float	dir_x;
-	float	dir_y;
-	float	dx;
-	float	dy;
-	float	old_dx;
-	float	old_dy;
-	float	angle;
+	double	x;
+	double	y;
+	double	old_x;
+	double	old_y;
+	double	dir_x;
+	double	dir_y;
+	double	old_dx;
+	double	old_dy;
+	double	angle;
 };
 
 struct s_map_fd

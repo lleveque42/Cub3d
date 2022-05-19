@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/18 15:25:04 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/19 11:14:11 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void	find_player_data(char **s, int x, int y, t_data *data)
 	data->player->y = (y + 0.5) * 64;
 	data->player->old_y = data->player->y;
 	data->player->old_x = data->player->x;
-	if (s[y][x] == 'N')
+	if (data->player->dir == 'N')
 		data->player->angle = 3 * PI / 2;
-	else if (s[y][x] == 'S')
+	else if (data->player->dir == 'S')
 		data->player->angle = PI / 2;
-	else if (s[y][x] == 'E')
+	else if (data->player->dir == 'E')
 		data->player->angle = 0;
-	else if (s[y][x] == 'W')
+	else if (data->player->dir == 'W')
 		data->player->angle = PI;
-	data->player->dx= cos(data->player->angle) * 5;
-	data->player->dy = sin(data->player->angle) * 5;
-	data->player->old_dx = data->player->dx;
-	data->player->old_dy = data->player->dy;
+	data->player->dir_x= cos(data->player->angle) * 5;
+	data->player->dir_y = sin(data->player->angle) * 5;
+	data->player->old_dx = data->player->dir_x;
+	data->player->old_dy = data->player->dir_y;
 	data->player->change = 1;
 }
 

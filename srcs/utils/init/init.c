@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/17 12:55:18 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/19 09:54:26 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,9 @@ t_data	*init_data(char *input)
 	open_map(input, data);
 	init_null_1(data);
 	init_null_2(data);
+	data->ray->plane_x = 0;
+	data->ray->plane_y = 0.66;
+	data->ray->time = 0;
+	data->ray->old_time = 0;
 	return (data);
 }
