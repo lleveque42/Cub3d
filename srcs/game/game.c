@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/19 12:35:13 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/19 14:16:01 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	render_ray(t_data *data)
 	x = 0;
 	while (x < 1)
 	{
-		data->ray->camera_x = (2 * (double)x / (double)data->win_width) - 1;
+		data->ray->camera_x = 2 * (float)x / (float)data->win_width - 1;
 		data->ray->dir_x = data->player->dir_x + data->ray->plane_x * data->ray->camera_x;
 		data->ray->dir_y = data->player->dir_y + data->ray->plane_y * data->ray->camera_x;
 		// printf("render rayy calcul %f\n", data->player->dir_y + data->ray->plane_x * data->ray->camera_x);
@@ -188,8 +188,8 @@ void	render_ray(t_data *data)
 			}
 			if (data->map[data->ray->map_y / 64][data->ray->map_x / 64] == '1')
 			{
-				// printf("HIT\n");
 				data->ray->hit = 1;
+				// printf("HIT\n");
 				// printf("ddx %f\n", data->ray->ddx);
 				// printf("ddy %f\n", data->ray->ddy);
 				// printf("sdx %f\n", data->ray->sdx);

@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/19 11:13:45 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/19 14:21:54 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,35 +77,35 @@ struct s_ray
 	int		map_y;
 	int		step_x;
 	int		step_y;
-	double	ddy;
-	double	ddx;
-	double	sdy;
-	double	sdx;
-	double	time;
-	double	dir_x;
-	double	dir_y;
-	double	old_x;
-	double	old_y;
-	double	angle;
-	double	plane_x;
-	double	plane_y;
-	double	camera_x;
-	double	old_time;
+	float	ddy;
+	float	ddx;
+	float	sdy;
+	float	sdx;
+	float	time;
+	float	dir_x;
+	float	dir_y;
+	float	old_x;
+	float	old_y;
+	float	angle;
+	float	plane_x;
+	float	plane_y;
+	float	camera_x;
+	float	old_time;
 };
 
 struct s_player
 {
 	int		change;
 	char	dir;
-	double	x;
-	double	y;
-	double	old_x;
-	double	old_y;
-	double	dir_x;
-	double	dir_y;
-	double	old_dx;
-	double	old_dy;
-	double	angle;
+	float	x;
+	float	y;
+	float	old_x;
+	float	old_y;
+	float	dir_x;
+	float	dir_y;
+	float	old_dx;
+	float	old_dy;
+	float	angle;
 };
 
 struct s_map_fd
