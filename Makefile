@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+         #
+#    By: arudy <arudy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/16 11:00:01 by lleveque         ###   ########.fr        #
+#    Updated: 2022/05/20 11:34:32 by arudy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS_MAIN = $(addprefix srcs/, main.c)
 
 SRCS_UTILS = $(addprefix srcs/utils/, garbage/ft_free.c garbage/ft_malloc.c \
 				get_next_line.c init/init.c init/init_null.c \
-				exit/ft_exit.c exit/ft_exit_message.c)
+				exit/ft_exit.c exit/ft_exit_message.c mlx_utils.c)
 
 SRCS_LIBFT = $(addprefix srcs/libft/, ft_putstr_fd.c ft_strlen.c \
 				ft_strncmp.c ft_substr.c ft_split.c \

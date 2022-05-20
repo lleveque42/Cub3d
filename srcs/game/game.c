@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/19 14:16:01 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/20 12:04:04 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+{
+	return (*(int *)(unsigned char [4]){b, g, r, t});
+}
 
 void	render_minimap(t_data *data)
 {
@@ -33,13 +37,7 @@ void	render_minimap(t_data *data)
 				{
 					j = y * 64 + 1;
 					while (j < (y + 1) * 64 - 1)
-					{
-						data->mlx->addr[(j * data->mlx->line_length) + (i * data->mlx->bpp / 8) + 0] = (WHITE) & 0xFF;
-						data->mlx->addr[(j * data->mlx->line_length) + (i * data->mlx->bpp / 8) + 1] = (WHITE >> 8) & 0xFF;
-						data->mlx->addr[(j * data->mlx->line_length) + (i * data->mlx->bpp / 8) + 2] = (WHITE >> 16) & 0xFF;
-						data->mlx->addr[(j * data->mlx->line_length) + (i * data->mlx->bpp / 8) + 3] = (WHITE >> 24) & 0xFF;
-						j++;
-					}
+						pixel_put(data, i, j++, WHITE);
 					i++;
 				}
 			}
@@ -49,13 +47,7 @@ void	render_minimap(t_data *data)
 				{
 					j = y * 64 + 1;
 					while (j < (y + 1) * 64 - 1)
-					{
-						data->mlx->addr[(j * data->mlx->line_length) + (i * data->mlx->bpp / 8) + 0] = (GREY) & 0xFF;
-						data->mlx->addr[(j * data->mlx->line_length) + (i * data->mlx->bpp / 8) + 1] = (GREY >> 8) & 0xFF;
-						data->mlx->addr[(j * data->mlx->line_length) + (i * data->mlx->bpp / 8) + 2] = (GREY >> 16) & 0xFF;
-						data->mlx->addr[(j * data->mlx->line_length) + (i * data->mlx->bpp / 8) + 3] = (GREY >> 24) & 0xFF;
-						j++;
-					}
+						pixel_put(data, i, j++, GREY);
 					i++;
 				}
 			}
@@ -83,14 +75,7 @@ void	render_player(t_data *data)
 	{
 		y = data->player->old_y - 5;
 		while (y < data->player->old_y + 5)
-		{
-
-			data->mlx->addr[(y * data->mlx->line_length) + (x * data->mlx->bpp / 8) + 0] = (WHITE) & 0xFF;
-			data->mlx->addr[(y * data->mlx->line_length) + (x * data->mlx->bpp / 8) + 1] = (WHITE >> 8) & 0xFF;
-			data->mlx->addr[(y * data->mlx->line_length) + (x * data->mlx->bpp / 8) + 2] = (WHITE >> 16) & 0xFF;
-			data->mlx->addr[(y * data->mlx->line_length) + (x * data->mlx->bpp / 8) + 3] = (WHITE >> 24) & 0xFF;
-			y++;
-		}
+			pixel_put(data, x, y++, WHITE);
 		x++;
 	}
 	x = data->player->x - 5;
@@ -99,35 +84,19 @@ void	render_player(t_data *data)
 	{
 		y = data->player->y- 5;
 		while (y < data->player->y + 5)
-		{
-			data->mlx->addr[(y * data->mlx->line_length) + (x * data->mlx->bpp / 8) + 0] = (RED) & 0xFF;
-			data->mlx->addr[(y * data->mlx->line_length) + (x * data->mlx->bpp / 8) + 1] = (RED >> 8) & 0xFF;
-			data->mlx->addr[(y * data->mlx->line_length) + (x * data->mlx->bpp / 8) + 2] = (RED >> 16) & 0xFF;
-			data->mlx->addr[(y * data->mlx->line_length) + (x * data->mlx->bpp / 8) + 3] = (RED >> 24) & 0xFF;
-			y++;
-		}
+			pixel_put(data, x, y++, RED);
 		x++;
 	}
 	x = data->player->old_x;
 	y = data->player->old_y;
 	i = -1;
 	while (++i < 80)
-	{
-		data->mlx->addr[(((y + (int)data->player->old_dy * i / 5) * data->mlx->line_length) + (x + (int)data->player->old_dx * i / 5) * data->mlx->bpp / 8) + 0] = (WHITE) & 0xFF;
-		data->mlx->addr[(((y + (int)data->player->old_dy * i / 5) * data->mlx->line_length) + (x + (int)data->player->old_dx * i / 5) * data->mlx->bpp / 8) + 1] = (WHITE >> 8) & 0xFF;
-		data->mlx->addr[(((y + (int)data->player->old_dy * i / 5) * data->mlx->line_length) + (x + (int)data->player->old_dx * i / 5) * data->mlx->bpp / 8) + 2] = (WHITE >> 16) & 0xFF;
-		data->mlx->addr[(((y + (int)data->player->old_dy * i / 5) * data->mlx->line_length) + (x + (int)data->player->old_dx * i / 5) * data->mlx->bpp / 8) + 3] = (WHITE >> 24) & 0xFF;
-	}
+		pixel_put(data, (x + (int)data->player->old_dx * i / 5), (y + (int)data->player->old_dy * i / 5), WHITE);
 	x = data->player->x;
 	y = data->player->y;
 	i = -1;
 	while (++i < 80)
-	{
-		data->mlx->addr[(((y + (int)data->player->dir_y * i / 5) * data->mlx->line_length) + (x + (int)data->player->dir_x * i / 5) * data->mlx->bpp / 8) + 0] = (RED) & 0xFF;
-		data->mlx->addr[(((y + (int)data->player->dir_y * i / 5) * data->mlx->line_length) + (x + (int)data->player->dir_x * i / 5) * data->mlx->bpp / 8) + 1] = (RED >> 8) & 0xFF;
-		data->mlx->addr[(((y + (int)data->player->dir_y * i / 5) * data->mlx->line_length) + (x + (int)data->player->dir_x * i / 5) * data->mlx->bpp / 8) + 2] = (RED >> 16) & 0xFF;
-		data->mlx->addr[(((y + (int)data->player->dir_y * i / 5) * data->mlx->line_length) + (x + (int)data->player->dir_x * i / 5) * data->mlx->bpp / 8) + 3] = (RED >> 24) & 0xFF;
-	}
+		pixel_put(data, (x + (int)data->player->dir_x * i / 5), (y + (int)data->player->dir_y * i / 5), RED);
 }
 
 void	render_ray(t_data *data)
