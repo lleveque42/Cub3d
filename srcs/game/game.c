@@ -6,16 +6,11 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/20 12:04:04 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/23 18:32:29 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
-{
-	return (*(int *)(unsigned char [4]){b, g, r, t});
-}
 
 void	render_minimap(t_data *data)
 {
@@ -90,12 +85,12 @@ void	render_player(t_data *data)
 	x = data->player->old_x;
 	y = data->player->old_y;
 	i = -1;
-	while (++i < 80)
+	while (++i < 50)
 		pixel_put(data, (x + (int)data->player->old_dx * i / 5), (y + (int)data->player->old_dy * i / 5), WHITE);
 	x = data->player->x;
 	y = data->player->y;
 	i = -1;
-	while (++i < 80)
+	while (++i < 50)
 		pixel_put(data, (x + (int)data->player->dir_x * i / 5), (y + (int)data->player->dir_y * i / 5), RED);
 }
 
@@ -109,17 +104,22 @@ void	render_ray(t_data *data)
 		data->ray->camera_x = 2 * (float)x / (float)data->win_width - 1;
 		data->ray->dir_x = data->player->dir_x + data->ray->plane_x * data->ray->camera_x;
 		data->ray->dir_y = data->player->dir_y + data->ray->plane_y * data->ray->camera_x;
-		// printf("render rayy calcul %f\n", data->player->dir_y + data->ray->plane_x * data->ray->camera_x);
 		data->ray->map_x = (int)data->player->x;
 		data->ray->map_y = (int)data->player->y;
-		if ((int)data->ray->dir_x == 0)
-			data->ray->ddx = 1;
+		if (data->ray->dir_x == 0)
+			data->ray->ddx = 1e30;
 		else
-			data->ray->ddx = abs(1 / (int)data->ray->dir_x);
-		if ((int)data->ray->dir_y == 0)
-			data->ray->ddy = 1;
+			data->ray->ddx = sqrt(1 + (data->ray->dir_y * data->ray->dir_y) / (data->ray->dir_x * data->ray->dir_x));
+		if (data->ray->dir_y == 0)
+			data->ray->ddy = 1e30;
 		else
-			data->ray->ddy = abs(1 / (int)data->ray->dir_y);
+			data->ray->ddy = sqrt(1 + (data->ray->dir_x * data->ray->dir_x) / (data->ray->dir_y * data->ray->dir_y));
+		// printf("abs x : %f\n", data->ray->ddx);
+		// printf("abs y : %f\n", data->ray->ddy);
+		// printf("dir x : %f\n", data->ray->dir_x);
+		// printf("dir y : %f\n", data->ray->dir_y);
+		// printf("player x : %f\n", data->player->x);
+		// printf("player y : %f\n", data->player->y);
 		data->ray->hit = 0;
 		if (data->ray->dir_x < 0)
 		{
@@ -141,6 +141,8 @@ void	render_ray(t_data *data)
 			data->ray->step_y = 1;
 			data->ray->sdy = (data->ray->map_y + 1.0 - data->player->y) * data->ray->ddy;
 		}
+		// printf("sdY : %f\n", data->ray->sdy);
+		// printf("sdX : %f\n", data->ray->sdx);
 		while (data->ray->hit == 0)
 		{
 			if (data->ray->sdx < data->ray->sdy)
@@ -155,6 +157,7 @@ void	render_ray(t_data *data)
 				data->ray->map_y += data->ray->step_y;
 				data->ray->side = 1;
 			}
+			// printf("line : %s\n", data->map[data->ray->map_y / 64]);
 			if (data->map[data->ray->map_y / 64][data->ray->map_x / 64] == '1')
 			{
 				data->ray->hit = 1;
