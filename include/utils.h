@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:28:53 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/20 11:31:43 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 11:15:55 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		ft_exit(t_data *data, char *msg);
 void	free_all(t_data *data);
 void	init_null_1(t_data *data);
 void	init_null_2(t_data *data);
+void	init_null_3(t_data *data);
+void	init_null_4(t_data *data);
 void	ft_free(void *ptr, t_data *data);
 void	*ft_malloc(size_t size, t_data *data);
 void	pixel_put(t_data *data, int x, int y, int color);

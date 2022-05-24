@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:22:44 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/20 11:45:40 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 11:20:43 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	pixel_put(t_data *data, int x, int y, int color)
 	dst = data->mlx->addr + (y * data->mlx->line_length)
 		+ (x * data->mlx->bpp / 8);
 	*(unsigned int *)dst = color;
-
 }

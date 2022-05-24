@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 10:18:32 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 10:50:33 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ struct s_ray
 	int		map_y;
 	int		step_x;
 	int		step_y;
+	int		line_h;
+	int		draw_end;
+	int		draw_start;
 	float	pwd;
 	float	ddy;
 	float	ddx;

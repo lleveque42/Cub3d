@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/19 11:14:11 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 11:21:06 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	find_player_data(char **s, int x, int y, t_data *data)
 		data->player->angle = 0;
 	else if (data->player->dir == 'W')
 		data->player->angle = PI;
-	data->player->dir_x= cos(data->player->angle) * 5;
+	data->player->dir_x = cos(data->player->angle) * 5;
 	data->player->dir_y = sin(data->player->angle) * 5;
 	data->player->old_dx = data->player->dir_x;
 	data->player->old_dy = data->player->dir_y;
