@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 12:16:27 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 12:59:40 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ void	render_minimap(t_data *data)
 			i += 2;
 			if (data->map[y][x] != '1' && data->map[y][x] != ' ')
 			{
-				while (i < (x + 1) * 64)
+				while (i < (x + 1) * TILE_SIZE)
 				{
-					j = y * 64 + 1;
-					while (j < (y + 1) * 64 - 1)
+					j = y * TILE_SIZE + 1;
+					while (j < (y + 1) * TILE_SIZE - 1)
 						pixel_put(data, i, j++, WHITE);
 					i++;
 				}
 			}
 			else if (data->map[y][x] == '1')
 			{
-				while (i < (x + 1) * 64)
+				while (i < (x + 1) * TILE_SIZE)
 				{
-					j = y * 64 + 1;
-					while (j < (y + 1) * 64 - 1)
+					j = y * TILE_SIZE + 1;
+					while (j < (y + 1) * TILE_SIZE - 1)
 						pixel_put(data, i, j++, GREY);
 					i++;
 				}
@@ -59,6 +59,7 @@ void	render_minimap(t_data *data)
 
 void	render_player(t_data *data)
 {
+	(void)data;
 	int	x;
 	int	y;
 	int	i;
@@ -98,6 +99,9 @@ void	render_ray(t_data *data)
 {
 	int	x;
 	int	color;
+	int	y;
+
+	(void)color;
 
 	x = 0;
 	color = 0;
@@ -156,7 +160,7 @@ void	render_ray(t_data *data)
 				data->ray->map_y += data->ray->step_y;
 				data->ray->side = 1;
 			}
-			if (data->map[data->ray->map_y / 64][data->ray->map_x / 64] == '1')
+			if (data->map[data->ray->map_y / TILE_SIZE][data->ray->map_x / TILE_SIZE] == '1')
 				data->ray->hit = 1;
 		}
 
@@ -167,6 +171,8 @@ void	render_ray(t_data *data)
 			data->ray->pwd = data->ray->sdy - data->ray->ddy;
 
 		// Calculate height of the line to draw & and coor of pixels to fill
+		printf("win_height = %d\n", data->win_height);
+		printf("pwd = %f\n", data->ray->pwd);
 		data->ray->line_h = (int)(data->win_height / data->ray->pwd);
 		data->ray->draw_start = -data->ray->line_h / 2 + data->win_height / 2;
 		if (data->ray->draw_start < 0)
@@ -174,28 +180,29 @@ void	render_ray(t_data *data)
 		data->ray->draw_end = data->ray->line_h / 2 + data->win_height / 2;
 		if (data->ray->draw_end >= data->win_height)
 			data->ray->draw_end = data->win_height - 1;
-
 		// choose wall color
 		color = RED;
 		if (data->ray->side == 0)
 			color = color / 2;
 
-		// draw ray on screen
-		int	i = 0;
-		int	j = 0;
-		while (i++ < data->win_width)
-		{
-			j = 0;
-			while (j++ < data->win_height)
+		// // draw ray on screen
+		// int	i = 0;
+		// while (i < data->win_width)
+		// {
+			y = 0;
+			while (y < data->win_height)
 			{
-				if (i == x)
-				{
-					pixel_put(data, i, j, color);
-				}
+				if (y >= data->ray->draw_start && y <= data->ray->draw_end)
+					pixel_put(data, x, y, color);
+				else if (y > data->ray->draw_start)
+					pixel_put(data, x, y, WHITE);
 				else
-					pixel_put(data, i, j, BLACK);
+					pixel_put(data, x, y, BLACK);
+				++y;
 			}
-		}
+			// ++i;
+		// }
+
 		x++;
 	}
 }
@@ -205,13 +212,25 @@ int	render_image(t_data *data)
 	get_pos(data);
 	if (data->player->change)
 	{
-		render_player(data);
+		// render_player(data);
 		render_ray(data);
 		mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
 	}
 	data->player->change = 0;
 	return (0);
 }
+
+// int	render_image2(t_data *data)
+// {
+// 	get_pos(data);
+// 	if (data->player->change)
+// 	{
+// 		render_ray(data);
+// 		mlx_put_image_to_window(data->mlx->ptr2, data->mlx->win2, data->mlx->img, 0, 0);
+// 	}
+// 	data->player->change = 0;
+// 	return (0);
+// }
 
 // char	*create_m(char *s, t_data *data)
 // {
@@ -233,28 +252,39 @@ void	game(t_data *data)
 {
 	// data->m = create_m(data->m, data);
 
-	data->win_height = data->map_fd->height * 64;
-	data->win_width = data->map_fd->width * 64;
+	data->win_height = data->map_fd->height * TILE_SIZE;
+	data->win_width = data->map_fd->width * TILE_SIZE;
 	data->mlx->ptr = mlx_init();
+	// data->mlx->ptr2 = mlx_init();
 	if (!data->mlx->ptr)
 		ft_exit(data, "Can't init mlx ptr");
 	data->mlx->win = mlx_new_window(data->mlx->ptr, data->win_width, data->win_height, "QubtroiD");
+	// data->mlx->win2 = mlx_new_window(data->mlx->ptr2, data->win_width, data->win_height, "QubtroiD");
 	if (!data->mlx->win)
 		ft_exit(data, "Can't init mlx window");
-	data->mlx->img = mlx_new_image(data->mlx->ptr, data->map_fd->width * 64, data->map_fd->height * 64);
+	data->mlx->img = mlx_new_image(data->mlx->ptr, data->map_fd->width * TILE_SIZE, data->map_fd->height * TILE_SIZE);
+	// data->mlx->img2 = mlx_new_image(data->mlx->ptr2, data->map_fd->width * TILE_SIZE, data->map_fd->height * TILE_SIZE);
 	if (!data->mlx->img)
 		ft_exit(data, "Can't init mlx image");
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, &data->mlx->bpp,
 					&data->mlx->line_length, &data->mlx->endian);
+	// data->mlx->addr2 = mlx_get_data_addr(data->mlx->img2, &data->mlx->bpp,
+	// 				&data->mlx->line_length, &data->mlx->endian);
 	if (!data->mlx->addr)
 		ft_exit(data, "Can't init mlx addr");
 	render_minimap(data);
 	render_player(data);
+	render_ray(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
 	// mlx_put_image_to_window(data->mlx->ptr2, data->mlx->win2, data->mlx->img2, 0, 0);
 	mlx_hook(data->mlx->win, 2, 1, &key_event, data);
+	// mlx_hook(data->mlx->win2, 2, 1, &key_event, data);
 	mlx_loop_hook(data->mlx->ptr, &render_image, data);
+	// mlx_loop_hook(data->mlx->ptr2, &render_image2, data);
 	mlx_hook(data->mlx->win, 17, 17, &ft_exit_esc, data);
+	// mlx_hook(data->mlx->win2, 17, 17, &ft_exit_esc, data);
 	mlx_hook(data->mlx->win, 3, 10, &key_release, data);
+	// mlx_hook(data->mlx->win2, 3, 10, &key_release, data);
 	mlx_loop(data->mlx->ptr);
+	// mlx_loop(data->mlx->ptr2);
 }
