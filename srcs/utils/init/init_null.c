@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 15:31:20 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:06:07 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ void	init_null_3(t_data *data)
 	data->ray->old_x = 0;
 	data->ray->old_y = 0;
 	data->ray->angle = 0;
-	data->ray->plane_x = 0;
-	data->ray->plane_y = 0.66;
 	data->ray->camera_x = 0;
 }
 
