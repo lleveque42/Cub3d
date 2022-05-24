@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 17:03:55 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 18:00:03 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void	render_ray(t_data *data)
 		data->ray->draw_end = data->ray->line_h / 2 + RES / 2;
 		if (data->ray->draw_end >= RES)
 			data->ray->draw_end = RES - 1;
-			
+
 		// choose wall color
 		color = RED;
 		if (data->ray->side == 0)
@@ -193,9 +193,9 @@ void	render_ray(t_data *data)
 			if (y >= data->ray->draw_start && y <= data->ray->draw_end)
 				pixel_put2(data, x, y, color);
 			else if (y > data->ray->draw_start)
-				pixel_put2(data, x, y, WHITE);
+				pixel_put2(data, x, y, data->texture->f_color);
 			else
-				pixel_put2(data, x, y, BLACK);
+				pixel_put2(data, x, y, data->texture->c_color);
 			++y;
 		}
 		x++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 15:31:08 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:51:02 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ struct	s_texture
 	int		so_fd;
 	int		we_fd;
 	int		ea_fd;
+	int		c_color;
+	int		f_color;
 	t_color	*c;
 	t_color	*f;
 };

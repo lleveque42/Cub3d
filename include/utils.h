@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:28:53 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 12:38:47 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:57:39 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int		ft_exit_esc(t_data *data);
 int		ft_exit(t_data *data, char *msg);
+int		create_trgb(int t, int r, int g, int b);
 void	free_all(t_data *data);
 void	init_null_1(t_data *data);
 void	init_null_2(t_data *data);
