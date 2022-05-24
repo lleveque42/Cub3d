@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 13:26:03 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 13:57:24 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	render_ray(t_data *data)
 
 	x = 0;
 	color = 0;
-	while (x <= data->win_width)
+	while (x < data->win_width)
 	{
 		// Calculate ray pos & dir
 		data->ray->camera_x = 2 * (float)x / (float)data->win_width - 1;
@@ -183,25 +183,20 @@ void	render_ray(t_data *data)
 		// choose wall color
 		color = RED;
 		if (data->ray->side == 0)
-			color = BLUE;
-		// // draw ray on screen
-		// int	i = 0;
-		// while (i < data->win_width)
-		// {
-			y = 0;
-			while (y < data->win_height)
-			{
-				if (y >= data->ray->draw_start && y <= data->ray->draw_end)
-					pixel_put2(data, x, y, color);
-				else if (y > data->ray->draw_start)
-					pixel_put2(data, x, y, WHITE);
-				else
-					pixel_put2(data, x, y, BLACK);
-				++y;
-			}
-			// ++i;
-		// }
+			color = REDDD;
 
+		// draw ray on screen
+		y = 0;
+		while (y < data->win_height)
+		{
+			if (y >= data->ray->draw_start && y <= data->ray->draw_end)
+				pixel_put2(data, x, y, color);
+			else if (y > data->ray->draw_start)
+				pixel_put2(data, x, y, BLACK);
+			else
+				pixel_put2(data, x, y, BLACK);
+			++y;
+		}
 		x++;
 	}
 }
