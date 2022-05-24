@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_rgb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:08:07 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/12 12:09:26 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 18:04:48 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,15 @@ void	manage_colors(char *buff, int n, char c, t_data *data)
 		data->texture->c->r = ft_atoi(rgb[0]);
 		data->texture->c->g = ft_atoi(rgb[1]);
 		data->texture->c->b = ft_atoi(rgb[2]);
+		data->texture->c_color = create_trgb(0, data->texture->c->r,
+		data->texture->c->g, data->texture->c->b);
 	}
 	else
 	{
 		data->texture->f->r = ft_atoi(rgb[0]);
 		data->texture->f->g = ft_atoi(rgb[1]);
 		data->texture->f->b = ft_atoi(rgb[2]);
+		data->texture->f_color = create_trgb(0, data->texture->f->r,
+		data->texture->f->g, data->texture->f->b);
 	}
 }
