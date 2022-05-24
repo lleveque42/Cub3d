@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:03:37 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 12:59:42 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 14:09:37 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	move_forward(t_data *data)
 
 void	move_backward(t_data *data)
 {
-
 	if (data->map[(int)(data->player->y / TILE_SIZE)][(int)((data->player->x - data->player->dir_x * SPEED_TEST) / TILE_SIZE)] != '1')
 	{
 		data->player->x -= data->player->dir_x * SPEED_TEST;

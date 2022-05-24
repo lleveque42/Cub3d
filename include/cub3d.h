@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 13:22:03 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 13:53:22 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 # include "../mlx/mlx_int.h"
 
 // # define SPEED_TEST 0.0002
-// # define ROTATE_SPEED_TEST 0.001
+// # define ROT_SPEED 0.001
 # define PI					3.1415926535
-# define SPEED_TEST			0.025
-# define ROTATE_SPEED_TEST	0.005
+# define SPEED_TEST			0.05
+# define ROT_SPEED	0.01
 # define RED				0x00FF7F7F
 # define WHITE				0x00FFFFFF
 # define BLACK				0x00000000
