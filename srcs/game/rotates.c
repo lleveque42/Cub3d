@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotates.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:06:08 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 14:11:12 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:19:39 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	rotate_right(t_data *data)
 {
-	double old_plane_x;
+	double	old_plane_x;
 
 	old_plane_x = data->ray->plane_x;
 	data->player->old_dx = data->player->dir_x;
@@ -28,7 +28,7 @@ void	rotate_right(t_data *data)
 
 void	rotate_left(t_data *data)
 {
-	double old_plane_x;
+	double	old_plane_x;
 
 	old_plane_x = data->ray->plane_x;
 	data->player->old_dx = data->player->dir_x;
