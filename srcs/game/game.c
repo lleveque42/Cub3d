@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 13:57:24 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 15:47:51 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	render_ray(t_data *data)
 
 	x = 0;
 	color = 0;
-	while (x < data->win_width)
+	while (x < RES)
 	{
 		// Calculate ray pos & dir
 		data->ray->camera_x = 2 * (float)x / (float)data->win_width - 1;
@@ -187,12 +187,12 @@ void	render_ray(t_data *data)
 
 		// draw ray on screen
 		y = 0;
-		while (y < data->win_height)
+		while (y < RES)
 		{
 			if (y >= data->ray->draw_start && y <= data->ray->draw_end)
 				pixel_put2(data, x, y, color);
 			else if (y > data->ray->draw_start)
-				pixel_put2(data, x, y, BLACK);
+				pixel_put2(data, x, y, WHITE);
 			else
 				pixel_put2(data, x, y, BLACK);
 			++y;
@@ -247,18 +247,18 @@ void	game(t_data *data)
 {
 	// data->m = create_m(data->m, data);
 
-	data->win_height = data->map_fd->height * TILE_SIZE;
-	data->win_width = data->map_fd->width * TILE_SIZE;
+	data->win_height = data->map_fd->height * TILE_SIZE; // on s'en fou ducoup
+	data->win_width = data->map_fd->width * TILE_SIZE; // on s'en fou ducoup
 	data->mlx->ptr = mlx_init();
 	data->mlx->ptr2 = mlx_init();
 	if (!data->mlx->ptr)
 		ft_exit(data, "Can't init mlx ptr");
-	data->mlx->win = mlx_new_window(data->mlx->ptr, data->win_width, data->win_height, "QubtroiD");
-	data->mlx->win2 = mlx_new_window(data->mlx->ptr2, data->win_width, data->win_height, "QubtroiD");
+	data->mlx->win = mlx_new_window(data->mlx->ptr, RES, RES, "QubtroiD");
+	data->mlx->win2 = mlx_new_window(data->mlx->ptr2, RES, RES, "QubtroiD");
 	if (!data->mlx->win)
 		ft_exit(data, "Can't init mlx window");
-	data->mlx->img = mlx_new_image(data->mlx->ptr, data->map_fd->width * TILE_SIZE, data->map_fd->height * TILE_SIZE);
-	data->mlx->img2 = mlx_new_image(data->mlx->ptr2, data->map_fd->width * TILE_SIZE, data->map_fd->height * TILE_SIZE);
+	data->mlx->img = mlx_new_image(data->mlx->ptr, RES, RES);
+	data->mlx->img2 = mlx_new_image(data->mlx->ptr2, RES, RES);
 	if (!data->mlx->img)
 		ft_exit(data, "Can't init mlx image");
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, &data->mlx->bpp,

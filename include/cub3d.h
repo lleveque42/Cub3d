@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 15:10:08 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 15:46:15 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 
 // # define SPEED_TEST 0.0002
 // # define ROT_SPEED 0.001
+
+# define RES				1200
 # define PI					3.1415926535
 # define SPEED_TEST			0.05
-# define ROT_SPEED	0.01
+# define ROT_SPEED			0.01
 # define RED				0x00FF7F7F
 # define REDDD				0x99605c
 # define WHITE				0x00FFFFFF
