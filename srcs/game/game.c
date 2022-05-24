@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 12:59:40 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 13:22:33 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ void	render_ray(t_data *data)
 			data->ray->pwd = data->ray->sdy - data->ray->ddy;
 
 		// Calculate height of the line to draw & and coor of pixels to fill
-		printf("win_height = %d\n", data->win_height);
-		printf("pwd = %f\n", data->ray->pwd);
+		// printf("win_height = %d\n", data->win_height);
+		// printf("pwd = %f\n", data->ray->pwd);
 		data->ray->line_h = (int)(data->win_height / data->ray->pwd);
 		data->ray->draw_start = -data->ray->line_h / 2 + data->win_height / 2;
 		if (data->ray->draw_start < 0)
@@ -185,24 +185,18 @@ void	render_ray(t_data *data)
 		if (data->ray->side == 0)
 			color = color / 2;
 
-		// // draw ray on screen
-		// int	i = 0;
-		// while (i < data->win_width)
-		// {
-			y = 0;
-			while (y < data->win_height)
-			{
-				if (y >= data->ray->draw_start && y <= data->ray->draw_end)
-					pixel_put(data, x, y, color);
-				else if (y > data->ray->draw_start)
-					pixel_put(data, x, y, WHITE);
-				else
-					pixel_put(data, x, y, BLACK);
-				++y;
-			}
-			// ++i;
-		// }
-
+		// Draw ray on screen
+		y = 0;
+		while (y < data->win_height)
+		{
+			if (y >= data->ray->draw_start && y <= data->ray->draw_end)
+				pixel_put(data, x, y, color);
+			else if (y > data->ray->draw_start)
+				pixel_put(data, x, y, WHITE);
+			else
+				pixel_put(data, x, y, BLACK);
+			++y;
+		}
 		x++;
 	}
 }
