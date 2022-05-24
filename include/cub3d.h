@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 13:00:08 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 13:22:03 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define WHITE				0x00FFFFFF
 # define BLACK				0x00000000
 # define GREY				0x007F7F7F
+# define BLUE				0x000000FF
 # define TILE_SIZE			100
 
 #endif
