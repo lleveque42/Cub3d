@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 10:50:33 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 15:31:08 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ struct s_ray
 	float	ddx;
 	float	sdy;
 	float	sdx;
-	float	time;
 	float	dir_x;
 	float	dir_y;
 	float	old_x;
@@ -94,7 +93,6 @@ struct s_ray
 	float	plane_x;
 	float	plane_y;
 	float	camera_x;
-	float	old_time;
 };
 
 struct s_player
