@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_null.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 11:20:05 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 15:31:20 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void	init_null_3(t_data *data)
 	data->ray->ddx = 0;
 	data->ray->sdx = 0;
 	data->ray->sdy = 0;
-	data->ray->time = 0;
-	data->ray->old_time = 0;
 	data->ray->dir_x = 0;
 	data->ray->dir_y = 0;
 	data->ray->old_x = 0;
