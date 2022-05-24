@@ -6,7 +6,7 @@
 #    By: arudy <arudy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 17:33:37 by arudy             #+#    #+#              #
-#    Updated: 2022/05/20 11:34:32 by arudy            ###   ########.fr        #
+#    Updated: 2022/05/24 10:38:50 by arudy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS_LIBFT = $(addprefix srcs/libft/, ft_putstr_fd.c ft_strlen.c \
 SRCS_PARSING = $(addprefix srcs/parsing/, parsing.c manage_textures.c utils.c \
 				manage_rgb.c map_utils.c)
 
-SRCS_GAME = $(addprefix srcs/game/, game.c moves.c rotates.c)
+SRCS_GAME = $(addprefix srcs/game/, game.c moves.c rotates.c keys_manager.c)
 
 OBJS = ${SRCS:.c=.o}
 

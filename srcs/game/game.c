@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/23 18:32:29 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 10:36:59 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,14 @@ void	render_ray(t_data *data)
 	x = 0;
 	while (x < 1)
 	{
+		// Calculate ray pos & dir
 		data->ray->camera_x = 2 * (float)x / (float)data->win_width - 1;
 		data->ray->dir_x = data->player->dir_x + data->ray->plane_x * data->ray->camera_x;
 		data->ray->dir_y = data->player->dir_y + data->ray->plane_y * data->ray->camera_x;
 		data->ray->map_x = (int)data->player->x;
 		data->ray->map_y = (int)data->player->y;
+
+		// Calculate step & side dist
 		if (data->ray->dir_x == 0)
 			data->ray->ddx = 1e30;
 		else
@@ -114,12 +117,6 @@ void	render_ray(t_data *data)
 			data->ray->ddy = 1e30;
 		else
 			data->ray->ddy = sqrt(1 + (data->ray->dir_x * data->ray->dir_x) / (data->ray->dir_y * data->ray->dir_y));
-		// printf("abs x : %f\n", data->ray->ddx);
-		// printf("abs y : %f\n", data->ray->ddy);
-		// printf("dir x : %f\n", data->ray->dir_x);
-		// printf("dir y : %f\n", data->ray->dir_y);
-		// printf("player x : %f\n", data->player->x);
-		// printf("player y : %f\n", data->player->y);
 		data->ray->hit = 0;
 		if (data->ray->dir_x < 0)
 		{
@@ -141,8 +138,8 @@ void	render_ray(t_data *data)
 			data->ray->step_y = 1;
 			data->ray->sdy = (data->ray->map_y + 1.0 - data->player->y) * data->ray->ddy;
 		}
-		// printf("sdY : %f\n", data->ray->sdy);
-		// printf("sdX : %f\n", data->ray->sdx);
+
+		// Perform the algo to check when & where a ray hit a wall
 		while (data->ray->hit == 0)
 		{
 			if (data->ray->sdx < data->ray->sdy)
@@ -157,73 +154,18 @@ void	render_ray(t_data *data)
 				data->ray->map_y += data->ray->step_y;
 				data->ray->side = 1;
 			}
-			// printf("line : %s\n", data->map[data->ray->map_y / 64]);
 			if (data->map[data->ray->map_y / 64][data->ray->map_x / 64] == '1')
-			{
 				data->ray->hit = 1;
-				// printf("HIT\n");
-				// printf("ddx %f\n", data->ray->ddx);
-				// printf("ddy %f\n", data->ray->ddy);
-				// printf("sdx %f\n", data->ray->sdx);
-				// printf("sdy %f\n", data->ray->sdy);
-			}
 		}
+
+		// Calculate dist on cam direction, (sort of avoid fisheye effect)
+		if (data->ray->side == 0)
+			data->ray->pwd = data->ray->sdx - data->ray->ddx;
+		else
+			data->ray->pwd = data->ray->sdy - data->ray->ddy;
+
 		x++;
 	}
-}
-
-int	key_release(int keycode, t_data *data)
-{
-	if (keycode == 119)
-		data->key->w_pressed = 0;
-	if (keycode == 115)
-		data->key->s_pressed = 0;
-	if (keycode == 97)
-		data->key->a_pressed = 0;
-	if (keycode == 100)
-		data->key->d_pressed = 0;
-	if (keycode == 65363)
-		data->key->lr_pressed = 0;
-	if (keycode == 65361)
-		data->key->la_pressed = 0;
-	return (0);
-}
-
-int	key_event(int keycode, t_data *data)
-{
-	if (keycode == 119)
-		data->key->w_pressed = 1;
-	if (keycode == 115)
-		data->key->s_pressed = 1;
-	if (keycode == 97)
-		data->key->a_pressed = 1;
-	if (keycode == 100)
-		data->key->d_pressed = 1;
-	if (keycode == 65363)
-		data->key->lr_pressed = 1;
-	if (keycode == 65361)
-		data->key->la_pressed = 1;
-	if (keycode == 65307)
-		ft_exit_esc(data);
-	return (0);
-}
-
-void	get_pos(t_data *data)
-{
-	data->player->old_y = data->player->y;
-	data->player->old_x = data->player->x;
-	if (data->key->w_pressed == 1)
-		move_forward(data);
-	if (data->key->s_pressed == 1)
-		move_backward(data);
-	if (data->key->a_pressed == 1)
-		move_left(data);
-	if (data->key->d_pressed == 1)
-		move_right(data);
-	if (data->key->la_pressed == 1)
-		rotate_left(data);
-	if (data->key->lr_pressed == 1)
-		rotate_right(data);
 }
 
 int	render_image(t_data *data)
@@ -239,27 +181,26 @@ int	render_image(t_data *data)
 	return (0);
 }
 
-char	*create_m(char *s, t_data *data)
-{
-	int	 i = 1;
+// char	*create_m(char *s, t_data *data)
+// {
+// 	int	 i = 1;
 
-	s = ft_strdup(data->map[0], data);
-	// s = ft_strjoin(s, "\n", data);
-	while (data->map[i])
-	{
-		s = ft_strjoin(s, ft_strdup(data->map[i], data), data);
-		// if (data->map[i + 1] != NULL)
-			// s = ft_strjoin(s, "\n", data);
-		i++;
-	}
-	return (s);
-}
+// 	s = ft_strdup(data->map[0], data);
+// 	// s = ft_strjoin(s, "\n", data);
+// 	while (data->map[i])
+// 	{
+// 		s = ft_strjoin(s, ft_strdup(data->map[i], data), data);
+// 		// if (data->map[i + 1] != NULL)
+// 			// s = ft_strjoin(s, "\n", data);
+// 		i++;
+// 	}
+// 	return (s);
+// }
 
 void	game(t_data *data)
 {
-	data->m = create_m(data->m, data);
+	// data->m = create_m(data->m, data);
 
-	// printf("end of create m\n");
 	data->win_height = data->map_fd->height * 64;
 	data->win_width = data->map_fd->width * 64;
 	data->mlx->ptr = mlx_init();
@@ -275,13 +216,6 @@ void	game(t_data *data)
 					&data->mlx->line_length, &data->mlx->endian);
 	if (!data->mlx->addr)
 		ft_exit(data, "Can't init mlx addr");
-	// data->win_height = 480;
-	// data->win_width = 640;
-	// data->mlx->ptr2 = mlx_init();
-	// data->mlx->img2 = mlx_new_image(data->mlx->ptr2, data->win_width, data->win_height);
-	// data->mlx->win2 = mlx_new_window(data->mlx->ptr2, data->win_width, data->win_height, "QubtroiD");
-	// data->mlx->addr2 = mlx_get_data_addr(data->mlx->img2, &data->mlx->bpp2,
-	// 				&data->mlx->line_length2, &data->mlx->endian2);
 	render_minimap(data);
 	render_player(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
