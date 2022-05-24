@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 10:36:59 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 12:16:27 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,11 @@ void	render_player(t_data *data)
 void	render_ray(t_data *data)
 {
 	int	x;
+	int	color;
 
 	x = 0;
-	while (x < 1)
+	color = 0;
+	while (x <= data->win_width)
 	{
 		// Calculate ray pos & dir
 		data->ray->camera_x = 2 * (float)x / (float)data->win_width - 1;
@@ -164,6 +166,36 @@ void	render_ray(t_data *data)
 		else
 			data->ray->pwd = data->ray->sdy - data->ray->ddy;
 
+		// Calculate height of the line to draw & and coor of pixels to fill
+		data->ray->line_h = (int)(data->win_height / data->ray->pwd);
+		data->ray->draw_start = -data->ray->line_h / 2 + data->win_height / 2;
+		if (data->ray->draw_start < 0)
+			data->ray->draw_start = 0;
+		data->ray->draw_end = data->ray->line_h / 2 + data->win_height / 2;
+		if (data->ray->draw_end >= data->win_height)
+			data->ray->draw_end = data->win_height - 1;
+
+		// choose wall color
+		color = RED;
+		if (data->ray->side == 0)
+			color = color / 2;
+
+		// draw ray on screen
+		int	i = 0;
+		int	j = 0;
+		while (i++ < data->win_width)
+		{
+			j = 0;
+			while (j++ < data->win_height)
+			{
+				if (i == x)
+				{
+					pixel_put(data, i, j, color);
+				}
+				else
+					pixel_put(data, i, j, BLACK);
+			}
+		}
 		x++;
 	}
 }
