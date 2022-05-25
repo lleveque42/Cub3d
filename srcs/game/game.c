@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 18:49:46 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/25 11:56:33 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void	render_player(t_data *data)
 	x = data->player->old_x * 100;
 	y = data->player->old_y * 100;
 	i = -1;
-	while (++i < 50)
+	while (++i < 500)
 		pixel_put(data, (x + (int)data->player->old_dx * i / 5), (y + (int)data->player->old_dy * i / 5), WHITE);
 	x = data->player->x * 100;
 	y = data->player->y * 100;
 	i = -1;
-	while (++i < 50)
+	while (++i < 500)
 		pixel_put(data, (x + (int)data->player->dir_x * i / 5), (y + (int)data->player->dir_y * i / 5), RED);
 }
 
@@ -109,7 +109,7 @@ void	render_ray(t_data *data)
 	while (x < SCREEN_W)
 	{
 		// Calculate ray pos & dir
-		data->ray->camera_x = 2 * (float)x / (float)SCREEN_W;
+		data->ray->camera_x = 2 * (float)x / (float)SCREEN_W - 1;
 		data->ray->dir_x = data->player->dir_x + data->ray->plane_x * data->ray->camera_x;
 		data->ray->dir_y = data->player->dir_y + data->ray->plane_y * data->ray->camera_x;
 		data->ray->map_x = (int)data->player->x;
@@ -145,7 +145,6 @@ void	render_ray(t_data *data)
 			data->ray->step_y = 1;
 			data->ray->sdy = (data->ray->map_y + 1.0 - data->player->y) * data->ray->ddy;
 		}
-
 		// Perform the algo to check when & where a ray hit a wall
 		while (data->ray->hit == 0)
 		{
@@ -251,22 +250,14 @@ int	render_image(t_data *data)
 
 void	game(t_data *data)
 {
-	// data->m = create_m(data->m, data);
-
-	// data->win_height = data->map_fd->height * TILE_SIZE; // on s'en fou ducoup
-	// data->win_width = data->map_fd->width * TILE_SIZE; // on s'en fou ducoup
 	data->mlx->ptr = mlx_init();
 	data->mlx->ptr2 = mlx_init();
 	if (!data->mlx->ptr)
 		ft_exit(data, "Can't init mlx ptr");
-	// data->mlx->win = mlx_new_window(data->mlx->ptr, RES, RES, "QubtroiD");
-	// data->mlx->win2 = mlx_new_window(data->mlx->ptr2, RES, RES, "QubtroiD");
 	data->mlx->win = mlx_new_window(data->mlx->ptr, SCREEN_W, SCREEN_H, "QubtroiD");
 	data->mlx->win2 = mlx_new_window(data->mlx->ptr2, SCREEN_W, SCREEN_H, "QubtroiD");
 	if (!data->mlx->win)
 		ft_exit(data, "Can't init mlx window");
-	// data->mlx->img = mlx_new_image(data->mlx->ptr, RES, RES);
-	// data->mlx->img2 = mlx_new_image(data->mlx->ptr2, RES, RES);
 	data->mlx->img = mlx_new_image(data->mlx->ptr, SCREEN_W, SCREEN_H);
 	data->mlx->img2 = mlx_new_image(data->mlx->ptr2, SCREEN_W, SCREEN_H);
 	if (!data->mlx->img)
@@ -281,15 +272,15 @@ void	game(t_data *data)
 	render_player(data);
 	render_ray(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
-	mlx_put_image_to_window(data->mlx->ptr2, data->mlx->win2, data->mlx->img2, 0, 0);
-	mlx_hook(data->mlx->win2, 2, 1, &key_event, data);
-	mlx_loop_hook(data->mlx->ptr2, &render_image, data);
-	mlx_hook(data->mlx->win2, 17, 17, &ft_exit_esc, data);
-	mlx_hook(data->mlx->win2, 3, 10, &key_release, data);
+	mlx_put_image_to_window(data->mlx->ptr2, data->mlx->win2, data->mlx->img2, 0, 0); // temp
+	mlx_hook(data->mlx->win2, 2, 1, &key_event, data); // temp
+	mlx_loop_hook(data->mlx->ptr2, &render_image, data); // temp
+	mlx_hook(data->mlx->win2, 17, 17, &ft_exit_esc, data); // temp
+	mlx_hook(data->mlx->win2, 3, 10, &key_release, data); // temp
 	mlx_hook(data->mlx->win, 2, 1, &key_event, data);
 	mlx_loop_hook(data->mlx->ptr, &render_image, data);
 	mlx_hook(data->mlx->win, 17, 17, &ft_exit_esc, data);
 	mlx_hook(data->mlx->win, 3, 10, &key_release, data);
-	mlx_loop(data->mlx->ptr2);
+	mlx_loop(data->mlx->ptr2); // temp
 	mlx_loop(data->mlx->ptr);
 }
