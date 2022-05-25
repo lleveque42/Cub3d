@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/25 14:47:55 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/25 17:20:23 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,10 @@ void	render_minimap(t_data *data)
 
 void	render_player(t_data *data)
 {
-	(void)data;
 	int	x;
 	int	y;
 	int	i;
 
-	(void)i;
 	x = data->player->old_x * 100 - 5;
 	y = data->player->old_y * 100 - 5;
 	while (x < data->player->old_x * 100 + 5)
@@ -95,71 +93,39 @@ void	render_player(t_data *data)
 		pixel_put(data, (x + (int)data->player->dir_x * i / 5), (y + (int)data->player->dir_y * i / 5), RED);
 }
 
-void	render_ray(t_data *data)
+void	display_rays(t_data *data, int x)
 {
-	int	x;
 	int	y;
 	int	color;
 
+	y = 0;
+	color = RED;
+	if (data->ray->side == 0)
+		color = REDDD;
+	while (y < SCREEN_H)
+	{
+		if (y >= data->ray->draw_start && y <= data->ray->draw_end)
+			pixel_put2(data, x, y, color);
+		else if (y > data->ray->draw_start)
+			pixel_put2(data, x, y, data->texture->f_color);
+		else
+			pixel_put2(data, x, y, data->texture->c_color);
+		++y;
+	}
+}
+
+void	render_ray(t_data *data)
+{
+	int	x;
+
 	x = 0;
-	color = 0;
 	while (x < SCREEN_W)
 	{
 		ray_dir(data, x);
 		calc_steps(data);
-
-		// Perform the algo to check when & where a ray hit a wall
-		data->ray->hit = 0;
-		while (data->ray->hit == 0)
-		{
-			if (data->ray->sdx < data->ray->sdy)
-			{
-				data->ray->sdx += data->ray->ddx;
-				data->ray->map_x += data->ray->step_x;
-				data->ray->side = 0;
-			}
-			else
-			{
-				data->ray->sdy += data->ray->ddy;
-				data->ray->map_y += data->ray->step_y;
-				data->ray->side = 1;
-			}
-			if (data->map[data->ray->map_y][data->ray->map_x] == '1')
-				data->ray->hit = 1;
-		}
-
-		// Calculate dist on cam direction, (sort of avoid fisheye effect)
-		if (data->ray->side == 0)
-			data->ray->pwd = data->ray->sdx - data->ray->ddx;
-		else
-			data->ray->pwd = data->ray->sdy - data->ray->ddy;
-
-		// Calculate height of the line to draw & and coor of pixels to fill
-		data->ray->line_h = (int)(SCREEN_H / data->ray->pwd);
-		data->ray->draw_start = -data->ray->line_h / 2 + SCREEN_H / 2;
-		if (data->ray->draw_start < 0)
-			data->ray->draw_start = 0;
-		data->ray->draw_end = data->ray->line_h / 2 + SCREEN_H / 2;
-		if (data->ray->draw_end >= SCREEN_H)
-			data->ray->draw_end = SCREEN_H - 1;
-
-		// choose wall color
-		color = RED;
-		if (data->ray->side == 0)
-			color = REDDD;
-
-		// draw ray on screen
-		y = 0;
-		while (y < SCREEN_H)
-		{
-			if (y >= data->ray->draw_start && y <= data->ray->draw_end)
-				pixel_put2(data, x, y, color);
-			else if (y > data->ray->draw_start)
-				pixel_put2(data, x, y, data->texture->f_color);
-			else
-				pixel_put2(data, x, y, data->texture->c_color);
-			++y;
-		}
+		ray_hit_wall_pos(data);
+		calc_line_height(data);
+		display_rays(data, x);
 		x++;
 	}
 }
@@ -171,8 +137,10 @@ int	render_image(t_data *data)
 	{
 		render_player(data);
 		render_ray(data);
-		mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
-		mlx_put_image_to_window(data->mlx->ptr2, data->mlx->win2, data->mlx->img2, 0, 0);
+		mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, \
+			data->mlx->img, 0, 0);
+		mlx_put_image_to_window(data->mlx->ptr2, data->mlx->win2, \
+			data->mlx->img2, 0, 0);
 	}
 	data->player->change = 0;
 	return (0);
