@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/25 18:10:15 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/25 18:21:26 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,30 @@ int	render_image(t_data *data)
 	return (0);
 }
 
-void	game(t_data *data)
+void	init_game(t_data *data)
 {
 	data->mlx->ptr = mlx_init();
 	if (!data->mlx->ptr)
 		ft_exit(data, "Can't init mlx ptr");
-	data->mlx->win = mlx_new_window(data->mlx->ptr, SCREEN_W, SCREEN_H, "QubtroiD");
+	data->mlx->win = mlx_new_window(data->mlx->ptr, SCREEN_W, SCREEN_H, \
+		"QubtroiD");
 	if (!data->mlx->win)
 		ft_exit(data, "Can't init mlx window");
 	data->mlx->img = mlx_new_image(data->mlx->ptr, SCREEN_W, SCREEN_H);
 	if (!data->mlx->img)
 		ft_exit(data, "Can't init mlx image");
-	data->mlx->addr = mlx_get_data_addr(data->mlx->img, &data->mlx->bpp,
-					&data->mlx->line_length, &data->mlx->endian);
+	data->mlx->addr = mlx_get_data_addr(data->mlx->img, &data->mlx->bpp, \
+		&data->mlx->line_length, &data->mlx->endian);
 	if (!data->mlx->addr)
 		ft_exit(data, "Can't init mlx addr");
 	render_ray(data);
-	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
+	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, \
+		0, 0);
+}
+
+void	game(t_data *data)
+{
+	init_game(data);
 	mlx_hook(data->mlx->win, 2, 1, &key_event, data);
 	mlx_loop_hook(data->mlx->ptr, &render_image, data);
 	mlx_hook(data->mlx->win, 17, 17, &ft_exit_esc, data);
