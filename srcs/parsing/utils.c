@@ -6,11 +6,35 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 17:08:15 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 18:21:56 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+void	init_plane(t_data *data)
+{
+	if (data->player->dir == 'N')
+	{
+		data->ray->plane_x = 0;
+		data->ray->plane_y = 0.66;
+	}
+	else if (data->player->dir == 'S')
+	{
+		data->ray->plane_x = 0;
+		data->ray->plane_y = -0.66;
+	}
+	else if (data->player->dir == 'E')
+	{
+		data->ray->plane_x = -0.66;
+		data->ray->plane_y = 0;
+	}
+	else if (data->player->dir == 'W')
+	{
+		data->ray->plane_x = 0.66;
+		data->ray->plane_y = 0;
+	}
+}
 
 void	find_player_data(char **s, int x, int y, t_data *data)
 {
@@ -33,8 +57,7 @@ void	find_player_data(char **s, int x, int y, t_data *data)
 	data->player->dir_y = sin(data->player->angle) * 5;
 	data->player->old_dx = data->player->dir_x;
 	data->player->old_dy = data->player->dir_y;
-	data->ray->plane_x = 0;
-	data->ray->plane_y = 0.66;
+	init_plane(data);
 	data->player->change = 1;
 }
 
