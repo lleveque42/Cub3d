@@ -6,94 +6,11 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/25 18:06:47 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/25 18:10:15 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-// void	render_minimap(t_data *data)
-// {
-// 	int		x = 0;
-// 	int		y = 0;
-// 	int		i = 0;
-// 	int		j = 0;
-
-// 	while (data->map[y])
-// 	{
-// 		x = 0;
-// 		i = 0;
-// 		while (data->map[y][x])
-// 		{
-// 			i += 2;
-// 			if (data->map[y][x] != '1' && data->map[y][x] != ' ')
-// 			{
-// 				while (i < (x + 1) * TILE_SIZE)
-// 				{
-// 					j = y * TILE_SIZE + 1;
-// 					while (j < (y + 1) * TILE_SIZE - 1)
-// 						pixel_put(data, i, j++, WHITE);
-// 					i++;
-// 				}
-// 			}
-// 			else if (data->map[y][x] == '1')
-// 			{
-// 				while (i < (x + 1) * TILE_SIZE)
-// 				{
-// 					j = y * TILE_SIZE + 1;
-// 					while (j < (y + 1) * TILE_SIZE - 1)
-// 						pixel_put(data, i, j++, GREY);
-// 					i++;
-// 				}
-// 			}
-// 			else
-// 			{
-// 				i += 98;
-// 				j += 99;
-// 			}
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-// void	render_player(t_data *data)
-// {
-// 	(void)data;
-// 	int	x;
-// 	int	y;
-// 	int	i;
-
-// 	(void)i;
-// 	x = data->player->old_x * 100 - 5;
-// 	y = data->player->old_y * 100 - 5;
-// 	while (x < data->player->old_x * 100 + 5)
-// 	{
-// 		y = data->player->old_y * 100 - 5;
-// 		while (y < data->player->old_y * 100 + 5)
-// 			pixel_put(data, x, y++, WHITE);
-// 		x++;
-// 	}
-// 	x = data->player->x * 100 - 5;
-// 	y = data->player->y * 100 - 5;
-// 	while (x < data->player->x * 100 + 5)
-// 	{
-// 		y = data->player->y * 100 - 5;
-// 		while (y < data->player->y * 100 + 5)
-// 			pixel_put(data, x, y++, RED);
-// 		x++;
-// 	}
-// 	x = data->player->old_x * 100;
-// 	y = data->player->old_y * 100;
-// 	i = -1;
-// 	while (++i < 150)
-// 		pixel_put(data, (x + (int)data->player->old_dx * i / 5), (y + (int)data->player->old_dy * i / 5), WHITE);
-// 	x = data->player->x * 100;
-// 	y = data->player->y * 100;
-// 	i = -1;
-// 	while (++i < 150)
-// 		pixel_put(data, (x + (int)data->player->dir_x * i / 5), (y + (int)data->player->dir_y * i / 5), RED);
-// }
 
 void	display_rays(t_data *data, int x)
 {
@@ -160,8 +77,6 @@ void	game(t_data *data)
 					&data->mlx->line_length, &data->mlx->endian);
 	if (!data->mlx->addr)
 		ft_exit(data, "Can't init mlx addr");
-	// render_minimap(data);
-	// render_player(data);
 	render_ray(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, 0, 0);
 	mlx_hook(data->mlx->win, 2, 1, &key_event, data);
