@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/25 11:56:33 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/25 14:47:55 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,66 +86,30 @@ void	render_player(t_data *data)
 	x = data->player->old_x * 100;
 	y = data->player->old_y * 100;
 	i = -1;
-	while (++i < 500)
+	while (++i < 150)
 		pixel_put(data, (x + (int)data->player->old_dx * i / 5), (y + (int)data->player->old_dy * i / 5), WHITE);
 	x = data->player->x * 100;
 	y = data->player->y * 100;
 	i = -1;
-	while (++i < 500)
+	while (++i < 150)
 		pixel_put(data, (x + (int)data->player->dir_x * i / 5), (y + (int)data->player->dir_y * i / 5), RED);
 }
 
 void	render_ray(t_data *data)
 {
 	int	x;
-	int	color;
 	int	y;
-
-	(void)color;
+	int	color;
 
 	x = 0;
 	color = 0;
-	// while (x < RES)
 	while (x < SCREEN_W)
 	{
-		// Calculate ray pos & dir
-		data->ray->camera_x = 2 * (float)x / (float)SCREEN_W - 1;
-		data->ray->dir_x = data->player->dir_x + data->ray->plane_x * data->ray->camera_x;
-		data->ray->dir_y = data->player->dir_y + data->ray->plane_y * data->ray->camera_x;
-		data->ray->map_x = (int)data->player->x;
-		data->ray->map_y = (int)data->player->y;
+		ray_dir(data, x);
+		calc_steps(data);
 
-		// Calculate step & side dist
-		if (data->ray->dir_x == 0)
-			data->ray->ddx = 1e30;
-		else
-			data->ray->ddx = sqrt(1 + (data->ray->dir_y * data->ray->dir_y) / (data->ray->dir_x * data->ray->dir_x));
-		if (data->ray->dir_y == 0)
-			data->ray->ddy = 1e30;
-		else
-			data->ray->ddy = sqrt(1 + (data->ray->dir_x * data->ray->dir_x) / (data->ray->dir_y * data->ray->dir_y));
-		data->ray->hit = 0;
-		if (data->ray->dir_x < 0)
-		{
-			data->ray->step_x = -1;
-			data->ray->sdx = (data->player->x - data->ray->map_x) * data->ray->ddx;
-		}
-		else
-		{
-			data->ray->step_x = 1;
-			data->ray->sdx = (data->ray->map_x + 1.0 - data->player->x) * data->ray->ddx;
-		}
-		if (data->ray->dir_y < 0)
-		{
-			data->ray->step_y = -1;
-			data->ray->sdy = (data->player->y - data->ray->map_y) * data->ray->ddy;
-		}
-		else
-		{
-			data->ray->step_y = 1;
-			data->ray->sdy = (data->ray->map_y + 1.0 - data->player->y) * data->ray->ddy;
-		}
 		// Perform the algo to check when & where a ray hit a wall
+		data->ray->hit = 0;
 		while (data->ray->hit == 0)
 		{
 			if (data->ray->sdx < data->ray->sdy)
@@ -171,19 +135,13 @@ void	render_ray(t_data *data)
 			data->ray->pwd = data->ray->sdy - data->ray->ddy;
 
 		// Calculate height of the line to draw & and coor of pixels to fill
-		// data->ray->line_h = (int)(RES / data->ray->pwd);
-		// data->ray->draw_start = -data->ray->line_h / 2 + RES / 2;
 		data->ray->line_h = (int)(SCREEN_H / data->ray->pwd);
 		data->ray->draw_start = -data->ray->line_h / 2 + SCREEN_H / 2;
 		if (data->ray->draw_start < 0)
 			data->ray->draw_start = 0;
-		// data->ray->draw_end = data->ray->line_h / 2 + RES / 2;
 		data->ray->draw_end = data->ray->line_h / 2 + SCREEN_H / 2;
-		// if (data->ray->draw_end >= RES)
-		// 	data->ray->draw_end = RES - 1;
 		if (data->ray->draw_end >= SCREEN_H)
 			data->ray->draw_end = SCREEN_H - 1;
-
 
 		// choose wall color
 		color = RED;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:03:37 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 16:48:42 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/25 14:53:55 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	move_forward(t_data *data)
 		data->player->change = 1;
 	}
 	if (data->map[(int)(data->player->y + data->player->dir_y
-		* SPEED_TEST)][(int)data->player->x] != '1')
+			* SPEED_TEST)][(int)data->player->x] != '1')
 	{
 		data->player->y += data->player->dir_y * SPEED_TEST;
 		data->player->change = 1;
