@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 17:01:53 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 18:44:46 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@
 // # define SPEED_TEST 0.0002
 // # define ROT_SPEED 0.001
 
-# define RES				1400
+// # define RES				1200
+# define SCREEN_W			1200
+# define SCREEN_H			900
 # define PI					3.1415926535
-# define SPEED_TEST			0.0025
-# define ROT_SPEED			0.01
+# define SPEED_TEST			0.02
+# define ROT_SPEED			0.03
 # define RED				0x00FF7F7F
 # define REDDD				0x99605c
 # define WHITE				0x00FFFFFF

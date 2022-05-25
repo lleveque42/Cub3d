@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotates.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:06:08 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 17:10:16 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/24 18:11:58 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	rotate_right(t_data *data)
 {
-	double	old_plane_x;
+	// double	old_plane_x;
 
-	old_plane_x = data->ray->plane_x;
+	// old_plane_x = data->ray->plane_x;
 	data->player->old_dx = data->player->dir_x;
 	data->player->old_dy = data->player->dir_y;
 	data->player->dir_x = data->player->dir_x * cos(ROT_SPEED) - data->player->dir_y * sin(ROT_SPEED);
@@ -27,9 +27,9 @@ void	rotate_right(t_data *data)
 
 void	rotate_left(t_data *data)
 {
-	double	old_plane_x;
+	// double	old_plane_x;
 
-	old_plane_x = data->ray->plane_x;
+	// old_plane_x = data->ray->plane_x;
 	data->player->old_dx = data->player->dir_x;
 	data->player->old_dy = data->player->dir_y;
 	data->player->dir_x = data->player->dir_x * cos(-ROT_SPEED) - data->player->dir_y * sin(-ROT_SPEED);

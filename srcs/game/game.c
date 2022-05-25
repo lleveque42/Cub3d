@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 18:00:03 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/24 18:49:46 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,11 @@ void	render_ray(t_data *data)
 
 	x = 0;
 	color = 0;
-	while (x < RES)
+	// while (x < RES)
+	while (x < SCREEN_W)
 	{
 		// Calculate ray pos & dir
-		data->ray->camera_x = 2 * (float)x / (float)RES - 1;
+		data->ray->camera_x = 2 * (float)x / (float)SCREEN_W;
 		data->ray->dir_x = data->player->dir_x + data->ray->plane_x * data->ray->camera_x;
 		data->ray->dir_y = data->player->dir_y + data->ray->plane_y * data->ray->camera_x;
 		data->ray->map_x = (int)data->player->x;
@@ -171,15 +172,19 @@ void	render_ray(t_data *data)
 			data->ray->pwd = data->ray->sdy - data->ray->ddy;
 
 		// Calculate height of the line to draw & and coor of pixels to fill
-		// printf("win_height = %d\n", data->win_height);
-		// printf("pwd = %f\n", data->ray->pwd);
-		data->ray->line_h = (int)(RES / data->ray->pwd);
-		data->ray->draw_start = -data->ray->line_h / 2 + RES / 2;
+		// data->ray->line_h = (int)(RES / data->ray->pwd);
+		// data->ray->draw_start = -data->ray->line_h / 2 + RES / 2;
+		data->ray->line_h = (int)(SCREEN_H / data->ray->pwd);
+		data->ray->draw_start = -data->ray->line_h / 2 + SCREEN_H / 2;
 		if (data->ray->draw_start < 0)
 			data->ray->draw_start = 0;
-		data->ray->draw_end = data->ray->line_h / 2 + RES / 2;
-		if (data->ray->draw_end >= RES)
-			data->ray->draw_end = RES - 1;
+		// data->ray->draw_end = data->ray->line_h / 2 + RES / 2;
+		data->ray->draw_end = data->ray->line_h / 2 + SCREEN_H / 2;
+		// if (data->ray->draw_end >= RES)
+		// 	data->ray->draw_end = RES - 1;
+		if (data->ray->draw_end >= SCREEN_H)
+			data->ray->draw_end = SCREEN_H - 1;
+
 
 		// choose wall color
 		color = RED;
@@ -188,7 +193,7 @@ void	render_ray(t_data *data)
 
 		// draw ray on screen
 		y = 0;
-		while (y < RES)
+		while (y < SCREEN_H)
 		{
 			if (y >= data->ray->draw_start && y <= data->ray->draw_end)
 				pixel_put2(data, x, y, color);
@@ -254,12 +259,16 @@ void	game(t_data *data)
 	data->mlx->ptr2 = mlx_init();
 	if (!data->mlx->ptr)
 		ft_exit(data, "Can't init mlx ptr");
-	data->mlx->win = mlx_new_window(data->mlx->ptr, RES, RES, "QubtroiD");
-	data->mlx->win2 = mlx_new_window(data->mlx->ptr2, RES, RES, "QubtroiD");
+	// data->mlx->win = mlx_new_window(data->mlx->ptr, RES, RES, "QubtroiD");
+	// data->mlx->win2 = mlx_new_window(data->mlx->ptr2, RES, RES, "QubtroiD");
+	data->mlx->win = mlx_new_window(data->mlx->ptr, SCREEN_W, SCREEN_H, "QubtroiD");
+	data->mlx->win2 = mlx_new_window(data->mlx->ptr2, SCREEN_W, SCREEN_H, "QubtroiD");
 	if (!data->mlx->win)
 		ft_exit(data, "Can't init mlx window");
-	data->mlx->img = mlx_new_image(data->mlx->ptr, RES, RES);
-	data->mlx->img2 = mlx_new_image(data->mlx->ptr2, RES, RES);
+	// data->mlx->img = mlx_new_image(data->mlx->ptr, RES, RES);
+	// data->mlx->img2 = mlx_new_image(data->mlx->ptr2, RES, RES);
+	data->mlx->img = mlx_new_image(data->mlx->ptr, SCREEN_W, SCREEN_H);
+	data->mlx->img2 = mlx_new_image(data->mlx->ptr2, SCREEN_W, SCREEN_H);
 	if (!data->mlx->img)
 		ft_exit(data, "Can't init mlx image");
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, &data->mlx->bpp,
