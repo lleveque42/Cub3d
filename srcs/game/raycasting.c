@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:26:54 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/25 17:05:42 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 10:55:17 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,15 @@ void	ray_hit_wall_pos(t_data *data)
 }
 
 // Calculate dist on cam direction, (sort of avoid fisheye effect)
-// Calculate height of the line to draw & and coor of pixels to fill
+// Calculate height of the line to draw & and coord of pixels to fill
 void	calc_line_height(t_data *data)
 {
 	if (data->ray->side == 0)
-		data->ray->pwd = data->ray->sdx - data->ray->ddx;
+		data->ray->pwd = ((float)data->ray->map_x - data->player->x \
+		+ (1 - (float)data->ray->step_x) / 2) / data->ray->dir_x;
 	else
-		data->ray->pwd = data->ray->sdy - data->ray->ddy;
+		data->ray->pwd = ((float)data->ray->map_y - data->player->y \
+		+ (1 - (float)data->ray->step_y) / 2) / data->ray->dir_y;
 	data->ray->line_h = (int)(SCREEN_H / data->ray->pwd);
 	data->ray->draw_start = -data->ray->line_h / 2 + SCREEN_H / 2;
 	if (data->ray->draw_start < 0)
