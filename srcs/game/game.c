@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/25 18:21:26 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 14:38:13 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	init_game(t_data *data)
 void	game(t_data *data)
 {
 	init_game(data);
+	get_textures(data);
 	mlx_hook(data->mlx->win, 2, 1, &key_event, data);
 	mlx_loop_hook(data->mlx->ptr, &render_image, data);
 	mlx_hook(data->mlx->win, 17, 17, &ft_exit_esc, data);

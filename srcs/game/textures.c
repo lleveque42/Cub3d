@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:09:01 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/26 14:35:32 by arudy            ###   ########.fr       */
+/*   Created: 2022/05/26 14:08:01 by arudy             #+#    #+#             */
+/*   Updated: 2022/05/26 14:38:07 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
-int	main(int ac, char **av, char **envp)
+void	get_textures(t_data *data)
 {
-	t_data	*data;
 
-	if (ac != 2 || !envp[0])
-		return (0);
-	data = init_data(av[1]);
-	if (parsing(data))
-		return (1);
-	game(data);
-	free_all(data);
-	return (0);
 }

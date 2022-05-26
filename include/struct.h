@@ -6,22 +6,23 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/24 17:51:02 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 14:27:58 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef struct s_mlx		t_mlx;
-typedef struct s_key		t_key;
-typedef struct s_ray		t_ray;
-typedef struct s_data		t_data;
-typedef struct s_color		t_color;
-typedef struct s_map_fd		t_map_fd;
-typedef struct s_player		t_player;
-typedef struct s_texture	t_texture;
-typedef struct s_garbage	t_garbage;
+typedef struct s_mlx			t_mlx;
+typedef struct s_key			t_key;
+typedef struct s_ray			t_ray;
+typedef struct s_data			t_data;
+typedef struct s_color			t_color;
+typedef struct s_map_fd			t_map_fd;
+typedef struct s_player			t_player;
+typedef struct s_texture		t_texture;
+typedef struct s_garbage		t_garbage;
+typedef struct s_data_texture	t_data_texture;
 
 struct	s_data
 {
@@ -118,20 +119,25 @@ struct s_map_fd
 	int	width;
 };
 
+struct s_data_texture
+{
+	char	*path;
+	int		fd;
+	void	*addr;
+	void	*img;
+};
+
 struct	s_texture
 {
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	int		no_fd;
-	int		so_fd;
-	int		we_fd;
-	int		ea_fd;
-	int		c_color;
-	int		f_color;
-	t_color	*c;
-	t_color	*f;
+	t_data_texture	*no;
+	t_data_texture	*so;
+	t_data_texture	*ea;
+	t_data_texture	*we;
+	int				c_color;
+	int				f_color;
+	int				dir;
+	t_color			*c;
+	t_color			*f;
 };
 
 struct	s_color

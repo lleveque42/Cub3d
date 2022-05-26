@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:28:53 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 17:57:39 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 14:33:35 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_null_1(t_data *data);
 void	init_null_2(t_data *data);
 void	init_null_3(t_data *data);
 void	init_null_4(t_data *data);
+void	init_null_5(t_data *data);
 void	ft_free(void *ptr, t_data *data);
 void	*ft_malloc(size_t size, t_data *data);
 void	pixel_put(t_data *data, int x, int y, int color);

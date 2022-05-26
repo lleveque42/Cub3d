@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 11:16:04 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 14:30:50 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,16 @@ t_data	*init_data(char *input)
 	t_data	*data;
 
 	data = init_data_malloc();
+	data->texture->no = ft_malloc(sizeof(t_data_texture), data);
+	data->texture->so = ft_malloc(sizeof(t_data_texture), data);
+	data->texture->ea = ft_malloc(sizeof(t_data_texture), data);
+	data->texture->we = ft_malloc(sizeof(t_data_texture), data);
 	data->filename = ft_strdup(input, data);
 	open_map(input, data);
 	init_null_1(data);
 	init_null_2(data);
 	init_null_3(data);
 	init_null_4(data);
+	init_null_5(data);
 	return (data);
 }

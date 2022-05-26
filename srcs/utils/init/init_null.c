@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/24 17:51:58 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 14:33:39 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,7 @@ void	init_null_1(t_data *data)
 	data->texture->f->b = -1;
 	data->texture->c_color = 0;
 	data->texture->f_color = 0;
-	data->texture->no_path = NULL;
-	data->texture->so_path = NULL;
-	data->texture->we_path = NULL;
-	data->texture->ea_path = NULL;
-	data->texture->no_fd = -1;
-	data->texture->so_fd = -1;
-	data->texture->we_fd = -1;
-	data->texture->ea_fd = -1;
+	data->texture->dir = 0;
 	data->map_fd->begin = 0;
 	data->map_fd->ended = 0;
 	data->map_fd->height = 0;
@@ -101,4 +94,24 @@ void	init_null_4(t_data *data)
 	data->player->old_dx = 0;
 	data->player->old_dy = 0;
 	data->player->angle = 0;
+}
+
+void	init_null_5(t_data *data)
+{
+	data->texture->no->path = NULL;
+	data->texture->so->path = NULL;
+	data->texture->ea->path = NULL;
+	data->texture->we->path = NULL;
+	data->texture->no->addr = NULL;
+	data->texture->so->addr = NULL;
+	data->texture->we->addr = NULL;
+	data->texture->ea->addr = NULL;
+	data->texture->no->img = NULL;
+	data->texture->so->img = NULL;
+	data->texture->ea->img = NULL;
+	data->texture->we->img = NULL;
+	data->texture->no->fd = 0;
+	data->texture->so->fd = 0;
+	data->texture->ea->fd = 0;
+	data->texture->we->fd = 0;
 }
