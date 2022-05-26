@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/26 14:27:58 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 17:02:56 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,12 @@ struct s_key
 struct s_mlx
 {
 	int		bpp;
-	int		bpp2;
 	int		line_length;
-	int		line_length2;
 	int		endian;
-	int		endian2;
 	void	*ptr;
-	void	*ptr2;
 	void	*win;
-	void	*win2;
 	void	*img;
-	void	*img2;
 	char	*addr;
-	char	*addr2;
 };
 
 struct s_ray
@@ -86,6 +79,7 @@ struct s_ray
 	float	ddx;
 	float	sdy;
 	float	sdx;
+	float	wall_x;
 	float	dir_x;
 	float	dir_y;
 	float	old_x;
@@ -121,23 +115,32 @@ struct s_map_fd
 
 struct s_data_texture
 {
-	char	*path;
+	int		h;
+	int		w;
 	int		fd;
-	void	*addr;
+	int		bpp;
+	int		endian;
+	int		line_length;
 	void	*img;
+	char	*addr;
+	char	*path;
 };
 
 struct	s_texture
 {
+	int				dir;
+	int				step;
+	int				c_color;
+	int				f_color;
+	int				text_x;
+	int				text_y;
+	int				text_pos;
+	t_color			*c;
+	t_color			*f;
 	t_data_texture	*no;
 	t_data_texture	*so;
 	t_data_texture	*ea;
 	t_data_texture	*we;
-	int				c_color;
-	int				f_color;
-	int				dir;
-	t_color			*c;
-	t_color			*f;
 };
 
 struct	s_color

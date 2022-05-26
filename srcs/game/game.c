@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/26 14:38:13 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 17:40:54 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 void	display_rays(t_data *data, int x)
 {
 	int	y;
-	int	color;
+	// int	color;
 
 	y = 0;
-	color = RED;
-	if (data->ray->side == 0)
-		color = REDDD;
+	// color = 0;
 	while (y < SCREEN_H)
 	{
 		if (y >= data->ray->draw_start && y <= data->ray->draw_end)
-			pixel_put(data, x, y, color);
+			y = get_color(data, x);
 		else if (y > data->ray->draw_start)
 			pixel_put(data, x, y, data->texture->f_color);
 		else
@@ -78,6 +76,7 @@ void	init_game(t_data *data)
 		&data->mlx->line_length, &data->mlx->endian);
 	if (!data->mlx->addr)
 		ft_exit(data, "Can't init mlx addr");
+	get_textures(data);
 	render_ray(data);
 	mlx_put_image_to_window(data->mlx->ptr, data->mlx->win, data->mlx->img, \
 		0, 0);
@@ -86,7 +85,6 @@ void	init_game(t_data *data)
 void	game(t_data *data)
 {
 	init_game(data);
-	get_textures(data);
 	mlx_hook(data->mlx->win, 2, 1, &key_event, data);
 	mlx_loop_hook(data->mlx->ptr, &render_image, data);
 	mlx_hook(data->mlx->win, 17, 17, &ft_exit_esc, data);
