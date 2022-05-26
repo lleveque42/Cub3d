@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/26 14:33:39 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/26 17:20:02 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	init_null_1(t_data *data)
 	data->texture->c_color = 0;
 	data->texture->f_color = 0;
 	data->texture->dir = 0;
+	data->texture->text_x = 0;
+	data->texture->text_y = 0;
+	data->texture->step = 0;
+	data->texture->text_pos = 0;
 	data->map_fd->begin = 0;
 	data->map_fd->ended = 0;
 	data->map_fd->height = 0;
@@ -42,25 +46,19 @@ void	init_null_2(t_data *data)
 	data->key->la_pressed = 0;
 	data->key->lr_pressed = 0;
 	data->mlx->ptr = NULL;
-	data->mlx->ptr2 = NULL;
 	data->mlx->win = NULL;
-	data->mlx->win2 = NULL;
 	data->mlx->img = NULL;
-	data->mlx->img2 = NULL;
 	data->mlx->addr = NULL;
-	data->mlx->addr2 = NULL;
 	data->mlx->bpp = 0;
-	data->mlx->bpp2 = 0;
 	data->mlx->line_length = 0;
-	data->mlx->line_length2 = 0;
 	data->mlx->endian = 0;
-	data->mlx->endian2 = 0;
 }
 
 void	init_null_3(t_data *data)
 {
 	data->ray->hit = 0;
 	data->ray->side = 0;
+	data->ray->wall_x = 0;
 	data->ray->map_x = 0;
 	data->ray->map_y = 0;
 	data->ray->step_x = 0;
