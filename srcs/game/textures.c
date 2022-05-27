@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@studentexture->42.fr>                +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:08:01 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/26 16:56:07 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/27 16:02:38 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	get_texture_data(t_data *data, t_data_texture *texture, int x)
 {
 	int	y;
-	char *dst;
+	// char *dst;
+	// unsigned int	color;
+	// unsigned int	*addr_int;
 
 	if (data->ray->side == 0)
 		data->ray->wall_x = data->player->y + data->ray->pwd \
@@ -24,24 +26,28 @@ int	get_texture_data(t_data *data, t_data_texture *texture, int x)
 		data->ray->wall_x = data->player->x + data->ray->pwd \
 			* data->ray->dir_x;
 	data->ray->wall_x -= floor(data->ray->wall_x);
-	y = data->ray->draw_start - 1;
-	data->texture->step = 1.0 * texture->h / data->ray->line_h;
 	data->texture->text_x = (int)(data->ray->wall_x * (float)texture->w);
 	if (data->ray->side == 0 && data->ray->dir_x > 0)
 		data->texture->text_x = texture->w - data->texture->text_x - 1;
 	if (data->ray->side == 1 && data->ray->dir_y < 0)
 		data->texture->text_x = texture->w - data->texture->text_x - 1;
+	data->texture->step = (float)texture->h / data->ray->line_h;
 	data->texture->text_pos = (data->ray->draw_start - SCREEN_H / 2 +
 			data->ray->line_h / 2) * data->texture->step;
+	y = data->ray->draw_start - 1;
 	while (++y <= data->ray->draw_end)
 	{
 		data->texture->text_y = (int)data->texture->text_pos &
 			(texture->h - 1);
 		data->texture->text_pos += data->texture->step;
-		dst = data->mlx->addr + (y * data->mlx->line_length)
-			+ (x * data->mlx->bpp / 8);
-		*(unsigned int *)dst = texture->addr[data->texture->text_y *
-					texture->line_length + data->texture->text_x * data->mlx->bpp / 8];
+		// dst = data->mlx->addr + (y * data->mlx->line_length)
+		// 	+ (x * data->mlx->bpp / 8);
+		// *(unsigned int *)dst = texture->addr[data->texture->text_x *
+		// 			texture->line_length + data->texture->text_y * data->mlx->bpp / 8];
+		// addr_int = (unsigned int *)texture->addr;
+		// color = *(addr_int + ((data->texture->text_y * texture->h) / texture->w) * (texture->line_length / 4) + ((x * texture->w) / texture->w));
+		// dst = data->mlx->addr + (((data->texture->text_y * texture->h) / texture->w) * data->mlx->line_length + ((x * texture->w) / texture->w) * (data->mlx->bpp / 8));
+		// *(int *)dst = color;
 	}
 	return (y);
 }

@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/26 17:40:54 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/27 14:52:19 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,16 @@
 void	display_rays(t_data *data, int x)
 {
 	int	y;
-	// int	color;
 
 	y = 0;
-	// color = 0;
-	while (y < SCREEN_H)
+	while (y <= SCREEN_H)
 	{
 		if (y >= data->ray->draw_start && y <= data->ray->draw_end)
 			y = get_color(data, x);
-		else if (y > data->ray->draw_start)
-			pixel_put(data, x, y, data->texture->f_color);
-		else
+		else if (y < data->ray->draw_start)
 			pixel_put(data, x, y, data->texture->c_color);
+		else
+			pixel_put(data, x, y, data->texture->f_color);
 		++y;
 	}
 }
