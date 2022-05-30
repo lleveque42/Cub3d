@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:26:54 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/26 10:55:17 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 16:01:47 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ void	ray_dir(t_data *data, int x)
 // Calculate side dist
 void	calc_delta(t_data *data)
 {
-	if (data->ray->dir_x == 0)
-		data->ray->ddx = 1e30;
+	if (data->ray->dir_y == 0)
+		data->ray->ddx = 0;
+	else if (data->ray->dir_x == 0)
+		data->ray->ddx = 1;
 	else
 		data->ray->ddx = sqrt(1 + (data->ray->dir_y * data->ray->dir_y) \
 		/ (data->ray->dir_x * data->ray->dir_x));
-	if (data->ray->dir_y == 0)
-		data->ray->ddy = 1e30;
+	if (data->ray->dir_x == 0)
+		data->ray->ddy = 0;
+	else if (data->ray->dir_y == 0)
+		data->ray->ddy = 1;
 	else
 		data->ray->ddy = sqrt(1 + (data->ray->dir_x * data->ray->dir_x) \
 		/ (data->ray->dir_y * data->ray->dir_y));
@@ -105,6 +109,6 @@ void	calc_line_height(t_data *data)
 	if (data->ray->draw_start < 0)
 		data->ray->draw_start = 0;
 	data->ray->draw_end = data->ray->line_h / 2 + SCREEN_H / 2;
-	if (data->ray->draw_end >= SCREEN_H)
+	if (data->ray->draw_end >= SCREEN_H || data->ray->draw_end < 0)
 		data->ray->draw_end = SCREEN_H - 1;
 }

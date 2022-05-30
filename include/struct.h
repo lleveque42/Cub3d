@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 10:45:57 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:28:24 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ struct	s_data
 	int			f_color;
 	int			win_width;
 	int			win_height;
+	int			**text;
+	int			buff[900][1200];
 	char		**map;
 	char		*m;
 	char		*filename;
@@ -69,6 +71,12 @@ struct s_mlx
 
 struct s_ray
 {
+	int		step;
+	int		text_x;
+	int		text_num;
+	int		text_y;
+	float	text_pos;
+	int		color;
 	int		hit;
 	int		side;
 	int		map_x;
@@ -128,10 +136,6 @@ struct	s_texture
 	char	*addr;
 	char	*path;
 	int		dir;
-	int		step;
-	int		text_x;
-	int		text_y;
-	int		text_pos;
 };
 
 struct	s_color

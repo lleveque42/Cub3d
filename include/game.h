@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:03:58 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/26 17:41:07 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 14:37:05 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "struct.h"
 
 int		key_event(int keycode, t_data *data);
-int		get_color(t_data *data, int x);
+void	get_color(t_data *data, int x);
 int		key_release(int keycode, t_data *data);
 void	game(t_data *data);
 void	get_pos(t_data *data);

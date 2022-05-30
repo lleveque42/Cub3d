@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/30 10:48:06 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:51:02 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	init_null_1(t_data *data)
 	data->c_color = 0;
 	data->f_color = 0;
 	data->texture->dir = 0;
-	data->texture->text_x = 0;
-	data->texture->text_y = 0;
-	data->texture->step = 0;
-	data->texture->text_pos = 0;
 	data->map_fd->begin = 0;
 	data->map_fd->ended = 0;
 	data->map_fd->height = 0;
@@ -108,4 +104,9 @@ void	init_null_5(t_data *data)
 	data->texture[1].img = NULL;
 	data->texture[2].img = NULL;
 	data->texture[3].img = NULL;
+	data->ray->side = 0;
+	data->ray->text_pos = 0;
+	data->ray->text_x = 0;
+	data->ray->text_y = 0;
+	data->ray->color = 0;
 }

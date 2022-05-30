@@ -6,41 +6,78 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 10:46:31 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:27:58 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	display_rays(t_data *data, int x)
+// void	display_rays(t_data *data, int x)
+// {
+// 	int	y;
+
+// 	y = 0;
+// 	while (y < SCREEN_H)
+// 	{
+// 		if (y >= data->ray->draw_start && y <= data->ray->draw_end)
+// 			get_color(data, x);
+// 		else if (y < data->ray->draw_start)
+// 			data->buff[y][x] = data->c_color; // pixel_put(data, x, y, data->c_color);
+// 		else
+// 			data->buff[y][x] = data->f_color; // pixel_put(data, x, y, data->f_color);
+// 		++y;
+// 	}
+// }
+
+
+
+void	draw_background(t_data *data)
 {
+	int	x;
 	int	y;
 
-	y = 0;
-	while (y <= SCREEN_H)
+	x = -1;
+	while (++x < SCREEN_W)
 	{
-		if (y >= data->ray->draw_start && y <= data->ray->draw_end)
-			y = get_color(data, x);
-		else if (y < data->ray->draw_start)
-			pixel_put(data, x, y, data->c_color);
-		else
+		y = -1;
+		while (++y < SCREEN_H)
+		{
 			pixel_put(data, x, y, data->f_color);
-		++y;
+			pixel_put(data, x, SCREEN_H - y - 1, data->c_color);
+		}
 	}
 }
 
 void	render_ray(t_data *data)
 {
 	int	x;
+	int	y;
 
 	x = 0;
+	y = -1;
+	draw_background(data);
 	while (x < SCREEN_W)
 	{
 		ray_dir(data, x);
 		calc_steps(data);
 		ray_hit_wall_pos(data);
 		calc_line_height(data);
-		display_rays(data, x);
+		get_color(data, x);
+		y = data->ray->draw_start - 1;
+		while (++y <= data->ray->draw_end)
+		{
+			data->ray->text_y = (int)data->ray->text_pos &
+				(data->texture[data->ray->text_num].h - 1);
+			data->ray->text_pos +=  data->ray->step;
+			if (y < SCREEN_H && x < SCREEN_W)
+				pixel_put(data, x, y, data->texture[data->ray->text_num].addr[data->texture[data->ray->text_num].w * y + x]);
+			// printf("x = %d\n", x);
+			// printf("y = %d\n", y);
+			// printf("text_x : %d\n", data->ray->text_x);
+			// printf("text_y : %d\n", data->ray->text_y);
+			// printf("text_pos : %f\n", data->ray->text_pos);
+			// printf("text_num : %d\n", data->ray->text_num);
+		}
 		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/25 18:07:19 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:03:56 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,12 @@ void	init_plane_e_w(t_data *data)
 {
 	if (data->player->dir == 'E')
 	{
-		data->player->dir_y = 0;
 		data->player->dir_x = 1;
-		data->ray->plane_x = 0;
 		data->ray->plane_y = 0.66;
 	}
 	else if (data->player->dir == 'W')
 	{
-		data->player->dir_y = 0;
 		data->player->dir_x = -1;
-		data->ray->plane_x = 0;
 		data->ray->plane_y = -0.66;
 	}
 }
@@ -35,16 +31,12 @@ void	init_plane(t_data *data)
 	if (data->player->dir == 'N')
 	{
 		data->player->dir_y = -1;
-		data->player->dir_x = 0;
 		data->ray->plane_x = 0.66;
-		data->ray->plane_y = 0;
 	}
 	else if (data->player->dir == 'S')
 	{
 		data->player->dir_y = 1;
-		data->player->dir_x = 0;
 		data->ray->plane_x = -0.66;
-		data->ray->plane_y = 0;
 	}
 	else
 		init_plane_e_w(data);

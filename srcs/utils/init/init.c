@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/30 10:50:09 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:49:52 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_data	*init_data_malloc(void)
 	data->map_fd = ft_malloc(sizeof(t_map_fd), data);
 	data->player = ft_malloc(sizeof(t_player), data);
 	data->texture = ft_malloc(sizeof(t_texture) * 4, data);
+	data->text = (int **)ft_malloc(sizeof(int *) * 4, data);
 	data->c = ft_malloc(sizeof(t_color), data);
 	data->f = ft_malloc(sizeof(t_color), data);
 	return (data);
@@ -79,7 +80,10 @@ t_data	*init_data_malloc(void)
 t_data	*init_data(char *input)
 {
 	t_data	*data;
+	int		i;
+	int		j;
 
+	i = -1;
 	data = init_data_malloc();
 	data->filename = ft_strdup(input, data);
 	open_map(input, data);
@@ -88,5 +92,14 @@ t_data	*init_data(char *input)
 	init_null_3(data);
 	init_null_4(data);
 	init_null_5(data);
+	while (++i < 4)
+		data->text[i] = (int *)malloc(sizeof(int) * (64 * 64));
+	i = -1;
+	while (++i < 4)
+	{
+		j = -1;
+		while (++j < 64 * 64)
+			data->text[i][j] = 0;
+	}
 	return (data);
 }

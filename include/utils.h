@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:28:53 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/26 14:33:35 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 12:34:54 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	init_null_5(t_data *data);
 void	ft_free(void *ptr, t_data *data);
 void	*ft_malloc(size_t size, t_data *data);
 void	pixel_put(t_data *data, int x, int y, int color);
-void	pixel_put2(t_data *data, int x, int y, int color);
 void	ft_exit_message(char *msg, t_data *data, int value);
 void	ft_exit_perror(char *s, t_data *data, int exit_value);
 void	ft_exit_rgb_error(char c, char *msg, t_data *data, int value);
