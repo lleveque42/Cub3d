@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 17:13:42 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/13 18:05:03 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/30 17:28:32 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int	check_wall_only(char **s, int x, int y)
 
 int	check_wall(char **s, int x, int y, t_data *data)
 {
-	if (y != 0 && s[y - 1][x])
+	if (x != 0 && s[x - 1][y])
 	{
-		if (s[y - 1][x] != ' ' && s[y - 1][x] != '1')
+		if (s[x - 1][y] != ' ' && s[x - 1][y] != '1')
 			return (1);
 	}
-	if (y != data->map_fd->height - 1 && s[y + 1][x])
+	if (x != data->map_fd->height - 1 && s[x + 1][y])
 	{
-		if (s[y + 1][x] != ' ' && s[y + 1][x] != '1')
+		if (s[x + 1][y] != ' ' && s[x + 1][y] != '1')
 			return (1);
 	}
 	return (0);

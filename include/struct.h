@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 15:28:24 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/30 17:39:24 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ struct	s_data
 	int			win_width;
 	int			win_height;
 	int			**text;
-	int			buff[900][1200];
 	char		**map;
 	char		*m;
 	char		*filename;
@@ -66,7 +65,7 @@ struct s_mlx
 	void	*ptr;
 	void	*win;
 	void	*img;
-	char	*addr;
+	int		*addr;
 };
 
 struct s_ray
@@ -133,7 +132,7 @@ struct	s_texture
 	int		endian;
 	int		line_length;
 	void	*img;
-	char	*addr;
+	int		*addr;
 	char	*path;
 	int		dir;
 };

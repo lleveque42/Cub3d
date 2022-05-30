@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:26:54 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 16:01:47 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:15:50 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Calculate ray pos & dir
 void	ray_dir(t_data *data, int x)
 {
-	data->ray->camera_x = 2 * (float)x / (float)SCREEN_W - 1;
+	data->ray->camera_x = 2 * x / (float)SCREEN_W - 1;
 	data->ray->dir_x = data->player->dir_x + data->ray->plane_x \
 		* data->ray->camera_x;
 	data->ray->dir_y = data->player->dir_y + data->ray->plane_y \
@@ -89,7 +89,7 @@ void	ray_hit_wall_pos(t_data *data)
 			data->ray->map_y += data->ray->step_y;
 			data->ray->side = 1;
 		}
-		if (data->map[data->ray->map_y][data->ray->map_x] == '1')
+		if (data->map[data->ray->map_x][data->ray->map_y] == '1')
 			data->ray->hit = 1;
 	}
 }

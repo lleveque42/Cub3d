@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:03:37 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/25 14:53:55 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 18:40:33 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	move_forward(t_data *data)
 {
-	if (data->map[(int)data->player->y][(int)(data->player->x
-		+ data->player->dir_x * SPEED_TEST)] != '1')
+	if (data->map[(int)(data->player->x + (data->player->dir_x
+			* SPEED_TEST))][(int)data->player->y] != '1')
 	{
 		data->player->x += data->player->dir_x * SPEED_TEST;
 		data->player->change = 1;
 	}
-	if (data->map[(int)(data->player->y + data->player->dir_y
-			* SPEED_TEST)][(int)data->player->x] != '1')
+	if (data->map[(int)data->player->x][(int)(data->player->y
+		+ data->player->dir_y * SPEED_TEST)] != '1')
 	{
 		data->player->y += data->player->dir_y * SPEED_TEST;
 		data->player->change = 1;
@@ -30,14 +30,14 @@ void	move_forward(t_data *data)
 
 void	move_backward(t_data *data)
 {
-	if (data->map[(int)data->player->y][(int)(data->player->x
-		- data->player->dir_x * SPEED_TEST)] != '1')
+	if (data->map[(int)(data->player->x - data->player->dir_x * SPEED_TEST)]
+		[(int)data->player->y] != '1')
 	{
 		data->player->x -= data->player->dir_x * SPEED_TEST;
 		data->player->change = 1;
 	}
-	if (data->map[(int)(data->player->y - data->player->dir_y * SPEED_TEST)]
-		[(int)data->player->x] != '1')
+	if (data->map[(int)data->player->x][(int)(data->player->y
+		- data->player->dir_y * SPEED_TEST)] != '1')
 	{
 		data->player->y -= data->player->dir_y * SPEED_TEST;
 		data->player->change = 1;
@@ -46,40 +46,40 @@ void	move_backward(t_data *data)
 
 void	move_right(t_data *data)
 {
-	if (data->map[(int)(data->player->y - -data->player->dir_x * SPEED_TEST)]
-		[(int)data->player->x] != '1')
+	if (data->map[(int)(data->player->x + (data->player->dir_y * SPEED_TEST))]
+		[(int)data->player->y] != '1')
 	{
-		data->player->y -= -data->player->dir_x * SPEED_TEST;
+		data->player->x += data->player->dir_y * SPEED_TEST;
 		data->player->change = 1;
 	}
-	if (data->map[(int)data->player->y][(int)(data->player->x
-		- data->player->dir_y * SPEED_TEST)] != '1')
+	if (data->map[(int)data->player->x][(int)(data->player->y
+		- (data->player->dir_x * SPEED_TEST))] != '1')
 	{
-		data->player->x -= data->player->dir_y * SPEED_TEST;
+		data->player->y -= data->player->dir_x * SPEED_TEST;
 		data->player->change = 1;
 	}
 }
 
 void	move_left(t_data *data)
 {
-	if (data->map[(int)(data->player->y + -data->player->dir_x * SPEED_TEST)]
-		[(int)data->player->x] != '1')
+	if (data->map[(int)(data->player->x - data->player->dir_y * SPEED_TEST)]
+		[(int)data->player->y] != '1')
 	{
-		data->player->y += -data->player->dir_x * SPEED_TEST;
+		data->player->x -= data->player->dir_y * SPEED_TEST;
 		data->player->change = 1;
 	}
-	if (data->map[(int)data->player->y][(int)(data->player->x
-		+ data->player->dir_y * SPEED_TEST)] != '1')
+	if (data->map[(int)data->player->x][(int)(data->player->y
+		+ data->player->dir_x * SPEED_TEST)] != '1')
 	{
-		data->player->x += data->player->dir_y * SPEED_TEST;
+		data->player->y += data->player->dir_x * SPEED_TEST;
 		data->player->change = 1;
 	}
 }
 
 void	get_pos(t_data *data)
 {
-	data->player->old_y = data->player->y;
-	data->player->old_x = data->player->x;
+	// data->player->old_y = data->player->x;
+	// data->player->old_x = data->player->x;
 	if (data->key->w_pressed == 1)
 		move_forward(data);
 	if (data->key->s_pressed == 1)
