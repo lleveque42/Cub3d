@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/26 14:30:50 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 10:50:09 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ t_data	*init_data_malloc(void)
 	data->ray = ft_malloc(sizeof(t_ray), data);
 	data->map_fd = ft_malloc(sizeof(t_map_fd), data);
 	data->player = ft_malloc(sizeof(t_player), data);
-	data->texture = ft_malloc(sizeof(t_texture), data);
-	data->texture->c = ft_malloc(sizeof(t_color), data);
-	data->texture->f = ft_malloc(sizeof(t_color), data);
+	data->texture = ft_malloc(sizeof(t_texture) * 4, data);
+	data->c = ft_malloc(sizeof(t_color), data);
+	data->f = ft_malloc(sizeof(t_color), data);
 	return (data);
 }
 
@@ -81,10 +81,6 @@ t_data	*init_data(char *input)
 	t_data	*data;
 
 	data = init_data_malloc();
-	data->texture->no = ft_malloc(sizeof(t_data_texture), data);
-	data->texture->so = ft_malloc(sizeof(t_data_texture), data);
-	data->texture->ea = ft_malloc(sizeof(t_data_texture), data);
-	data->texture->we = ft_malloc(sizeof(t_data_texture), data);
 	data->filename = ft_strdup(input, data);
 	open_map(input, data);
 	init_null_1(data);

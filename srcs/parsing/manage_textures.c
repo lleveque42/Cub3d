@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:44 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/26 14:36:34 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 10:48:51 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int	textures_all_filled(t_data *data)
 {
-	if (data->texture->no->path == NULL)
+	if (data->texture[0].path == NULL)
 		return (0);
-	if (data->texture->so->path == NULL)
+	if (data->texture[1].path == NULL)
 		return (0);
-	if (data->texture->ea->path == NULL)
+	if (data->texture[2].path == NULL)
 		return (0);
-	if (data->texture->we->path == NULL)
+	if (data->texture[3].path == NULL)
 		return (0);
-	if (data->texture->c->r == -1)
+	if (data->c->r == -1)
 		return (0);
-	if (data->texture->c->g == -1)
+	if (data->c->g == -1)
 		return (0);
-	if (data->texture->c->b == -1)
+	if (data->c->b == -1)
 		return (0);
-	if (data->texture->f->r == -1)
+	if (data->f->r == -1)
 		return (0);
-	if (data->texture->f->g == -1)
+	if (data->f->g == -1)
 		return (0);
-	if (data->texture->f->b == -1)
+	if (data->f->b == -1)
 		return (0);
 	data->filled = 1;
 	return (1);
@@ -70,13 +70,13 @@ char	*manage_texture(char *buff, char *id, int n, t_data *data)
 int	is_texture(char *buff, t_data *data)
 {
 	if (!ft_strncmp(buff, "NO ", 3))
-		data->texture->no->path = manage_texture(buff, "NO", 3, data);
+		data->texture[0].path = manage_texture(buff, "NO", 3, data);
 	else if (!ft_strncmp(buff, "SO ", 3))
-		data->texture->so->path = manage_texture(buff, "SO", 3, data);
+		data->texture[1].path = manage_texture(buff, "SO", 3, data);
 	else if (!ft_strncmp(buff, "WE ", 3))
-		data->texture->we->path = manage_texture(buff, "WE", 3, data);
+		data->texture[3].path = manage_texture(buff, "WE", 3, data);
 	else if (!ft_strncmp(buff, "EA ", 3))
-		data->texture->ea->path = manage_texture(buff, "EA", 3, data);
+		data->texture[2].path = manage_texture(buff, "EA", 3, data);
 	else if (!ft_strncmp(buff, "C ", 2))
 		manage_colors(buff, 2, 'C', data);
 	else if (!ft_strncmp(buff, "F ", 2))
@@ -108,21 +108,9 @@ void	check_texture_extension(char *file, t_data *data)
 
 int	open_textures(t_data *data)
 {
-	check_texture_extension(data->texture->no->path, data);
-	check_texture_extension(data->texture->so->path, data);
-	check_texture_extension(data->texture->ea->path, data);
-	check_texture_extension(data->texture->we->path, data);
-	data->texture->no->fd = open(data->texture->no->path, O_RDONLY);
-	data->texture->so->fd = open(data->texture->so->path, O_RDONLY);
-	data->texture->ea->fd = open(data->texture->ea->path, O_RDONLY);
-	data->texture->we->fd = open(data->texture->we->path, O_RDONLY);
-	if (data->texture->no->fd < 0)
-		ft_exit_perror(data->texture->no->path, data, 1);
-	if (data->texture->so->fd < 0)
-		ft_exit_perror(data->texture->so->path, data, 1);
-	if (data->texture->ea->fd < 0)
-		ft_exit_perror(data->texture->ea->path, data, 1);
-	if (data->texture->we->fd < 0)
-		ft_exit_perror(data->texture->we->path, data, 1);
+	check_texture_extension(data->texture[0].path, data);
+	check_texture_extension(data->texture[1].path, data);
+	check_texture_extension(data->texture[2].path, data);
+	check_texture_extension(data->texture[3].path, data);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_rgb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:08:07 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/25 17:30:41 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 10:46:32 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	check_rgb(char **rgb, char c, t_data *data)
 
 void	assign_trgb(t_data *data)
 {
-	data->texture->c_color = create_trgb(0, data->texture->c->r, \
-		data->texture->c->g, data->texture->c->b);
-	data->texture->f_color = create_trgb(0, data->texture->f->r, \
-		data->texture->f->g, data->texture->f->b);
+	data->c_color = create_trgb(0, data->c->r, \
+		data->c->g, data->c->b);
+	data->f_color = create_trgb(0, data->f->r, \
+		data->f->g, data->f->b);
 }
 
 void	manage_colors(char *buff, int n, char c, t_data *data)
@@ -83,15 +83,15 @@ void	manage_colors(char *buff, int n, char c, t_data *data)
 		ft_exit_rgb_error(c, " is invalid in file", data, 1);
 	if (c == 'C')
 	{
-		data->texture->c->r = ft_atoi(rgb[0]);
-		data->texture->c->g = ft_atoi(rgb[1]);
-		data->texture->c->b = ft_atoi(rgb[2]);
+		data->c->r = ft_atoi(rgb[0]);
+		data->c->g = ft_atoi(rgb[1]);
+		data->c->b = ft_atoi(rgb[2]);
 	}
 	else
 	{
-		data->texture->f->r = ft_atoi(rgb[0]);
-		data->texture->f->g = ft_atoi(rgb[1]);
-		data->texture->f->b = ft_atoi(rgb[2]);
+		data->f->r = ft_atoi(rgb[0]);
+		data->f->g = ft_atoi(rgb[1]);
+		data->f->b = ft_atoi(rgb[2]);
 	}
 	assign_trgb(data);
 }

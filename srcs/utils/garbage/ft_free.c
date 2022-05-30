@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 18:57:22 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/26 14:36:34 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 10:49:42 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,6 @@ void	ft_free(void *ptr, t_data *data)
 void	free_all(t_data *data)
 {
 	close(data->in_fd);
-	if (data->texture->no->fd > 0)
-		close(data->texture->no->fd);
-	if (data->texture->so->fd > 0)
-		close(data->texture->so->fd);
-	if (data->texture->ea->fd > 0)
-		close(data->texture->ea->fd);
-	if (data->texture->we->fd > 0)
-		close(data->texture->we->fd);
 	ft_free_garbage(data->garbage);
 	free(data);
 }

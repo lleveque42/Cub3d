@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/27 14:52:19 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 10:46:31 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	display_rays(t_data *data, int x)
 		if (y >= data->ray->draw_start && y <= data->ray->draw_end)
 			y = get_color(data, x);
 		else if (y < data->ray->draw_start)
-			pixel_put(data, x, y, data->texture->c_color);
+			pixel_put(data, x, y, data->c_color);
 		else
-			pixel_put(data, x, y, data->texture->f_color);
+			pixel_put(data, x, y, data->f_color);
 		++y;
 	}
 }

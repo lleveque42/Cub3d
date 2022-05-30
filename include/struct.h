@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/26 17:02:56 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 10:45:57 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ struct	s_data
 {
 	int			in_fd;
 	int			filled;
+	int			c_color;
+	int			f_color;
 	int			win_width;
 	int			win_height;
 	char		**map;
@@ -36,6 +38,8 @@ struct	s_data
 	t_mlx		*mlx;
 	t_key		*key;
 	t_ray		*ray;
+	t_color		*c;
+	t_color		*f;
 	t_player	*player;
 	t_map_fd	*map_fd;
 	t_texture	*texture;
@@ -113,34 +117,21 @@ struct s_map_fd
 	int	width;
 };
 
-struct s_data_texture
+struct	s_texture
 {
 	int		h;
 	int		w;
-	int		fd;
 	int		bpp;
 	int		endian;
 	int		line_length;
 	void	*img;
 	char	*addr;
 	char	*path;
-};
-
-struct	s_texture
-{
-	int				dir;
-	int				step;
-	int				c_color;
-	int				f_color;
-	int				text_x;
-	int				text_y;
-	int				text_pos;
-	t_color			*c;
-	t_color			*f;
-	t_data_texture	*no;
-	t_data_texture	*so;
-	t_data_texture	*ea;
-	t_data_texture	*we;
+	int		dir;
+	int		step;
+	int		text_x;
+	int		text_y;
+	int		text_pos;
 };
 
 struct	s_color

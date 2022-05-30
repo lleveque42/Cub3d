@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_null.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/26 17:20:02 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/30 10:48:06 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	init_null_1(t_data *data)
 {
 	data->map = NULL;
 	data->filled = 0;
-	data->texture->c->r = -1;
-	data->texture->c->g = -1;
-	data->texture->c->b = -1;
-	data->texture->f->r = -1;
-	data->texture->f->g = -1;
-	data->texture->f->b = -1;
-	data->texture->c_color = 0;
-	data->texture->f_color = 0;
+	data->c->r = -1;
+	data->c->g = -1;
+	data->c->b = -1;
+	data->f->r = -1;
+	data->f->g = -1;
+	data->f->b = -1;
+	data->c_color = 0;
+	data->f_color = 0;
 	data->texture->dir = 0;
 	data->texture->text_x = 0;
 	data->texture->text_y = 0;
@@ -96,20 +96,16 @@ void	init_null_4(t_data *data)
 
 void	init_null_5(t_data *data)
 {
-	data->texture->no->path = NULL;
-	data->texture->so->path = NULL;
-	data->texture->ea->path = NULL;
-	data->texture->we->path = NULL;
-	data->texture->no->addr = NULL;
-	data->texture->so->addr = NULL;
-	data->texture->we->addr = NULL;
-	data->texture->ea->addr = NULL;
-	data->texture->no->img = NULL;
-	data->texture->so->img = NULL;
-	data->texture->ea->img = NULL;
-	data->texture->we->img = NULL;
-	data->texture->no->fd = 0;
-	data->texture->so->fd = 0;
-	data->texture->ea->fd = 0;
-	data->texture->we->fd = 0;
+	data->texture[0].path = NULL;
+	data->texture[1].path = NULL;
+	data->texture[2].path = NULL;
+	data->texture[3].path = NULL;
+	data->texture[0].addr = NULL;
+	data->texture[1].addr = NULL;
+	data->texture[3].addr = NULL;
+	data->texture[2].addr = NULL;
+	data->texture[0].img = NULL;
+	data->texture[1].img = NULL;
+	data->texture[2].img = NULL;
+	data->texture[3].img = NULL;
 }
