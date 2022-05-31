@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 19:13:09 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/31 13:44:44 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,19 @@ void	render_ray(t_data *data)
 		ray_hit_wall_pos(data);
 		calc_line_height(data);
 		draw_ceiling(data, x);
-		get_color(data, x);
+		get_color(data);
 		y = data->ray->draw_start - 1;
 		while (++y <= data->ray->draw_end)
 		{
 			data->ray->text_y = (int)data->ray->text_pos &
 				(data->texture[data->ray->text_num].h - 1);
 			data->ray->text_pos +=  data->ray->step;
-			// if (y < SCREEN_H && x < SCREEN_W)
-			data->mlx->addr[y * SCREEN_W + x]
-			= data->texture[data->ray->text_num].addr[data->ray->text_y
-			* data->texture[data->ray->text_num].w + data->ray->text_x];
+			if (y < SCREEN_H && x < SCREEN_W)
+			{
+				data->mlx->addr[y * SCREEN_W + x]
+					= data->texture[data->ray->text_num].addr[data->ray->text_y
+					* data->texture[data->ray->text_num].w + data->ray->text_x];
+			}
 		}
 		draw_floor(data, x);
 		x++;

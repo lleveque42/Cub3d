@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 12:05:31 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 17:39:24 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:07:36 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,7 @@ struct	s_data
 	int			filled;
 	int			c_color;
 	int			f_color;
-	int			win_width;
-	int			win_height;
-	int			**text;
 	char		**map;
-	char		*m;
 	char		*filename;
 	t_mlx		*mlx;
 	t_key		*key;
@@ -62,20 +58,14 @@ struct s_mlx
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		*addr;
 	void	*ptr;
 	void	*win;
 	void	*img;
-	int		*addr;
 };
 
 struct s_ray
 {
-	int		step;
-	int		text_x;
-	int		text_num;
-	int		text_y;
-	float	text_pos;
-	int		color;
 	int		hit;
 	int		side;
 	int		map_x;
@@ -83,6 +73,9 @@ struct s_ray
 	int		step_x;
 	int		step_y;
 	int		line_h;
+	int		text_x;
+	int		text_y;
+	int		text_num;
 	int		draw_end;
 	int		draw_start;
 	float	pwd;
@@ -90,12 +83,11 @@ struct s_ray
 	float	ddx;
 	float	sdy;
 	float	sdx;
-	float	wall_x;
+	float	step;
 	float	dir_x;
 	float	dir_y;
-	float	old_x;
-	float	old_y;
-	float	angle;
+	float	wall_x;
+	float	text_pos;
 	float	plane_x;
 	float	plane_y;
 	float	camera_x;
@@ -113,7 +105,6 @@ struct s_player
 	float	dir_y;
 	float	old_dx;
 	float	old_dy;
-	float	angle;
 };
 
 struct s_map_fd
@@ -131,10 +122,9 @@ struct	s_texture
 	int		bpp;
 	int		endian;
 	int		line_length;
-	void	*img;
 	int		*addr;
+	void	*img;
 	char	*path;
-	int		dir;
 };
 
 struct	s_color

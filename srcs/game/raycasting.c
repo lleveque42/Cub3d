@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:26:54 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 18:15:50 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:11:19 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,25 @@ void	ray_dir(t_data *data, int x)
 // Calculate side dist
 void	calc_delta(t_data *data)
 {
+	printf("1\n");
 	if (data->ray->dir_y == 0)
+	{
+		printf("2\n");
 		data->ray->ddx = 0;
+	}
 	else if (data->ray->dir_x == 0)
+	{
+		printf("3\n");
 		data->ray->ddx = 1;
+	}
 	else
+	{
+		printf("4\n");
 		data->ray->ddx = sqrt(1 + (data->ray->dir_y * data->ray->dir_y) \
 		/ (data->ray->dir_x * data->ray->dir_x));
+	}
+	printf("5\n");
+	// exit(0);
 	if (data->ray->dir_x == 0)
 		data->ray->ddy = 0;
 	else if (data->ray->dir_y == 0)

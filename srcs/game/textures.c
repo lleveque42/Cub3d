@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:08:01 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 18:34:54 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/31 13:44:18 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void	get_texture_data(t_data *data, int n)
 			data->ray->line_h / 2) *  data->ray->step;
 }
 
-void	get_color(t_data *data, int x)
+void	get_color(t_data *data)
 {
-	(void)x;
 	if (data->ray->side)
 	{
 		if (data->ray->dir_y < 0)

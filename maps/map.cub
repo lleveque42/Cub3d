@@ -1,7 +1,7 @@
 NO ./assets/bookshelf.xpm
-SO ./assets/greystone.xpm
-WE ./assets/bricks.xpm
-EA ./assets/redbrick.xpm
+SO ./assets/redbrick.xpm
+WE ./assets/mossy.xpm
+EA ./assets/eagle.xpm
 F 142,95,39
 C 15,99,153
 

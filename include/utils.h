@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:28:53 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/30 12:34:54 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:10:11 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_null_1(t_data *data);
 void	init_null_2(t_data *data);
 void	init_null_3(t_data *data);
 void	init_null_4(t_data *data);
-void	init_null_5(t_data *data);
 void	ft_free(void *ptr, t_data *data);
 void	*ft_malloc(size_t size, t_data *data);
 void	pixel_put(t_data *data, int x, int y, int color);

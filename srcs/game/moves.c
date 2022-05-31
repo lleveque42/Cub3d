@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:03:37 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/30 18:40:33 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:05:17 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void	move_left(t_data *data)
 
 void	get_pos(t_data *data)
 {
-	// data->player->old_y = data->player->x;
-	// data->player->old_x = data->player->x;
 	if (data->key->w_pressed == 1)
 		move_forward(data);
 	if (data->key->s_pressed == 1)
