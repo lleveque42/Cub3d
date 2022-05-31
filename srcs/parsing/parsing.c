@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/30 17:32:40 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:35:10 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,6 @@ void	scan_map(char **s, t_data *data)
 	{
 		y = -1;
 		del_new_line(data, x);
-		// if (y == 0 || y == data->map_fd->height - 1)
-		// {
-			// if (check_wall_only(s, x, y))
-				// ft_exit_message("Map is invalid", data, 1);
-			// continue ;
-		// }
 		while (s[x][++y])
 		{
 			if (s[x][y] == ' ' && s[x][y] != '\n')

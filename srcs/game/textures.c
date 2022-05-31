@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:08:01 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/31 13:44:18 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/31 14:26:34 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	get_texture_data(t_data *data, int n)
 	data->ray->wall_x -= floor((data->ray->wall_x));
 	data->ray->text_x = (int)(data->ray->wall_x * (float)data->texture[n].w);
 	if (data->ray->side == 0 && data->ray->dir_x > 0)
-		 data->ray->text_x = data->texture[n].w - data->ray->text_x - 1;
+		data->ray->text_x = data->texture[n].w - data->ray->text_x - 1;
 	if (data->ray->side == 1 && data->ray->dir_y < 0)
-		 data->ray->text_x = data->texture[n].w - data->ray->text_x - 1;
+		data->ray->text_x = data->texture[n].w - data->ray->text_x - 1;
 	data->ray->step = 1.0 * (float)data->texture[n].h / data->ray->line_h;
-	data->ray->text_pos = (data->ray->draw_start - SCREEN_H / 2 +
-			data->ray->line_h / 2) *  data->ray->step;
+	data->ray->text_pos = (data->ray->draw_start - SCREEN_H / 2
+			+ data->ray->line_h / 2) * data->ray->step;
 }
 
 void	get_color(t_data *data)

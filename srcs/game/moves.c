@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:03:37 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/31 14:05:17 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/31 14:21:56 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	move_forward(t_data *data)
 {
-	if (data->map[(int)(data->player->x + (data->player->dir_x
-			* SPEED_TEST))][(int)data->player->y] != '1')
+	if (data->map[(int)(data->player->x + (data->player->dir_x \
+		* SPEED_TEST))][(int)data->player->y] != '1')
 	{
 		data->player->x += data->player->dir_x * SPEED_TEST;
 		data->player->change = 1;
