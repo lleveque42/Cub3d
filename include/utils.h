@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:28:53 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/31 14:10:11 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/31 15:06:02 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "struct.h"
 
 int		ft_exit_esc(t_data *data);
-int		ft_exit(t_data *data, char *msg);
+int		ft_exit(t_data *data, char *msg, int value);
 int		create_trgb(int t, int r, int g, int b);
 void	free_all(t_data *data);
 void	init_null_1(t_data *data);

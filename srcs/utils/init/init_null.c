@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/31 14:10:17 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/31 14:44:31 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	init_null_3(t_data *data)
 	data->ray->dir_x = 0;
 	data->ray->dir_y = 0;
 	data->ray->wall_x = 0;
+	data->ray->plane_x = 0;
+	data->ray->plane_y = 0;
 	data->ray->camera_x = 0;
 }
 

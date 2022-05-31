@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:02:26 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/31 14:30:06 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/31 15:01:15 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@ void	init_game(t_data *data)
 {
 	data->mlx->ptr = mlx_init();
 	if (!data->mlx->ptr)
-		ft_exit(data, "Can't init mlx ptr");
+		ft_exit(data, "Can't init mlx ptr", 1);
 	data->mlx->win = mlx_new_window(data->mlx->ptr, SCREEN_W, SCREEN_H, \
 		"QubtroiD");
 	if (!data->mlx->win)
-		ft_exit(data, "Can't init mlx window");
+		ft_exit(data, "Can't init mlx window", 1);
 	data->mlx->img = mlx_new_image(data->mlx->ptr, SCREEN_W, SCREEN_H);
 	if (!data->mlx->img)
-		ft_exit(data, "Can't init mlx image");
+		ft_exit(data, "Can't init mlx image", 1);
 	data->mlx->addr = (int *)mlx_get_data_addr(data->mlx->img, &data->mlx->bpp, \
 		&data->mlx->line_length, &data->mlx->endian);
 	if (!data->mlx->addr)
-		ft_exit(data, "Can't init mlx addr");
+		ft_exit(data, "Can't init mlx addr", 1);
 	get_textures(data);
 }
 

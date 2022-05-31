@@ -6,7 +6,7 @@
 /*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:08:01 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/31 14:26:34 by arudy            ###   ########.fr       */
+/*   Updated: 2022/05/31 15:05:01 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ void	get_textures(t_data *data)
 		data->texture[i].img = mlx_xpm_file_to_image(data->mlx->ptr, \
 		data->texture[i].path, &data->texture[i].w, &data->texture[i].h);
 		if (!data->texture[i].img)
-			ft_exit_message("XPM image reading has failed", data, 1);
+			ft_exit(data, "XPM image reading has failed", 1);
 		data->texture[i].addr = (int *)mlx_get_data_addr \
 			(data->texture[i].img, &data->texture[i].bpp, \
 			&data->texture[i].line_length, &data->texture[i].endian);
+		if (!data->texture[i].addr)
+			ft_exit(data, "XPM address reading has failed", 1);
 	}
 }
