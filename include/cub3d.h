@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:09:54 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/30 18:57:31 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:16:48 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,17 @@
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 
-// # define SPEED_TEST 0.0002
+// # define MOVE_SPEED 0.0002
 // # define ROT_SPEED 0.001
-
-// # define RES				1200
-# define SCREEN_W			1200
-# define SCREEN_H			900
-# define PI					3.1415926535
-// # define SPEED_TEST			0.015 // LOUIS
+// # define MOVE_SPEED			0.015 // LOUIS
 // # define ROT_SPEED			0.015 // LOUIS
-// # define SPEED_TEST			0.2 // LOUIS VALGRIND
+// # define MOVE_SPEED			0.2 // LOUIS VALGRIND
 // # define ROT_SPEED			0.2 // LOUIS VALGRIND
-# define SPEED_TEST			0.06 // Ecole
-# define ROT_SPEED			0.06 // Ecole
-# define RED				0x00FF7F7F
-# define REDDD				0x99605c
-# define WHITE				0x00FFFFFF
-# define BLACK				0x00000000
-# define GREY				0x007F7F7F
-# define BLUE				0x000000FF
-# define TILE_SIZE			100
+
+# define SCREEN_W	1200
+# define SCREEN_H	900
+# define PI			3.1415926535
+# define MOVE_SPEED	0.06
+# define ROT_SPEED	0.06
 
 #endif
