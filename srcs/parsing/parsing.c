@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/31 14:35:10 by arudy            ###   ########.fr       */
+/*   Updated: 2022/06/01 02:23:58 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void	scan_map(char **s, t_data *data)
 	int	y;
 
 	x = -1;
+	if (!s[0])
+		ft_exit_message("No map found", data, 1);
+	if (check_wall_only(s, 0))
+		ft_exit_message("Map is invalid", data, 1);
 	while (s[++x])
 	{
 		y = -1;
@@ -103,6 +107,8 @@ void	scan_map(char **s, t_data *data)
 				find_player_data(s, x, y, data);
 		}
 	}
+	if (check_wall_only(s, x - 1))
+		ft_exit_message("Map is invalid", data, 1);
 }
 
 int	parsing(t_data *data)

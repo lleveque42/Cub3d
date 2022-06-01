@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 17:13:42 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/30 17:28:32 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 02:18:00 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,16 @@ void	del_new_line(t_data *data, int y)
 		data->map_fd->width = len;
 }
 
-int	check_wall_only(char **s, int x, int y)
+int	check_wall_only(char **s, int x)
 {
-	x = 0;
-	while (s[y][x] && s[y][x] != '\n')
+	int	y;
+
+	y = 0;
+	while (s[x][y])
 	{
-		if (s[y][x] != ' ' && s[y][x] != '1')
+		if (!(s[x][y] == ' ' || s[x][y] == '1' || s[x][y] == '\n'))
 			return (1);
-		else if (y == 0 && s[y][x] == ' ' && s[y + 1][x] != '1'
-				&& s[y + 1][x] != ' ')
-			return (1);
-		else if (y != 0 && s[y][x] == ' ' && s[y - 1][x] != '1')
-			return (1);
-		x++;
+		y++;
 	}
 	return (0);
 }
@@ -75,6 +72,7 @@ int	check_map_line(char *buff, t_data *data)
 	int	i;
 
 	i = 0;
+
 	while (buff[i] && buff[i] != '\n')
 	{
 		while (buff[i] && buff[i] == ' ')
