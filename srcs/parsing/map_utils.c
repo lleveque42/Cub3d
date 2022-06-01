@@ -3,39 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 17:13:42 by lleveque          #+#    #+#             */
-/*   Updated: 2022/06/01 02:39:28 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:00:29 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	del_new_line(t_data *data, int y)
+void	dup_map(t_data *data)
 {
-	int		i;
-	int		len;
-	char	*dest;
+	int	j;
 
-	i = 0;
-	dest = NULL;
-	if (!data->map[y])
-		return ;
-	while (data->map[y][i])
+	j = 0;
+	while (data->map[j])
 	{
-		if (data->map[y][i] == '\n')
-		{
-			dest = ft_strldup(data->map[y], ft_strlen(data->map[y]), data);
-			ft_free(data->map[y], data);
-			data->map[y] = dest;
-			break ;
-		}
-		i++;
+		if (data->map_fd->width < (int)ft_strlen(data->map[j]))
+			data->map_fd->width = ft_strlen(data->map[j]);
+		j++;
 	}
-	len = ft_strlen(data->map[y]);
-	if (len > data->map_fd->width)
-		data->map_fd->width = len;
+	j = -1;
+	while (data->map[++j])
+		data->map[j] = ft_strdup_bzero(data->map[j], data);
 }
 
 int	check_wall_only(char **s, int x)
@@ -52,18 +42,18 @@ int	check_wall_only(char **s, int x)
 	return (0);
 }
 
-int	check_wall(char **s, int x, int y, t_data *data)
+int	check_wall(char **s, int x, int y)
 {
-	if (x != 0 && s[x - 1][y])
-	{
-		if (s[x - 1][y] != ' ' && s[x - 1][y] != '1')
-			return (1);
-	}
-	if (x != data->map_fd->height - 1 && s[x + 1][y])
-	{
-		if (s[x + 1][y] != ' ' && s[x + 1][y] != '1')
-			return (1);
-	}
+	if (!s[x - 1][y])
+		return (1);
+	if (s[x - 1][y] == ' ')
+		return (1);
+	if (s[x + 1][y] == ' ')
+		return (1);
+	if (s[x][y + 1] == ' ')
+		return (1);
+	if (s[x][y - 1] == ' ')
+		return (1);
 	return (0);
 }
 

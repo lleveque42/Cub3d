@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:58:41 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/30 17:29:13 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:59:36 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+char	*ft_strdup_bzero(char *s, t_data *data)
+{
+	int		i;
+	char	*dst;
+
+	i = -1;
+	dst = ft_calloc(sizeof(char), data->map_fd->width + 1, data);
+	while (s[++i])
+		dst[i] = s[i];
+	ft_free(s, data);
+	return (dst);
+}
 
 void	init_plane_e_w(t_data *data)
 {

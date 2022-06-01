@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:28:30 by arudy             #+#    #+#             */
-/*   Updated: 2022/06/01 02:23:58 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:03:28 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	fill_map(t_data *data)
 	while (++j < data->map_fd->height)
 		data->map[j] = get_next_line(data->in_fd, data);
 	data->map[j] = NULL;
+	dup_map(data);
 }
 
 void	scan_map(char **s, t_data *data)
@@ -96,18 +97,19 @@ void	scan_map(char **s, t_data *data)
 	while (s[++x])
 	{
 		y = -1;
-		del_new_line(data, x);
+		if (!s[x + 1])
+			break ;
 		while (s[x][++y])
 		{
-			if (s[x][y] == ' ' && s[x][y] != '\n')
-				if (check_wall(s, x, y, data))
+			if (s[x][y] == '0')
+				if (check_wall(s, x, y))
 					ft_exit_message("Map is invalid", data, 1);
 			if (s[x][y] == 'N' || s[x][y] == 'S' || s[x][y] == 'W'
 				|| s[x][y] == 'E')
 				find_player_data(s, x, y, data);
 		}
 	}
-	if (check_wall_only(s, x - 1))
+	if (check_wall_only(s, x))
 		ft_exit_message("Map is invalid", data, 1);
 }
 

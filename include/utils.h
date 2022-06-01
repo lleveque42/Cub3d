@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:28:53 by lleveque          #+#    #+#             */
-/*   Updated: 2022/06/01 01:45:47 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:59:57 by arudy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_exit_rgb_error(char c, char *msg, t_data *data, int value);
 void	ft_exit_texture_error(char *id, char *msg, t_data *data, int value);
 void	ft_exit_invalid_file(char *file, char *msg, t_data *data, int value);
 char	*get_next_line(int fd, t_data *data);
+char	*ft_strdup_bzero(char *s, t_data *data);
 t_data	*init_data(char *input);
 
 #endif
