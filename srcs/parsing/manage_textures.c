@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:44 by arudy             #+#    #+#             */
-/*   Updated: 2022/06/01 02:01:42 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 02:37:06 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,15 @@ int	is_texture(char *buff, t_data *data)
 	else if (!ft_strncmp(buff, "EA ", 3) && !data->texture[3].path)
 		data->texture[3].path = manage_texture(buff, "EA", 3, data);
 	else if (!ft_strncmp(buff, "C ", 2) && !data->c->exist)
+	{
 		manage_colors(buff, 2, 'C', data);
+		assign_trgb(data);
+	}
 	else if (!ft_strncmp(buff, "F ", 2) && !data->f->exist)
+	{
 		manage_colors(buff, 2, 'F', data);
+		assign_trgb(data);
+	}
 	else if (!check_line(buff))
 		return (0);
 	else

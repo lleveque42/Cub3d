@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:08:07 by lleveque          #+#    #+#             */
-/*   Updated: 2022/06/01 02:00:42 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 02:37:00 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,4 @@ void	manage_colors(char *buff, int n, char c, t_data *data)
 		data->f->g = ft_atoi(rgb[1]);
 		data->f->b = ft_atoi(rgb[2]);
 	}
-	assign_trgb(data);
 }

@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 17:13:42 by lleveque          #+#    #+#             */
-/*   Updated: 2022/06/01 02:18:00 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 02:39:28 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	check_map_line(char *buff, t_data *data)
 	int	i;
 
 	i = 0;
-
 	while (buff[i] && buff[i] != '\n')
 	{
 		while (buff[i] && buff[i] == ' ')
