@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:20:03 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/31 14:10:03 by arudy            ###   ########.fr       */
+/*   Updated: 2022/06/01 01:47:43 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	open_map_error(char *msg, t_data *data)
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
-	free_all(data);
+	ft_free_garbage(data->garbage);
+	free(data);
 	exit(EXIT_FAILURE);
 }
 
@@ -42,7 +43,8 @@ void	open_map(char *input, t_data *data)
 	{
 		ft_putstr_fd("Error\n", 2);
 		perror(input);
-		free_all(data);
+		ft_free_garbage(data->garbage);
+		free(data);
 		exit(EXIT_FAILURE);
 	}
 }
