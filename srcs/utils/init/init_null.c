@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_null.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:58:10 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/31 14:44:31 by arudy            ###   ########.fr       */
+/*   Updated: 2022/06/01 02:01:18 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void	init_null_1(t_data *data)
 	data->c_color = 0;
 	data->f_color = 0;
 	data->map = NULL;
+	data->c->exist = 0;
 	data->c->r = -1;
 	data->c->g = -1;
 	data->c->b = -1;
+	data->f->exist = 0;
 	data->f->r = -1;
 	data->f->g = -1;
 	data->f->b = -1;

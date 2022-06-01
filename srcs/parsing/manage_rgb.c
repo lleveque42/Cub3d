@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:08:07 by lleveque          #+#    #+#             */
-/*   Updated: 2022/05/30 10:46:32 by lleveque         ###   ########.fr       */
+/*   Updated: 2022/06/01 02:00:42 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ void	manage_colors(char *buff, int n, char c, t_data *data)
 		ft_exit_rgb_error(c, " is invalid in file", data, 1);
 	if (c == 'C')
 	{
+		data->c->exist = 1;
 		data->c->r = ft_atoi(rgb[0]);
 		data->c->g = ft_atoi(rgb[1]);
 		data->c->b = ft_atoi(rgb[2]);
 	}
 	else
 	{
+		data->f->exist = 1;
 		data->f->r = ft_atoi(rgb[0]);
 		data->f->g = ft_atoi(rgb[1]);
 		data->f->b = ft_atoi(rgb[2]);

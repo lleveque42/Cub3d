@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arudy <arudy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:44 by arudy             #+#    #+#             */
-/*   Updated: 2022/05/31 13:47:12 by arudy            ###   ########.fr       */
+/*   Updated: 2022/06/01 02:01:42 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,17 @@ char	*manage_texture(char *buff, char *id, int n, t_data *data)
 
 int	is_texture(char *buff, t_data *data)
 {
-	if (!ft_strncmp(buff, "NO ", 3))
+	if (!ft_strncmp(buff, "NO ", 3) && !data->texture[0].path)
 		data->texture[0].path = manage_texture(buff, "NO", 3, data);
-	else if (!ft_strncmp(buff, "SO ", 3))
+	else if (!ft_strncmp(buff, "SO ", 3) && !data->texture[1].path)
 		data->texture[1].path = manage_texture(buff, "SO", 3, data);
-	else if (!ft_strncmp(buff, "WE ", 3))
+	else if (!ft_strncmp(buff, "WE ", 3) && !data->texture[2].path)
 		data->texture[2].path = manage_texture(buff, "WE", 3, data);
-	else if (!ft_strncmp(buff, "EA ", 3))
+	else if (!ft_strncmp(buff, "EA ", 3) && !data->texture[3].path)
 		data->texture[3].path = manage_texture(buff, "EA", 3, data);
-	else if (!ft_strncmp(buff, "C ", 2))
+	else if (!ft_strncmp(buff, "C ", 2) && !data->c->exist)
 		manage_colors(buff, 2, 'C', data);
-	else if (!ft_strncmp(buff, "F ", 2))
+	else if (!ft_strncmp(buff, "F ", 2) && !data->f->exist)
 		manage_colors(buff, 2, 'F', data);
 	else if (!check_line(buff))
 		return (0);
