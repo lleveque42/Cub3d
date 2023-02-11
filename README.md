@@ -10,8 +10,12 @@ We had to work as a duo with @Rudyar to realise this project.
     sudo apt-get install libxext-dev
     sudo apt-get install zlib1g-dev
 
+---
+
 ### Our grade :mortar_board:
 [![lleveque's 42 cub3d Score](https://badge42.vercel.app/api/v2/clc6bxaur00060fmon220zhly/project/2595433)](https://github.com/JaeSeoKim/badge42)
+
+---
 
 ### Usage :desktop_computer:
 
