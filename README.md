@@ -13,8 +13,32 @@ We had to work as a duo with @lleveque42 to realise this project.
 ### Our grade :mortar_board:
 [![lleveque's 42 cub3d Score](https://badge42.vercel.app/api/v2/clc6bxaur00060fmon220zhly/project/2595433)](https://github.com/JaeSeoKim/badge42)
 
+### Usage :desktop_computer:
+
+#### :warning: Only works on linux :warning:
+
+First:
+
+    git clone https://github.com/Rudyar/Cub3d
+    cd Cub3d
+    
+Then:
+    
+    make
+    
+<p align="center">
+    <img src="https://github.com/Rudyar/Cub3d/blob/master/readme/make-cub3d.gif">
+</p>
+
+And finally:
+
+    ./cub3d maps/map.cub
 
 It will create a new window where you'll be able to play the game.
+
+<p align="center">
+    <img src="https://github.com/Rudyar/Cub3d/blob/master/readme/run-cub3d.gif">
+</p>
 
 The W, A, S, and D keys can be used to move the character, and the left and right arrows to look left or right.
 You can go forward, backward, left and right. 
