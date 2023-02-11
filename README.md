@@ -19,7 +19,7 @@ We had to work as a duo with @Rudyar to realise this project.
 
 First:
 
-    git clone https://github.com/Rudyar/Cub3d
+    git clone https://github.com/lleveque42/Cub3d
     cd Cub3d
     
 Then:
