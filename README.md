@@ -2,7 +2,7 @@
 This project is inspired by the world-famous eponymous 90's game "wolf3d", which was the first FPS ever. 
 The goal is to explore ray-casting making dynamic view inside a maze, in which we'll have to find our way, 
 improving our skills in differents areas : windows, colors, events, fill shapes, etc. 
-We had to work as a duo with @lleveque42 to realise this project.
+We had to work as a duo with @Rudyar to realise this project.
 
 ### Prerequisites :wrench:
 
