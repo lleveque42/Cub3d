@@ -38,21 +38,29 @@ You can design your own maps by modifying map.cub or creating a new .cub file :
 The map must at least be surrounded by walls and contain a player.  
 
 This is a valid map:
-NO ./assets/greystone.xpm
-SO ./assets/redbrick.xpm
-WE ./assets/mossy.xpm
-EA ./assets/eagle.xpm
-F 142,95,39
-C 15,99,153
+   
+    NO ./assets/greystone.xpm
+    SO ./assets/redbrick.xpm
+    WE ./assets/mossy.xpm
+    EA ./assets/eagle.xpm
+    F 142,95,39
+    C 15,99,153
 
-111 111111111  
-10111000001  
-1000001110011  
-1N00111000001  
-11111 1111111  
+    111 111111111  
+    10111000001  
+    1000001110011  
+    1N00111000001  
+    11111 1111111  
 
 This is not a valid map:
 
+    NO ./assets/greystone.xpm
+    SO ./assets/redbrick.jpg
+    WE ./assets/mossy.xpm
+    EA ./assets/eagle.xpm
+    F 142
+    C 15,99,153
+    
     111111111  
     1001000001111  
     1000011111001  
